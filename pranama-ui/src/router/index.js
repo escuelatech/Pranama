@@ -9,7 +9,7 @@ import TheProcess from '@/components/View/services/navigations/TheProcess.vue';
 import Ayurveda from "@/components/View/services/navigations/Ayurveda.vue";
 import Yoga from "@/components/View/services/navigations/Yoga.vue";
 import MentalHealth from "@/components/View/services/navigations/MentalHealth.vue";
-import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue";
+import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue"
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 
 

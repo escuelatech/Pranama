@@ -1,0 +1,23 @@
+
+<!--	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+ script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+<script src="https://unpkg.com/v-tag-input@0.0.3/dist/v-tag-input.js"></script>
+<script src="assets/js/util.js"></script 
+// import jQuery from '@/assets/js/jquery.min.js';
+// const $ = jQuery;
+// window.$ = $;
+
+// import '@/assets/js/browser.min.js';
+
+// import '@/assets/js/browser.min.js';
+// import '@/assets/js/breakpoints.min.js';
+// import util from '@/assets/js/util.js';
+// const $a = util;
+// window.$ = $;
+// import '@/assets/js/main.js';
+</script> -->

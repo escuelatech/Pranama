@@ -11,6 +11,7 @@ import Yoga from "@/components/View/services/navigations/Yoga.vue";
 import MentalHealth from "@/components/View/services/navigations/MentalHealth.vue";
 import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue"
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
+import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 
 
 Vue.use(VueRouter);
@@ -73,6 +74,11 @@ export default new VueRouter({
       path: '/DoctorAtHome',
       name: 'DoctorAtHome',
       component: DoctorAtHome
+    },
+    {
+      path: '/LoginPage',
+      name: 'LoginPage',
+      component: LoginPage
     },
 
      { path: '*', redirect: '/Pranama' }

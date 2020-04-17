@@ -25,6 +25,9 @@
                 <router-link :to="{ name: 'Pranama' }" @click="handleLinkClick" >HOMEPAGE</router-link>
               </li>
               <li>
+              <router-link @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
+              </li>
+              <li>
               <!--  <a @click="handleLinkClick" href="Whatwedo.html">WHAT WE DO</a>-->
                 <router-link :to="{ name: 'WhatWeDo' }" @click="handleLinkClick" >WHAT WE DO</router-link>
               </li>

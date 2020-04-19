@@ -1,16 +1,5 @@
 {
   "Register": [
-    {
-      "email": "mayajayaprakash@gmail.com",
-      "phone": "4086699509",
-      "firstName": "maya",
-      "lastName": "Jayaprakash",
-      "gender": "female",
-      "placeName": "vatakara",
-      "districtName": "Kzhikode",
-      "stateName": "Kerala",
-      "pinNumber": "673101",
-      "id": 1
-    }
+  
   ]
 }

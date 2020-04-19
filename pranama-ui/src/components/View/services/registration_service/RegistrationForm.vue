@@ -15,25 +15,20 @@
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
-                  name="firstName"
-                  value="First Name"
-                  placeholder="First Name"
-                  v-model="firstName"
+                  name="userName"
+                  value="user Name"
+                  placeholder="User Name"
+                  v-model="userName"
                   required
                 />
-                <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
+                <span class="errNotific" v-if="msge.userName">{{msge.userName}}</span>
               </div>
-              <div class="col-6 col-12-xsmall">
-                <input
-                  type="text"
-                  name="lastName"
-                  value="Last Name"
-                  placeholder="Last Name"
-                  v-model="lastName"
-                  required
-                />
-                <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
-              </div>
+              
+        <div class="col-6 col-12-xsmall">
+          <input type="password" name="password" value placeholder="Password" v-model="password" required />
+          <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
+        </div>
+             
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
@@ -50,54 +45,17 @@
                 <input type="email" name="email" value placeholder="Email" v-model="email" required />
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
-              <div class="col-6 col-12-xsmall">
-                <input
-                  type="text"
-                  name="place"
-                  value
-                  placeholder="Name of the place"
-                  v-model="placeName"
-                  reqired
-                />
-                <span class="errNotific" v-if="msge.placeName">{{msge.placeName}}</span>
-              </div>
-              <div class="col-6 col-12-xsmall">
-                <!--  <input
-                  type="text"
-                  name="district"
-                  value
-                  placeholder="District Name"
-                  v-model="districtName"
-                />-->
-                <select v-model="districtName">
-                  <option value>- Select your District -</option>
-                  <option value="Kasargod">Kasargod</option>
-                  <option value="Kannur">Kannur</option>
-                  <option value="Kzhikode">Kzhikode</option>
-                  <option value="Wayanad<">Wayanad</option>
-                  <option value="Malappuram">Malappuram</option>
-                  <option value="Palakkad">Palakkad</option>
-                  <option value="Thrissur">Thrissur</option>
-                  <option value="Eranakulam">Eranakulam</option>
-                  <option value="Alappuzha">Alappuzha</option>
-                  <option value="Pathanamthitta">Pathanamthitta</option>
-                  <option value="Kottayam">Kottayam</option>
-                  <option value="Kollam">Kollam</option>
-                  <option value="Thiruvananthapuram">Thiruvananthapuram</option>
-                  <option value="Idukki">Idukki</option>
-                </select>
-                <span class="errNotific" v-if="msge.districtName">{{msge.districtName}}</span>
-              </div>
+            
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
                   name="State"
                   value
-                  placeholder="State Name"
-                  v-model="stateName"
+                  placeholder="Country"
+                  v-model="country"
                   required
                 />
-                <span class="errNotific" v-if="msge.stateName">{{msge.stateName}}</span>
+                <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
                 <input
@@ -177,9 +135,10 @@ import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
 //import ContactForm from "@/components/View/ContactForm";
 import axios from "axios";
+import {API} from "@/shared/index.js"
 const apiClient = axios.create({
-  //baseURL: 'http://malabarhangouts.com',
-  baseURL: "http://localhost:3000",
+  baseURL: `${API}`,
+ // baseURL: "http://localhost:3000",
   withCredentials: false,
   headers: {
     Accept: "application/json",
@@ -194,19 +153,20 @@ export default {
     return {
       sendingSuccessful: false,
       email: "",
+      password: "",
       phoneNumber: "",
-      firstName: "",
+      userName: "",
       lastName: "",
       gender: "",
       placeName: "",
       districtName: "",
-      stateName: "",
+      country: "",
       pinNumber: "",
       regDatas: [],
       msge: [],
       min: "10",
       max: "15",
-      text: "sent"
+      
       
       
     };
@@ -217,25 +177,18 @@ export default {
       this.email = value;
       this.check_email(value);
     },
-    firstName(value) {
-      this.firstName = value;
-      this.check_firstName(value);
+    userName(value) {
+      this.userName = value;
+      this.check_userName(value);
     },
-    lastName(value) {
-      this.lastName = value;
-      this.check_lastName(value);
+    password(value){
+      this.password = value;
+      this.check_password;
     },
-    placeName(value) {
-      this.placeName = value;
-      this.check_placeName(value);
-    },
-    districtName(value) {
-      this.districptName = value;
-      this.check_districtName(value);
-    },
-    stateName(value) {
-      this.stateName = value;
-      this.check_stateName(value);
+   
+    country(value) {
+      this.country = value;
+      this.check_country(value);
     },
     phoneNumber(value) {
       this.phoneNumber = value;
@@ -250,25 +203,25 @@ export default {
     submitContactForm() {
       
       apiClient
-        .post("/Register", {
-          //  .post("/api/email/contactus",{
+      
+            .post("/api/user/register",{
           email: this.email,
           phone: this.phoneNumber,
-          firstName: this.firstName,
-          lastName: this.lastName,
+          userName: this.userName,
+          
           gender: this.gender,
-          placeName: this.placeName,
-          districtName: this.districtName,
-          stateName: this.stateName,
+          
+          password:this.password,
+          country: this.country,
           pinNumber: this.pinNumber
         })
         .then(response => {
           response.data;
-          response;
+         console.log(response) ;
          this.sendingSuccessful = true;
         })
         .catch(error => {
-          this.sendingSuccessful = true;
+          this.sendingSuccessful = false;
           console.log("There was an error", error.response);
           
         });
@@ -277,7 +230,7 @@ export default {
 
     showdata() {
        apiClient
-         .get("/Register")
+         .get("/api/user/register")
          .then(response => {
      this.regDatas = response.data;
       console.log(response);
@@ -297,46 +250,32 @@ export default {
         }
       }
     },
-    check_firstName(value) {
+    check_userName(value) {
       if (value == "") {
-        this.msge["firstName"] = "Enter a valid First Name";
+        this.msge["userName"] = "Enter a valid  Name";
       } else {
-        this.msge["firstName"] = "";
+        this.msge["userName"] = "";
       }
     },
-    check_lastName(value) {
-      if (value == "") {
-        this.msge["lastName"] = "Enter a valid Last Name";
-      } else {
-        this.msge["lastName"] = "";
+    check_password(value) {
+      if(value.length < 6){
+       this.msge["password"] = "password must contain 6 charector";
+      }
+      else{
+        this.msge["password"] = "";
       }
     },
-    check_placeName(value) {
+  
+   
+    check_country(value) {
       if (value == "") {
-        this.msge["placeName"] = "Enter name of the place where you reside";
+        this.msge["country"] = " Enter the state";
       } else {
-        this.msge["placeName"] = "";
-      }
-    },
-    check_districtName(value) {
-      if (value == "") {
-        this.msge["districtName"] = "Select the district";
-      } else {
-        this.msge["districtName"] = "";
-      }
-    },
-    check_stateName(value) {
-      if (value == "") {
-        this.msge["stateName"] = " Enter the state";
-      } else {
-        this.msge["stateName"] = "";
+        this.msge["country"] = "";
       }
     },
     check_phoneNumber(value) {
-      // eslint-disable-next-line no-useless-escape
-      console.log(value);
-      console.log(value.length);
-      //console.log(min)
+     
       if (value.length >= "10" && value.length <= "15") {
         this.msge["phoneNumber"] = " ";
       } else {

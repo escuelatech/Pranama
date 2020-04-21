@@ -10,7 +10,7 @@
 
           <h3 v-show="!sendingSuccessful">Register here.</h3>
 
-          <form @submit.prevent="submitContactForm" v-show="!sendingSuccessful" >
+          <form @submit.prevent="submitRegistrationForm" v-show="!sendingSuccessful" >
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
                 <input
@@ -83,20 +83,16 @@
                   <li>
                     <input type="reset" value="Reset" />
                   </li>
-                  <li>
-                    <!-- <input type="btn" value="Show" v-on:click="showdata()" class="button" />-->
-                    <!-- <button type="btn" name="Show"  v-on:click="showdata()" :to='{name: "RegesteredInfo"}'>show</button>-->
-                  </li>
-                </ul>
+                 </ul>
               </div>
             </div>
           </form>
           <div class="box" v-show="sendingSuccessful">
-         <!-- <p>Registration succees!!!</p>-->
-         <p>{{m}}</p>
-         <!-- <input type="reset" value="OK" class="primary" <router-view :key="$route.fullPath"></router-view> />-->
-          <button type="btn" name="OK" >OK</button>
-         <!-- <button @click="$router.push({name: 'RegesteredInfo', params: { id: '1' },})">View Registration</button>-->
+         
+         <h3>{{m}}</h3>
+        
+          <button @click="$router.push({name: 'LoginPage'})">Login</button>
+
           </div>
           <button type="btn" name="Show" :to = '{name: "RegesteredInfo"}' v-on:click="showdata()" v-show="sendingSuccessful">View Registration</button>
          
@@ -134,12 +130,11 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
-//import ContactForm from "@/components/View/ContactForm";
 import axios from "axios";
 import {API} from "@/shared/index.js"
 const apiClient = axios.create({
   baseURL: `${API}`,
- // baseURL: "http://localhost:3000",
+ 
   withCredentials: false,
   headers: {
     Accept: "application/json",
@@ -196,7 +191,7 @@ export default {
     }
   },
   methods: {
-    submitContactForm() {
+    submitRegistrationForm() {
       
       apiClient
       
@@ -215,10 +210,9 @@ export default {
           response.data;
          console.log(response) ;
          this.sendingSuccessful = true;
-       // this.m ="Registration success!!!"
-      
+        
         if (this.status == "400"){
-          return this.m =  "Registration Success!!!"
+          return this.m =  "Registration Success!!! You will get an email as part of this this registration."
         }
         else{
              return this.m = "Oops....!!! try again"

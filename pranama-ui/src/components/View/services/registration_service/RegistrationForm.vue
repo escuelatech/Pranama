@@ -25,7 +25,7 @@
               </div>
               
         <div class="col-6 col-12-xsmall">
-          <input type="password" name="password" value placeholder="Password" v-model="password" required />
+          <input type="password" name="password" value placeholder="Password" v-model="password" autocomplete="off"  required />
           <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
         </div>
              
@@ -92,7 +92,8 @@
             </div>
           </form>
           <div class="box" v-show="sendingSuccessful">
-          <p>Registration succees!!!</p>
+         <!-- <p>Registration succees!!!</p>-->
+         <p>{{m}}</p>
          <!-- <input type="reset" value="OK" class="primary" <router-view :key="$route.fullPath"></router-view> />-->
           <button type="btn" name="OK" >OK</button>
          <!-- <button @click="$router.push({name: 'RegesteredInfo', params: { id: '1' },})">View Registration</button>-->
@@ -156,19 +157,14 @@ export default {
       password: "",
       phoneNumber: "",
       userName: "",
-      lastName: "",
       gender: "",
-      placeName: "",
-      districtName: "",
       country: "",
       pinNumber: "",
       regDatas: [],
       msge: [],
       min: "10",
       max: "15",
-      
-      
-      
+      m:[],
     };
   },
   components: { Header, Sidebar },
@@ -183,7 +179,7 @@ export default {
     },
     password(value){
       this.password = value;
-      this.check_password;
+      this.check_password(value);
     },
    
     country(value) {
@@ -219,12 +215,21 @@ export default {
           response.data;
          console.log(response) ;
          this.sendingSuccessful = true;
+       // this.m ="Registration success!!!"
+      
+        if (this.status == "400"){
+          return this.m =  "Registration Success!!!"
+        }
+        else{
+             return this.m = "Oops....!!! try again"
+        }
+
         })
         .catch(error => {
           this.sendingSuccessful = false;
           console.log("There was an error", error.response);
-          
-        });
+          this.sendingSuccessful = true;
+          });
        
    },
 
@@ -258,11 +263,12 @@ export default {
       }
     },
     check_password(value) {
-      if(value.length < 6){
-       this.msge["password"] = "password must contain 6 charector";
+      if( /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(value)){
+       this.msge["password"] = "";
       }
       else{
-        this.msge["password"] = "";
+        this.msge["password"] = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter."
+
       }
     },
   

@@ -50,15 +50,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-const apiClient = axios.create({
-    baseURL: 'http://malabarhangouts.com',
-    withCredentials: false,
-    headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-    }
-})
+
+import EmailService from "@/services/malabar/EmailService";
 
 export default {
   data() {
@@ -72,8 +65,8 @@ export default {
   methods: {
     submitContactForm() {
       console.log("Ready to submit the contact form ");
-      apiClient
-        .post("/api/email/contactus", {
+      EmailService
+        .sendEmail({
           from: "shyam_ramath@yahoo.com",
           to: this.from,
           subject: this.subject,

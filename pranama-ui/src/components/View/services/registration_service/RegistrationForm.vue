@@ -130,17 +130,8 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
-import axios from "axios";
-import {API} from "@/shared/index.js"
-const apiClient = axios.create({
-  baseURL: `${API}`,
- 
-  withCredentials: false,
-  headers: {
-    Accept: "application/json",
-    "content-Type": "application/json"
-  }
-});
+import UserService from "@/apiservices/UserService";
+
 export default {
   props: {
     msg: String
@@ -176,7 +167,6 @@ export default {
       this.password = value;
       this.check_password(value);
     },
-   
     country(value) {
       this.country = value;
       this.check_country(value);
@@ -192,10 +182,8 @@ export default {
   },
   methods: {
     submitRegistrationForm() {
-      
-      apiClient
-      
-            .post("/api/user/register",{
+      UserService
+        .register({
           email: this.email,
           phone: this.phoneNumber,
           userName: this.userName,
@@ -228,11 +216,11 @@ export default {
    },
 
     showdata() {
-       apiClient
-         .get("/api/user/register")
-         .then(response => {
-     this.regDatas = response.data;
-      console.log(response);
+       UserService
+        .getRegistration()
+        .then(response => {
+          this.regDatas = response.data;
+          console.log(response);
           console.log(this.regDatas);
         })
         .catch(error => {

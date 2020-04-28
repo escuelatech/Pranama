@@ -123,19 +123,7 @@
   </div>
 </template>
 <script>
-
-
-import { API } from "@/shared/index.js";
-import axios from "axios";
-
-const apiClient = axios.create({
-  baseURL: `${API}`,
-  withCredentials: false,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json"
-  }
-});
+import ContactService from "@/apiservices/ContactService";
 
 export default {
   data() {
@@ -153,9 +141,9 @@ export default {
   methods: {
     submitContactForm() {
       console.log("Ready to submit the contact form  ");
-      console.log(API);
-      apiClient
-        .post("/api/email/contactus", {
+      //console.log(API);
+      ContactService
+        .submitContact({
           email: this.email,
           phone: this.phoneNumber,
           firstName: this.firstName,

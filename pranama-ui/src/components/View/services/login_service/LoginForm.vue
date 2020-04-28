@@ -98,7 +98,7 @@
   </div>
 </template>
 <script>
-import ContactService from "@/shared/api/ContactService";
+import ContactService from "@/apiservices/ContactService";
 
 export default {
   data() {

@@ -51,7 +51,7 @@
 
 <script>
 
-import EmailService from "@/services/malabar/EmailService";
+import EmailService from "@/apiservices/malabar/EmailService";
 
 export default {
   data() {

@@ -1,4 +1,4 @@
-import apiClient from "./axios";
+import apiClient from "@/shared/axios";
 
 export default {
   register (params) {

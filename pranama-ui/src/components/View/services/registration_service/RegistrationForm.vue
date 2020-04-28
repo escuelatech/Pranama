@@ -130,7 +130,7 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
-import UserService from "@/shared/api/UserService";
+import UserService from "@/apiservices/UserService";
 
 export default {
   props: {

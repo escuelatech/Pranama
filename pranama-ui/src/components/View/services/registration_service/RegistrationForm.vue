@@ -130,7 +130,7 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
-import UserService from "@/services/api/UserService";
+import UserService from "@/shared/api/UserService";
 
 export default {
   props: {
@@ -167,7 +167,6 @@ export default {
       this.password = value;
       this.check_password(value);
     },
-   
     country(value) {
       this.country = value;
       this.check_country(value);

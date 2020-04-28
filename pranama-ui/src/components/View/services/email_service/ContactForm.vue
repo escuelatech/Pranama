@@ -123,7 +123,7 @@
   </div>
 </template>
 <script>
-import ContactService from "@/services/api/ContactService";
+import ContactService from "@/shared/api/ContactService";
 
 export default {
   data() {

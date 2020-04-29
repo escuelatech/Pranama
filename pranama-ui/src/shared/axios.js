@@ -10,4 +10,14 @@ const apiClient = axios.create({
   }
 });
 
+apiClient.interceptors.request.use(function (config) {
+  let token = JSON.parse(localStorage.getItem('token'));
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+}, function (err) {
+  return Promise.reject(err);
+});
+
 export default apiClient;

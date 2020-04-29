@@ -76,7 +76,7 @@
 				background-color: darken(_palette(accent), 3);
 			}
 		}
-
+		
 		&.disabled,
 		&:disabled {
 			@include vendor('pointer-events', 'none');

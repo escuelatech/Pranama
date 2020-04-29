@@ -21,7 +21,7 @@
             <div class="content">
               <header>
                 <h2>
-                  Parental Care
+                  Parental Care DASHBOARD
                   <br />by PRANAMA
                 </h2>
                 <p>TAKING CARE OF YOUR AGEING PARENTS IS A NOBLE MOVE</p>

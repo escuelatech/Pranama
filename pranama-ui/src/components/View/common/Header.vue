@@ -4,6 +4,16 @@
               <strong>Pranama</strong>
             </a>
             <ul class="icons">
+              <li v-if="isAuthenticated">
+                <button class="button small" @click="handleLogout">
+                  Logout
+                </button>
+              </li>
+              <li v-else>
+                <button class="button primary small" @click="$router.push({ name: 'LoginPage' })">
+                  Login
+                </button>
+              </li>
               <li>
                 <a href="#" class="icon brands fa-twitter">
                   <span class="label">Twitter</span>
@@ -32,3 +42,11 @@
             </ul>
           </header>
 </template>
+
+<script>
+import logoutMixin from "@/mixins/logout.js";
+
+export default {
+  mixins: [logoutMixin]
+}
+</script>

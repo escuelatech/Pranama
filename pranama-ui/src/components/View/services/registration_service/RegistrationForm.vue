@@ -194,17 +194,15 @@ export default {
           country: this.country,
           pinNumber: this.pinNumber
         })
-        .then(response => {
-          response.data;
-         console.log(response) ;
-         this.sendingSuccessful = true;
-        
-        if (this.status == "400"){
-          return this.m =  "Registration Success!!! You will get an email as part of this this registration."
-        }
-        else{
-             return this.m = "Oops....!!! try again"
-        }
+        .then(() => {
+          this.sendingSuccessful = true;
+          
+          if (this.status == "400"){
+            return this.m =  "Registration Success!!! You will get an email as part of this this registration."
+          }
+          else{
+              return this.m = "Oops....!!! try again"
+          }
 
         })
         .catch(error => {

@@ -25,7 +25,8 @@
                 <router-link :to="{ name: 'Pranama' }" @click="handleLinkClick" >HOMEPAGE</router-link>
               </li>
               <li>
-              <router-link @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
+                <a href="#" v-if="isAuthenticated" @click.prevent="handleLogout">Logout</a>
+                <router-link v-else @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
               </li>
               <li>
               <!--  <a @click="handleLinkClick" href="Whatwedo.html">WHAT WE DO</a>-->
@@ -168,6 +169,7 @@
 <script>
 import BREAKPOINTS, { isMoreThan } from '@/shared/breakpoints';
 import { debounce } from 'lodash-es';
+import logoutMixin from "@/mixins/logout.js";
 
 export default {
   name: 'Sidebar',
@@ -179,6 +181,7 @@ export default {
       isDropdownOpen: false// dropdown sample
     }
   },
+  mixins: [logoutMixin],
   watch: {
     isBreakpointMoreThanLarge(newValue, oldValue) {
       if (typeof oldValue !== "boolean") {
@@ -212,7 +215,6 @@ export default {
     handleSidebarClick(e) {
       if (!this.isBreakpointMoreThanLarge) {
         e.stopPropagation();
-        
       }
     },
     handleToggle(e) {

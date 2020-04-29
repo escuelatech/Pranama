@@ -1,34 +1,49 @@
 <template>
   <div>
     <h3 v-show="!sendingSuccessful">LOGIN</h3>
-    <form @submit.prevent="submitContactForm" v-show="!sendingSuccessful">
+    <form @reset="reset" @submit.prevent="submitContactForm" v-show="!sendingSuccessful">
       <div class="row gtr-uniform">
-        <div class="col-6 col-12-xsmall">
-          <input
-            type="text"
-            name="userName"
-            value="User Name"
-            placeholder="User Name"
-            v-model="userName"
-          />
+        <template v-if="!processing">
+          <div class="col-6 col-12-xsmall">
+            <input
+              type="text"
+              name="username"
+              value="User Name"
+              placeholder="User Name"
+              v-model="username"
+            />
+          </div>
+          <div class="col-6 col-12-xsmall"></div>
+          <div class="col-6 col-12-xsmall">
+            <input 
+              type="password"
+              name="password"
+              placeholder="Password"
+              v-model="password"
+            />
+          </div>
+        </template>
+        <div v-else class="col-6 col-12-xsmall loading">
+          <Spinner :centered="true" size="80" />
         </div>
-        <div class="col-6 col-12-xsmall"></div>
-        <div class="col-6 col-12-xsmall">
-          <input type="text" name="password" value placeholder="Password" v-model="password" />
-        </div>
-
         <!-- Break -->
-        <div class="col-12"></div>
+        <div class="col-12">
+          <div class="errNotific" v-if="error">Wrong credentials</div>
+        </div>
         <!-- Break -->
         <div class="col-12">
           <ul class="actions">
             <li>
-              <input type="submit" value="Login" class="primary" />
+              <input type="submit" :disabled="processing" value="Login" class="primary" />
             </li>
             <li>
-              <input type="reset" value="Cancel" />
+              <input type="reset" :disabled="processing" value="Cancel" />
             </li>
           </ul>
+        </div>
+        <div class="col-12">
+          <small>Don't have an account? <router-link :to="{ name: 'RegistrationForm' }">Register now</router-link></small><br/>
+          <small><router-link to="/">Forgot password</router-link></small>
         </div>
         <!-- <div  v-if="sendingSuccessful"> Successs </div>  -->
         <!-- <div   v-show="firstName"></div> -->
@@ -98,7 +113,8 @@
   </div>
 </template>
 <script>
-import ContactService from "@/apiservices/ContactService";
+import Spinner from "@/components/UI/Spinner";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -109,32 +125,41 @@ export default {
       firstName: "",
       lastName: "",
       message: "",
-      text: "sent"
+      text: "sent",
+      username: "",
+      password: "",
+      error: false,
+      processing: false
     };
   },
-
+  components: {
+    Spinner
+  },
   methods: {
-    submitContactForm() {
-      console.log("Ready to submit the contact form  ");
-      //console.log(API);
-      ContactService
-        .submitContact({
-          email: this.email,
-          phone: this.phoneNumber,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          message: this.message
-        })
-        .then(response => {
-          console.log(response.data);
-          console.log(response);
-          this.sendingSuccessful = true;
-          return response;
-        })
-        .catch(error => {
-          this.sendingSuccessful = false;
-          console.log(error);
+    ...mapActions({
+      login: "auth/login",
+    }),
+    reset() {
+      this.username = "";
+      this.password = "";
+      this.error = false;
+    },
+    async submitContactForm() {
+      this.error = false;
+      this.processing = true;
+      try {
+        await this.login({
+          username: this.username,
+          password: this.password
         });
+        this.sendingSuccessful = true;
+        this.$router.push({ name: "Dashboard" }).catch(err => console.log(err));
+      } catch (error) {
+        this.sendingSuccessful = false;
+        this.error = true;
+      } finally {
+        this.processing = false;
+      }
     }
   }
 };
@@ -142,4 +167,15 @@ export default {
 
 <style lang="scss" >
 @import "@/design/sass/main.scss";
+.errNotific {
+  color: red;
+}
+.loading {
+  min-height: 170px;
+  position: relative;
+
+  .spinner {
+    left: 20%;
+  }
+}
 </style>

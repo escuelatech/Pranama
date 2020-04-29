@@ -5,14 +5,14 @@
             </a>
             <ul class="icons">
               <li v-if="isAuthenticated">
-                <a href="#" @click.prevent="handleLogout">
-                  <span class="label">Logout</span>
-                </a>
+                <button class="button small" @click="handleLogout">
+                  Logout
+                </button>
               </li>
               <li v-else>
-                <router-link :to="{ name: 'LoginPage' }">
-                  <span class="label">Login</span>
-                </router-link>
+                <button class="button primary small" @click="$router.push({ name: 'LoginPage' })">
+                  Login
+                </button>
               </li>
               <li>
                 <a href="#" class="icon brands fa-twitter">

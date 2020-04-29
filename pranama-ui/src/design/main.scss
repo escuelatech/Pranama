@@ -1342,10 +1342,13 @@ ul.actions {
 /* Icons */
 ul.icons {
   cursor: default;
+  display: inline-block;
   list-style: none;
+  vertical-align: middle;
   padding-left: 0; }
   ul.icons li {
     display: inline-block;
+    vertical-align: middle;
     padding: 0 1em 0 0; }
     ul.icons li:last-child {
       padding-right: 0; }
@@ -1353,6 +1356,10 @@ ul.icons {
       color: inherit; }
       ul.icons li .icon:before {
         font-size: 1.25em; }
+  ul.icons button {
+    display: inline-block;
+    vertical-align: middle;
+  }
 
 /* Contact */
 ul.contact {

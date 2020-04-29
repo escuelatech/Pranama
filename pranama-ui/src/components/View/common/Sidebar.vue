@@ -25,7 +25,8 @@
                 <router-link :to="{ name: 'Pranama' }" @click="handleLinkClick" >HOMEPAGE</router-link>
               </li>
               <li>
-              <router-link @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
+                <a href="#" v-if="isAuthenticated" @click.prevent="handleLogout">Logout</a>
+                <router-link v-else @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
               </li>
               <li>
               <!--  <a @click="handleLinkClick" href="Whatwedo.html">WHAT WE DO</a>-->
@@ -168,6 +169,7 @@
 <script>
 import BREAKPOINTS, { isMoreThan } from '@/shared/breakpoints';
 import { debounce } from 'lodash-es';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Sidebar',
@@ -191,6 +193,11 @@ export default {
       }, 500);
     }
   },
+  computed: {
+    ...mapGetters({
+      isAuthenticated: 'auth/isAuthenticated'
+    })
+  },
   created() {
     this.checkWindowWidthDebounced = debounce(this.checkWindowWidth, 20);
     window.addEventListener('resize', this.checkWindowWidthDebounced);
@@ -200,6 +207,13 @@ export default {
     window.removeEventListener('resize', this.checkWindowWidthDebounced);
   },
   methods: {
+    ...mapActions({
+      logout: 'auth/logout'
+    }),
+    handleLogout() {
+      this.logout();
+      this.$router.push('/').catch(err => console.log(err));
+    },
     checkWindowWidth() {
       const width = window.innerWidth;
       this.isBreakpointMoreThanLarge = isMoreThan(width, BREAKPOINTS.L);

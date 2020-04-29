@@ -6,19 +6,26 @@
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="userName"
+            name="username"
             value="User Name"
             placeholder="User Name"
-            v-model="userName"
+            v-model="username"
           />
         </div>
         <div class="col-6 col-12-xsmall"></div>
         <div class="col-6 col-12-xsmall">
-          <input type="text" name="password" value placeholder="Password" v-model="password" />
+          <input 
+            type="password"
+            name="password"
+            placeholder="Password"
+            v-model="password"
+          />
         </div>
 
         <!-- Break -->
-        <div class="col-12"></div>
+        <div class="col-12">
+          <div class="errNotific" v-if="error">Wrong credentials</div>
+        </div>
         <!-- Break -->
         <div class="col-12">
           <ul class="actions">
@@ -98,7 +105,7 @@
   </div>
 </template>
 <script>
-import ContactService from "@/apiservices/ContactService";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -109,32 +116,30 @@ export default {
       firstName: "",
       lastName: "",
       message: "",
-      text: "sent"
+      text: "sent",
+      username: "",
+      password: "",
+      error: false
     };
   },
 
   methods: {
-    submitContactForm() {
-      console.log("Ready to submit the contact form  ");
-      //console.log(API);
-      ContactService
-        .submitContact({
-          email: this.email,
-          phone: this.phoneNumber,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          message: this.message
-        })
-        .then(response => {
-          console.log(response.data);
-          console.log(response);
-          this.sendingSuccessful = true;
-          return response;
-        })
-        .catch(error => {
-          this.sendingSuccessful = false;
-          console.log(error);
+    ...mapActions({
+      login: "auth/login",
+    }),
+    async submitContactForm() {
+      this.error = false;
+      try {
+        await this.login({
+          username: this.username,
+          password: this.password
         });
+        this.sendingSuccessful = true;
+        this.$router.push({ name: "Dashboard" }).catch(err => console.log(err));
+      } catch (error) {
+        this.sendingSuccessful = false;
+        this.error = true;
+      }
     }
   }
 };
@@ -142,4 +147,7 @@ export default {
 
 <style lang="scss" >
 @import "@/design/sass/main.scss";
+.errNotific {
+  color: red;
+}
 </style>

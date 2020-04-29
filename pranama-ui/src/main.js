@@ -19,11 +19,13 @@ import App from "./Appdefault/App.vue"
 import router from "./router/index.js"
 import vuetify from './plugins/vuetify';
 import "./design/fontawesome-all.min.css";
+import store from './store';
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   vuetify,
+  store,
   render: h => h(App)
 }).$mount('#app')

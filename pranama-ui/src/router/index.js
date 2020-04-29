@@ -13,9 +13,11 @@ import PreventiveHealth from "@/components/View/services/navigations/PreventiveH
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 
+const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 
 Vue.use(VueRouter);
-export default new VueRouter({
+
+const router = new VueRouter({
   mode: 'history',
   routes: [
     {
@@ -80,6 +82,12 @@ export default new VueRouter({
       name: 'LoginPage',
       component: LoginPage
     },
+    {
+      path: '/Dashboard',
+      name: 'Dashboard',
+      component: DashboardPage,
+      meta: { requiresAuth: true }
+    },
 
      { path: '*', redirect: '/Pranama' }
   ],
@@ -97,3 +105,23 @@ export default new VueRouter({
     }
   }
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    const loggedIn = localStorage.getItem('token');
+    if (!loggedIn) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+});
+
+export default router;

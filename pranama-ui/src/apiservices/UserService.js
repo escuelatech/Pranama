@@ -17,7 +17,6 @@ function getRegistration () {
 
 async function login (username, password) {
   const response = await apiClient.post("/api/user/login", { username, password })
-  response.data.token = 'asd' // TODO REMOVE
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));
   } else {

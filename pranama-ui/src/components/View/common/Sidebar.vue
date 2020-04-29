@@ -169,7 +169,7 @@
 <script>
 import BREAKPOINTS, { isMoreThan } from '@/shared/breakpoints';
 import { debounce } from 'lodash-es';
-import { mapActions, mapGetters } from 'vuex';
+import logoutMixin from "@/mixins/logout.js";
 
 export default {
   name: 'Sidebar',
@@ -181,6 +181,7 @@ export default {
       isDropdownOpen: false// dropdown sample
     }
   },
+  mixins: [logoutMixin],
   watch: {
     isBreakpointMoreThanLarge(newValue, oldValue) {
       if (typeof oldValue !== "boolean") {
@@ -193,11 +194,6 @@ export default {
       }, 500);
     }
   },
-  computed: {
-    ...mapGetters({
-      isAuthenticated: 'auth/isAuthenticated'
-    })
-  },
   created() {
     this.checkWindowWidthDebounced = debounce(this.checkWindowWidth, 20);
     window.addEventListener('resize', this.checkWindowWidthDebounced);
@@ -207,13 +203,6 @@ export default {
     window.removeEventListener('resize', this.checkWindowWidthDebounced);
   },
   methods: {
-    ...mapActions({
-      logout: 'auth/logout'
-    }),
-    handleLogout() {
-      this.logout();
-      this.$router.push({ name: 'LogoutPage' }).catch(err => console.log(err));
-    },
     checkWindowWidth() {
       const width = window.innerWidth;
       this.isBreakpointMoreThanLarge = isMoreThan(width, BREAKPOINTS.L);
@@ -226,7 +215,6 @@ export default {
     handleSidebarClick(e) {
       if (!this.isBreakpointMoreThanLarge) {
         e.stopPropagation();
-        
       }
     },
     handleToggle(e) {

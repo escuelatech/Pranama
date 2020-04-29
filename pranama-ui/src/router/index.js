@@ -14,6 +14,7 @@ import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vu
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
+const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
 
 Vue.use(VueRouter);
 
@@ -81,6 +82,11 @@ const router = new VueRouter({
       path: '/LoginPage',
       name: 'LoginPage',
       component: LoginPage
+    },
+    {
+      path: '/LogoutPage',
+      name: 'LogoutPage',
+      component: LogoutPage
     },
     {
       path: '/Dashboard',

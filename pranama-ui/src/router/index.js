@@ -12,6 +12,8 @@ import MentalHealth from "@/components/View/services/navigations/MentalHealth.vu
 import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue"
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
+import form1 from "@/traumaservices/form1.vue"
+import form2 from "@/traumaservices/form2.vue"
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
@@ -93,6 +95,16 @@ const router = new VueRouter({
       name: 'Dashboard',
       component: DashboardPage,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/form1',
+      name: 'form1',
+      component: form1
+    },
+    {
+      path: '/form2',
+      name: 'form2',
+      component: form2
     },
 
      { path: '*', redirect: '/Pranama' }

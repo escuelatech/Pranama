@@ -91,35 +91,11 @@
          
          <h3>{{m}}</h3>
         
-          <button @click="$router.push({name: 'LoginPage'})">Login</button>
+         
 
           </div>
-          <button type="btn" name="Show" :to = '{name: "RegesteredInfo"}' v-on:click="showdata()" v-show="sendingSuccessful">View Registration</button>
+          
          
-          <div>
-            
-            <div v-for="regData in regDatas" :key="regData.id">
-            <h3 v-show="sendingSuccessful">Registered Coustomer information</h3>
-           <h4> Name:{{regData.firstName}} {{regData.lastName}}</h4>
-           <h4>Phone Number:{{regData.phone}}</h4>
-           <h4>Address:</h4>{{regData.placeName}},
-                  {{regData.districtName}},
-                  {{regData.stateName}},
-                  {{regData.pinNumber}}
-           
-            <!-- <ul>
-                <li>Name:{{regData.firstName}} {{regData.lastName}}</li>
-                <li>Phone Number:{{regData.phone}}</li>
-                <li>
-                  Address:
-                  {{regData.placeName}},
-                  {{regData.districtName}},
-                  {{regData.stateName}},
-                  {{regData.pinNumber}}
-                </li>
-              </ul>-->
-            </div>
-          </div>
         </div>
       </div>
       <Sidebar />
@@ -146,7 +122,6 @@ export default {
       gender: "",
       country: "",
       pinNumber: "",
-      regDatas: [],
       msge: [],
       min: "10",
       max: "15",
@@ -213,18 +188,7 @@ export default {
        
    },
 
-    showdata() {
-       UserService
-        .getRegistration()
-        .then(response => {
-          this.regDatas = response.data;
-          console.log(response);
-          console.log(this.regDatas);
-        })
-        .catch(error => {
-          console.log("There was an error", error.response);
-        });
-    },
+    
     check_email(value) {
       {
         // eslint-disable-next-line no-useless-escape

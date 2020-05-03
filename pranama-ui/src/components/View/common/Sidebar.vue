@@ -98,8 +98,11 @@
               <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'ContactEmailPage' }">Contact Us</router-link>
               </li>
-              <li>
-              <router-link @click="handleRouterLinkClick" :to="{ name: 'RegistrationForm' }">Registration</router-link>
+                <li>
+                <router-link @click="handleRouterLinkClick" :to="{ name: 'form1' }">FORM1</router-link>
+              </li>
+               <li>
+                <router-link @click="handleRouterLinkClick" :to="{ name: 'form2' }">FORM2</router-link>
               </li>
             </ul>
           </nav>

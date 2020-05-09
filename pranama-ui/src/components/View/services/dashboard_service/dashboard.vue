@@ -17,26 +17,32 @@
           <!-- Header -->
           <Header />
           <!-- Banner -->
-          <section id="banner">
-            <div class="content">
-              <header>
-                <h2>
-                  Parental Care DASHBOARD
-                  <br />by PRANAMA
-                </h2>
-                <p>TAKING CARE OF YOUR AGEING PARENTS IS A NOBLE MOVE</p>
-              </header>
-              <p>Caring Your Aging Parents Is not easy in Todays Busy Schedule of life, that too in the other side of the globe America. The distance, time, leave availability and the expenses are the hurdles that stay in between your love to your parents and discharging your responsibilities of the care and attention you would love to give them. On their health and treatment side we offer total solution. We take care of them from home to hospital to home, hospital stay, and after discharge services, the way you would do, if you are physically present. You will get daily reports which includes videos, photos, feedback’s etc. Your parents will not feel your absence. You can be happy for give them your best for all they have done for you...</p>
-              <!-- <ul class="actions">
-                <li>
-                  <a href="#" class="button big">Learn More</a>
-                </li>
-              </ul>-->
-            </div>
-            <span class="image object">
-              <img src="@/assets/images/1.jpg" alt />
-            </span>
-          </section>
+         <section>
+					
+
+					<!-- Content -->
+					<h2 id="content"> Pranama User Dashboard </h2>
+					<p> Welcome to Dashboard services, please select your service you are looking for and submit a request </p>
+					<div class="row">
+						<div class="col-4 col-12-medium">
+							<h3>Hospital Assistance</h3>
+							<p>We offer Hospital assistance for the patients.</p>
+						</div>
+						<div class="col-4 col-12-medium">
+							<h3>Ayurveda Treatment</h3>
+							<p>Ayurveda is the 5th Veda needed for health, the traditional natural, healing system, 
+                practiced in India for more than 5000 years. Ayurveda derives the name from the Sanskrit words, “ayur” “veda”. 
+                Ayur means life and longevity. So Ayurveda is the science of Healthy life. For healthy life we need balanced diet, healthy lifestyle and harmonious mind Ayurvedic Therapies Panchakarma We are associated with few Ayurveda hospitals for Rejnuvation treatments like Panchakarma. 
+                If needed treatment options also can arranged..</p>
+						</div>
+						<div class="col-4 col-12-medium">
+							<h3>Patient Pick up</h3>
+							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
+								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
+								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
+						</div>
+					</div>
+				</section>
 
           <!-- Section -->
           <!--  <section>

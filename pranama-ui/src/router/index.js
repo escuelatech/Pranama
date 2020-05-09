@@ -4,7 +4,7 @@ import ContactPage from '@/components/View/services/email_service/ContactPage.vu
 import PranamaHomePage from '@/components/View/services/landing_page/PranamaHomePage.vue';
 import ContactEmailPage from '@/components/View/services/email_service/ContactEmailPage.vue';
 import RegistrationForm from '@/components/View/services/registration_service/RegistrationForm.vue';
-import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
+// import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
 import TheProcess from '@/components/View/services/navigations/TheProcess.vue';
 import Ayurveda from "@/components/View/services/navigations/Ayurveda.vue";
 import Yoga from "@/components/View/services/navigations/Yoga.vue";
@@ -43,11 +43,11 @@ const router = new VueRouter({
       name: 'RegistrationForm',
       component: RegistrationForm
     },
-    {
-      path: '/WhatWeDo',
-      name: 'WhatWeDo',
-      component: WhatWeDo
-    },
+    // {
+    //   path: '/WhatWeDo',
+    //   name: 'WhatWeDo',
+    //   component: WhatWeDo
+    // },
     {
       path: '/TheProcess',
       name: 'TheProcess',

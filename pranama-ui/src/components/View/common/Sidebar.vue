@@ -28,10 +28,10 @@
                 <a href="#" v-if="isAuthenticated" @click.prevent="handleLogout">Logout</a>
                 <router-link v-else @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
               </li>
-              <li>
-              <!--  <a @click="handleLinkClick" href="Whatwedo.html">WHAT WE DO</a>-->
+              <!-- <li>
+                <a @click="handleLinkClick" href="Whatwedo.html">WHAT WE DO</a>
                 <router-link :to="{ name: 'WhatWeDo' }" @click="handleLinkClick" >WHAT WE DO</router-link>
-              </li>
+              </li> -->
               <li>
               <!--  <a @click="handleLinkClick" href="elements.html">Elements</a>-->
                  <router-link :to="{ name: 'TheProcess' }" @click="handleLinkClick" >THE PROCESS</router-link>

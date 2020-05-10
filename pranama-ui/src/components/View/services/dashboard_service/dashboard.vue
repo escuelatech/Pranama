@@ -23,11 +23,15 @@
 					<!-- Content -->
 					<h2 id="content"> Pranama User Dashboard </h2>
 					<p> Welcome to Dashboard services, please select your service you are looking for and submit a request </p>
-					<div class="row">
-						<div class="col-4 col-12-medium">
+         
+					<div class="row" >
+						<div class="col-4 col-12-medium" >
 							<h3>Hospital Assistance</h3>
-							<p>We offer Hospital assistance for the patients.</p>
+							<p >We offer Hospital assistance for the patients.</p>
+              <input type="button" value="Click for Assitance" />
+                          
 						</div>
+           
 						<div class="col-4 col-12-medium">
 							<h3>Ayurveda Treatment</h3>
 							<p>Ayurveda is the 5th Veda needed for health, the traditional natural, healing system, 
@@ -40,10 +44,11 @@
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
+                <input type="button" value="Click for Pickup" />
 						</div>
 					</div>
 				</section>
-
+             
           <!-- Section -->
           <!--  <section>
             <header class="major">
@@ -176,7 +181,8 @@
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar"
 export default {
-  components: { Header ,Sidebar}
+  components: { Header ,Sidebar},
+  
 };
 </script>
 

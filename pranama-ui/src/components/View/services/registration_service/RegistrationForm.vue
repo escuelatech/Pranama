@@ -24,11 +24,21 @@
                 <span class="errNotific" v-if="msge.userName">{{msge.userName}}</span>
               </div>
               
-        <div class="col-6 col-12-xsmall">
-          <input type="password" name="password" value placeholder="Password" v-model="password" autocomplete="off"  required />
-          <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
-        </div>
-             
+              <div class="col-6 col-12-xsmall">
+                <input type="password" name="password" value placeholder="Password" v-model="password" autocomplete="off"  required />
+                <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
+              </div>
+
+              <div class="col-6 col-12-xsmall">
+                <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required />
+                <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
+              </div>
+
+              <div class="col-6 col-12-xsmall">
+                <input type="text" name="lastName" value placeholder="Last Name" v-model="lastName" required />
+                <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
+              </div>
+
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
@@ -57,6 +67,7 @@
                 />
                 <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
               </div>
+
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
@@ -73,7 +84,7 @@
                 <input type="radio" name="gender" value="Male" id="male" v-model="gender" />
                 <label for="male">Male</label>
                 <input type="radio" name="gender" value="female" id="female" v-model="gender" />
-                <label for="female">female</label>
+                <label for="female">Female</label>
               </div>
 
               <!-- Break -->
@@ -117,6 +128,8 @@ export default {
       sendingSuccessful: false,
       email: "",
       password: "",
+      firstName:"",
+      lastName: "",
       phoneNumber: "",
       userName: "",
       gender: "",
@@ -142,6 +155,14 @@ export default {
       this.password = value;
       this.check_password(value);
     },
+    firstName(value) {
+      this.firstName = value;
+      this.check_firstName(value);
+    },
+    lastName(value) {
+      this.lastName = value;
+      this.check_lastName(value);
+    },
     country(value) {
       this.country = value;
       this.check_country(value);
@@ -162,7 +183,8 @@ export default {
           email: this.email,
           phone: this.phoneNumber,
           userName: this.userName,
-          
+          firstName: this.firstName,
+          lastName: this.lastName,
           gender: this.gender,
           
           password:this.password,
@@ -204,6 +226,20 @@ export default {
         this.msge["userName"] = "Enter a valid  Name";
       } else {
         this.msge["userName"] = "";
+      }
+    },
+    check_firstName(value) {
+      if(value == ""){
+        this.msge["firstName"] = "Enter first name";
+      } else {
+        this.msge["firstName"] = "";
+      }
+    },
+    check_lastName(value){
+      if(value == ""){
+        this.msge["lastName"] = "Enter last name";
+      } else {
+        this.msge["lastName"] = "";
       }
     },
     check_password(value) {

@@ -19,7 +19,7 @@
           <!-- Banner -->
          <section>
 					
-
+          <div v-show="!pickupSuccess">
 					<!-- Content -->
 					<h2 id="content"> Pranama User Dashboard </h2>
 					<p> Welcome to Dashboard services, please select your service you are looking for and submit a request </p>
@@ -27,6 +27,7 @@
 						<div class="col-4 col-12-medium">
 							<h3>Hospital Assistance</h3>
 							<p>We offer Hospital assistance for the patients.</p>
+              <!-- <input type="button" value="Click for Assistance" @click="assistanceButton" v-show="!assistanceSuccess"> -->
 						</div>
 						<div class="col-4 col-12-medium">
 							<h3>Ayurveda Treatment</h3>
@@ -40,9 +41,75 @@
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
+              <input type="button" value="Click for Pickup" @click="pickupButton" v-show="!pickupSuccess">
 						</div>
 					</div>
+          </div>
+
+          
+            <form @submit.prevent="submitPatientPickup" v-show="pickupSuccess">
+              <h3>Patient Pickup Portal</h3>
+              <div class="row gtr-uniform">
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient First Name" value
+                      placeholder="Patient First Name" v-model="firstName" />    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient Last Name" value
+                    placeholder="Patient Last Name" v-model="lastName" />
+                    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient's Current Location / Patient's Pickup Location" 
+                    value placeholder="Patient's Pickup Location" v-model="pickupLocation" />
+                    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient's Drop-Off Location" 
+                    value placeholder="Patient's Drop-Off Location" v-model="dropoffLocation" />
+                    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="tel" name="Patient/ Contact Person's Phone Number" 
+                    value placeholder="Phone Number" v-model="phoneNumber" />  
+                </div>
+                <div class="form-check form-group">
+                  <input type="radio" name="vehicle" value="Sedan" id="sedan" v-model="vehicle" />
+                  <label for="sedan">Sedan</label>
+                  <input type="radio" name="vehicle" value="SUV" id="suv" v-model="vehicle" />
+                  <label for="suv">SUV</label>
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <p>Date</p>
+                  <input type="date" name="date" v-model="date"
+                  value placeholder="Date" />
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <p>Time</p>
+                  <input type="time" name="time" v-model="time"
+                  value placeholder="Time" />
+                </div>
+
+                <!-- Break -->
+                <div class="col-12">
+                  <ul class="actions">
+                    <li>
+                      <input type="submit" value="Register" class="primary" />
+                    </li>
+                    <li>
+                      <input type="reset" value="Reset" />
+                    </li>
+                    <li>
+                      <input type="button" value="Cancel" @click="backToDashboard"/>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+          </form>
 				</section>
+
+        
 
           <!-- Section -->
           <!--  <section>
@@ -174,9 +241,56 @@
 
 <script>
 import Header from "@/components/View/common/Header";
-import Sidebar from "@/components/View/common/Sidebar"
+import Sidebar from "@/components/View/common/Sidebar";
+import formService from "@/apiservices/formService.js";
+
 export default {
-  components: { Header ,Sidebar}
+  data() {
+    return {
+      assistanceSuccess: false,
+      pickupSuccess: false,
+      firstName: "",
+      lastName: "",
+      pickupLocation: "",
+      dropoffLocation: "",
+      phoneNumber: "",
+      vehicle: "",
+      date: "",
+      time: ""
+    }
+    
+  },
+  components: { 
+    Header,
+    Sidebar
+    },
+    methods: {
+      submitPatientPickup() {
+        formService
+          .submitPatientPickup({
+            firstName: this.firstName,
+            lastName: this.lastName,
+            pickupLocation: this.pickupLocation,
+            dropoffLocation: this.dropoffLocation,
+            phoneNumber: this.phoneNumber,
+            vehicle: this.vehicle,
+            date: this.date,
+            time: this.time
+          })
+
+          .then(response => {
+            response.data;
+            console.log(response);
+                    
+            })
+        },
+      pickupButton() {
+        this.pickupSuccess = true
+      },
+      backToDashboard() {
+        this.pickupSuccess = false
+      }
+    }
 };
 </script>
 

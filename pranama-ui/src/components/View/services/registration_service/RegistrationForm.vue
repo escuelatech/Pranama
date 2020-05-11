@@ -100,7 +100,7 @@
           </form>
           <div class="box" v-show="sendingSuccessful">
          
-         <h3>{{m}}</h3>
+         <h3>{{registrationMessage}}</h3>
         
          
 
@@ -138,7 +138,7 @@ export default {
       msge: [],
       min: "10",
       max: "15",
-      m:[],
+      registrationMessage:[],
     };
   },
   components: { Header, Sidebar },
@@ -186,19 +186,22 @@ export default {
           firstName: this.firstName,
           lastName: this.lastName,
           gender: this.gender,
-          
           password:this.password,
           country: this.country,
           pinNumber: this.pinNumber
         })
-        .then(() => {
+        .then( response => {
+          response.data;
+          console.log(response);
           this.sendingSuccessful = true;
           
-          if (this.status == "400"){
-            return this.m =  "Registration Success!!! You will get an email as part of this this registration."
+          
+          if (response.status == "200"){
+            return this.registrationMessage =  "Thank you for registering with us. You will get an email as part of this this registration."
+
           }
           else{
-              return this.m = "Oops....!!! try again"
+              return this.registrationMessage = "Sorry, there was an error. Please try again."
           }
 
         })

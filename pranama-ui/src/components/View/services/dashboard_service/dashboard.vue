@@ -41,7 +41,7 @@
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
-              <input type="button" value="Click for Pickup" @click="pickupButton" v-show="!pickupSuccess">
+              <!-- <input type="button" value="Click for Pickup" @click="pickupButton" v-show="!pickupSuccess"> -->
 						</div>
 					</div>
           </div>
@@ -74,27 +74,31 @@
                     value placeholder="Phone Number" v-model="phoneNumber" />  
                 </div>
                 <div class="form-check form-group">
+                  <p>Type of Vehicle</p>
                   <input type="radio" name="vehicle" value="Sedan" id="sedan" v-model="vehicle" />
                   <label for="sedan">Sedan</label>
                   <input type="radio" name="vehicle" value="SUV" id="suv" v-model="vehicle" />
                   <label for="suv">SUV</label>
                 </div>
                 <div class="col-6 col-12-xsmall">
-                  <p>Date</p>
-                  <input type="date" name="date" v-model="date"
-                  value placeholder="Date" />
+                  <!-- <input type="date" name="date" v-model="date"
+                  value placeholder="Date" /> -->
+                  <datepicker name="date" placeholder="Date"></datepicker>
                 </div>
                 <div class="col-6 col-12-xsmall">
-                  <p>Time</p>
-                  <input type="time" name="time" v-model="time"
-                  value placeholder="Time" />
+                   <!-- <label for="time">Choose a pickup time: </label> -->
+                   <p>Choose a pickup time</p>
+                   <input type="time" name="time" v-model="time" value placeholder="time" /> 
+                  <!-- <vue-timepicker format="hh:mm A" name="time" placeholder="Time"></vue-timepicker> -->
+                   <!-- <b-form-timepicker id="timepicker-placeholder" name="time" placeholder="Choose a time" local="en"></b-form-timepicker> -->
+
                 </div>
 
                 <!-- Break -->
                 <div class="col-12">
                   <ul class="actions">
                     <li>
-                      <input type="submit" value="Register" class="primary" />
+                      <input type="submit" value="Submit" class="primary" />
                     </li>
                     <li>
                       <input type="reset" value="Reset" />
@@ -243,6 +247,8 @@
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
 import formService from "@/apiservices/formService.js";
+import Datepicker from "vuejs-datepicker";
+// import VueTimepicker from "vue2-timepicker";
 
 export default {
   data() {
@@ -262,7 +268,9 @@ export default {
   },
   components: { 
     Header,
-    Sidebar
+    Sidebar,
+    Datepicker
+    // VueTimepicker
     },
     methods: {
       submitPatientPickup() {

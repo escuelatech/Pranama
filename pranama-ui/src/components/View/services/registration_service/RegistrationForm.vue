@@ -176,6 +176,8 @@ export default {
       this.check_pinNumber(value);
     }
   },
+  
+
   methods: {
     submitRegistrationForm() {
       UserService

@@ -13,7 +13,8 @@ import PreventiveHealth from "@/components/View/services/navigations/PreventiveH
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import form1 from "@/traumaservices/form1.vue"
-import form2 from "@/traumaservices/form2.vue"
+import form2 from "@/traumaservices/form2.vue";
+import hospitalAssistancePage from "@/components/View/services/our_services/hospital_assistance/hospitalAssistancePage.vue"
 
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
@@ -107,6 +108,12 @@ const router = new VueRouter({
       name: 'form2',
       component: form2
     },
+    {
+      path: '/hospitalAssistancePage',
+      name: 'hospitalAssistancePage',
+      component: hospitalAssistancePage
+    },
+      
     { 
       path: '*', 
       redirect: '/Pranama' 

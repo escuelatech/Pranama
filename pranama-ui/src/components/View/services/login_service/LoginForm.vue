@@ -42,7 +42,7 @@
           </ul>
         </div>
         <div class="col-12">
-          <small>Don't have an account? <router-link :to="{ name: 'RegistrationForm' }">Register now</router-link></small><br/>
+          <small>Don't have an account? <router-link :to="{ name: 'RegistrationPage' }">Register now</router-link></small><br/>
           <small><router-link to="/">Forgot password</router-link></small>
         </div>
         <!-- <div  v-if="sendingSuccessful"> Successs </div>  -->

@@ -10,7 +10,7 @@
 
           <h3 v-show="!sendingSuccessful">Register here.</h3>
 
-          <form @submit.prevent="submitRegistrationForm" v-show="!sendingSuccessful" >
+          <form @submit.prevent="submitRegistrationForm" v-show="!sendingSuccessful">
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
                 <input
@@ -23,19 +23,41 @@
                 />
                 <span class="errNotific" v-if="msge.userName">{{msge.userName}}</span>
               </div>
-              
+
               <div class="col-6 col-12-xsmall">
-                <input type="password" name="password" value placeholder="Password" v-model="password" autocomplete="off"  required />
+                <input
+                  type="password"
+                  name="password"
+                  value
+                  placeholder="Password"
+                  v-model="password"
+                  autocomplete="off"
+                  required
+                />
                 <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
               </div>
 
               <div class="col-6 col-12-xsmall">
-                <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required />
+                <input
+                  type="text"
+                  name="firstName"
+                  value
+                  placeholder="First Name"
+                  v-model="firstName"
+                  required
+                />
                 <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
               </div>
 
               <div class="col-6 col-12-xsmall">
-                <input type="text" name="lastName" value placeholder="Last Name" v-model="lastName" required />
+                <input
+                  type="text"
+                  name="lastName"
+                  value
+                  placeholder="Last Name"
+                  v-model="lastName"
+                  required
+                />
                 <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
               </div>
 
@@ -55,7 +77,7 @@
                 <input type="email" name="email" value placeholder="Email" v-model="email" required />
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
-            
+
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
@@ -90,23 +112,19 @@
               <!-- Break -->
               <div class="col-12">
                 <ul class="actions">
-                  <li><input type="submit" value="Register" class="primary"  /></li>
+                  <li>
+                    <input type="submit" value="Register" class="primary" />
+                  </li>
                   <li>
                     <input type="reset" value="Reset" />
                   </li>
-                 </ul>
+                </ul>
               </div>
             </div>
           </form>
           <div class="box" v-show="sendingSuccessful">
-         
-         <h3>{{registrationMessage}}</h3>
-        
-         
-
+            <h3>{{registrationMessage}}</h3>
           </div>
-          
-         
         </div>
       </div>
       <Sidebar />
@@ -128,7 +146,7 @@ export default {
       sendingSuccessful: false,
       email: "",
       password: "",
-      firstName:"",
+      firstName: "",
       lastName: "",
       phoneNumber: "",
       userName: "",
@@ -138,7 +156,7 @@ export default {
       msge: [],
       min: "10",
       max: "15",
-      registrationMessage:[],
+      registrationMessage: []
     };
   },
   components: { Header, Sidebar },
@@ -151,7 +169,7 @@ export default {
       this.userName = value;
       this.check_userName(value);
     },
-    password(value){
+    password(value) {
       this.password = value;
       this.check_password(value);
     },
@@ -176,46 +194,40 @@ export default {
       this.check_pinNumber(value);
     }
   },
-  
 
   methods: {
     submitRegistrationForm() {
-      UserService
-        .register({
-          email: this.email,
-          phone: this.phoneNumber,
-          userName: this.userName,
-          firstName: this.firstName,
-          lastName: this.lastName,
-          gender: this.gender,
-          password:this.password,
-          country: this.country,
-          pinNumber: this.pinNumber
-        })
-        .then( response => {
+      UserService.register({
+        email: this.email,
+        phone: this.phoneNumber,
+        userName: this.userName,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        gender: this.gender,
+        password: this.password,
+        country: this.country,
+        pinNumber: this.pinNumber
+      })
+        .then(response => {
           response.data;
           console.log(response);
           this.sendingSuccessful = true;
-          
-          
-          if (response.status == "200"){
-            return this.registrationMessage =  "Thank you for registering with us. You will get an email as part of this this registration."
 
+          if (response.status == "200") {
+            return (this.registrationMessage =
+              "Thank you for registering with us. You will get an email as part of this this registration.");
+          } else {
+            return (this.registrationMessage =
+              "Sorry, there was an error. Please try again.");
           }
-          else{
-              return this.registrationMessage = "Sorry, there was an error. Please try again."
-          }
-
         })
         .catch(error => {
           this.sendingSuccessful = false;
           console.log("There was an error", error.response);
           this.sendingSuccessful = true;
-          });
-       
-   },
+        });
+    },
 
-    
     check_email(value) {
       {
         // eslint-disable-next-line no-useless-escape
@@ -234,30 +246,28 @@ export default {
       }
     },
     check_firstName(value) {
-      if(value == ""){
+      if (value == "") {
         this.msge["firstName"] = "Enter first name";
       } else {
         this.msge["firstName"] = "";
       }
     },
-    check_lastName(value){
-      if(value == ""){
+    check_lastName(value) {
+      if (value == "") {
         this.msge["lastName"] = "Enter last name";
       } else {
         this.msge["lastName"] = "";
       }
     },
     check_password(value) {
-      if( /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(value)){
-       this.msge["password"] = "";
-      }
-      else{
-        this.msge["password"] = "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter."
-
+      if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(value)) {
+        this.msge["password"] = "";
+      } else {
+        this.msge["password"] =
+          "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter.";
       }
     },
-  
-   
+
     check_country(value) {
       if (value == "") {
         this.msge["country"] = " Enter the state";
@@ -266,7 +276,6 @@ export default {
       }
     },
     check_phoneNumber(value) {
-     
       if (value.length >= "10" && value.length <= "15") {
         this.msge["phoneNumber"] = " ";
       } else {

@@ -188,7 +188,7 @@
 
 <script>
 import Header from "@/components/View/common/Header";
-  import Sidebar from "@/components/View/common/Sidebar";
+import Sidebar from "@/components/View/common/Sidebar";
   
   export default {components: { Header, Sidebar,  }};
    

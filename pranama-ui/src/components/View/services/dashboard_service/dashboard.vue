@@ -21,14 +21,19 @@
 					
           <div v-show="!pickupSuccess">
 					<!-- Content -->
-					<h2 id="content"> Pranama User Dashboard </h2>
-					<p> Welcome to Dashboard services, please select your service you are looking for and submit a request </p>
-					<div class="row">
+					<h2 id="content" v-show="!hospitalAssitanceSuccessfull "  > Pranama User Dashboard </h2>
+					<p  v-show="!hospitalAssitanceSuccessfull"> Welcome to Dashboard services, please select your service you are looking for and submit a request </p>
+         
+					<div class="row"  v-show="!hospitalAssitanceSuccessfull" >
 						<div class="col-4 col-12-medium">
 							<h3>Hospital Assistance</h3>
+
 							<p>We offer Hospital assistance for the patients.</p>
               <!-- <input type="button" value="Click for Assistance" @click="assistanceButton" v-show="!assistanceSuccess"> -->
+							<p >We offer Hospital assistance for the patients.</p>
+              <input type="button" value="Click for Assitance" v-show="!hospitalAssitanceSuccessfull" @click="ShowHospitalForm"/>
 						</div>
+           
 						<div class="col-4 col-12-medium">
 							<h3>Ayurveda Treatment</h3>
 							<p>Ayurveda is the 5th Veda needed for health, the traditional natural, healing system, 
@@ -112,8 +117,59 @@
               </div>
           </form>
 				</section>
-
         
+            <h2  v-show="hospitalAssitanceSuccessfull ">  Hospital Assitance Form </h2>
+             <form @submit.prevent="submitHospitalAssistanceForm" v-show="hospitalAssitanceSuccessfull">
+              <div class="row gtr-uniform">
+              <div class="col-6 col-12-xsmall">
+                <input
+                  type="text"
+                  name="PatientFirstName"
+                  value
+                  placeholder="Patients First Name"
+                  v-model="PatientFirstName"
+                  required
+                />
+                </div>
+                <div class="col-6 col-12-xsmall">
+                <input
+                  type="text"
+                  name="PatientLastName"
+                  value
+                  placeholder="Patients Last Name"
+                  v-model="PatientLastName"
+                  required
+                />
+                </div>
+                <div class="col-6 col-12-xsmall">
+                <input
+                  type="text"
+                  name="PatientsLocation"
+                  value
+                  placeholder="Patient location/address"
+                  v-model="PatientLocation"
+                />
+                </div>
+                <div class="col-6 col-12-xsmall">
+                <input
+                  type="text"
+                  name="PatientsContactPhoneNumber"
+                  value
+                  placeholder="Patient/Relative/Contact Person Phone Number"
+                  v-model="PatientsContactPhoneNumber"
+                />
+                </div>
+                <div class="col-12">
+                <ul class="actions">
+                  <li><input type="submit" value="Submit" class="primary"  /></li>
+                  <li>
+                    <input type="button" value="Cancel" @click="cancelHospitalForm" v-show="hospitalAssitanceSuccessfull" />
+                  </li>
+                 </ul>
+              </div>
+              </div>
+              
+             </form>
 
           <!-- Section -->
           <!--  <section>
@@ -299,6 +355,59 @@ export default {
         this.pickupSuccess = false
       }
     }
+=======
+import formService from "@/apiservices/formService"
+export default {
+  components: { Header ,Sidebar},
+  data(){
+    return{
+      PatientFirstName: "",
+      PatientLastName: "",
+      PatientLocation: "",
+      PatientsContactPhoneNumber:"",
+
+    hospitalAssitanceSuccessfull: false,
+    
+    }
+  },
+  watch:{
+  PatientFirstName(value) {
+      this.PatientFirstName = value;
+      this.check_PatientFirstName(value);
+    },
+  },
+  methods:{
+    submitHospitalAssistanceForm(){
+      formService
+        .submitHospitalAssistanceForm({
+          PatientFirstName: this.PatientFirstName,
+          PatientLastName: this.PatientLastName,
+          PatientLocation: this.PatientLocation,
+          PatientsContactPhoneNumber: this.PatientsContactPhoneNumber,
+        })
+        .then(() => {
+
+        })
+        .catch(error => {
+         
+          console.log("There was an error", error.response);
+         
+          });
+       
+   },
+    
+    ShowHospitalForm(){
+
+   this.hospitalAssitanceSuccessfull= true
+
+    },
+    pickupshow(){
+      this.pickup= true
+    },
+    cancelHospitalForm(){
+      this.hospitalAssitanceSuccessfull= false
+    }
+  }
 };
 </script>
 

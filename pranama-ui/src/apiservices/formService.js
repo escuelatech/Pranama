@@ -7,9 +7,13 @@ export default {
 submitForm2 (params) {
     return apiClient.post("/api/trauma/form2", params);
 },
+
 submitPatientPickup (params) {
     return apiClient.post("/api/help/patientpickup", params)
-}
+},
 
+submitHospitalAssistanceForm (params) {
+    return apiClient.post("/api/trauma/form2", params);
+}
 
 };

@@ -1,15 +1,6 @@
 <template>
   <div>
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <!-- Main -->
-      <div id="main">
-        <div class="inner">
-          <!-- Header -->
-          <Header />
-
           <h3 v-show="!sendingSuccessful">Register here.</h3>
-
           <form @submit.prevent="submitRegistrationForm" v-show="!sendingSuccessful" >
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
@@ -99,26 +90,14 @@
             </div>
           </form>
           <div class="box" v-show="sendingSuccessful">
-         
-         <h3>{{registrationMessage}}</h3>
-        
-         
-
-          </div>
-          
-         
-        </div>
-      </div>
-      <Sidebar />
-    </div>
-  </div>
+          <h3>{{registrationMessage}}</h3>
+   </div>
+   
+</div>
 </template>
 
 <script>
-import Header from "@/components/View/common/Header";
-import Sidebar from "@/components/View/common/Sidebar";
 import UserService from "@/apiservices/UserService";
-
 export default {
   props: {
     msg: String
@@ -141,7 +120,7 @@ export default {
       registrationMessage:[],
     };
   },
-  components: { Header, Sidebar },
+ // components: { Header, Sidebar },
   watch: {
     email(value) {
       this.email = value;

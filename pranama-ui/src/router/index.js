@@ -15,6 +15,7 @@ import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import form1 from "@/traumaservices/form1.vue"
 import form2 from "@/traumaservices/form2.vue"
 
+
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
 
@@ -106,8 +107,10 @@ const router = new VueRouter({
       name: 'form2',
       component: form2
     },
-
-     { path: '*', redirect: '/Pranama' }
+    { 
+      path: '*', 
+      redirect: '/Pranama' 
+    }
   ],
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {

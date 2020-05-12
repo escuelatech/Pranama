@@ -19,7 +19,7 @@
           <!-- Banner -->
          <section>
 					
-
+          <div v-show="!pickupSuccess">
 					<!-- Content -->
 					<h2 id="content" v-show="!hospitalAssitanceSuccessfull "  > Pranama User Dashboard </h2>
 					<p  v-show="!hospitalAssitanceSuccessfull"> Welcome to Dashboard services, please select your service you are looking for and submit a request </p>
@@ -27,9 +27,11 @@
 					<div class="row"  v-show="!hospitalAssitanceSuccessfull" >
 						<div class="col-4 col-12-medium">
 							<h3>Hospital Assistance</h3>
+
+							<p>We offer Hospital assistance for the patients.</p>
+              <!-- <input type="button" value="Click for Assistance" @click="assistanceButton" v-show="!assistanceSuccess"> -->
 							<p >We offer Hospital assistance for the patients.</p>
               <input type="button" value="Click for Assitance" v-show="!hospitalAssitanceSuccessfull" @click="ShowHospitalForm"/>
-                          
 						</div>
            
 						<div class="col-4 col-12-medium">
@@ -44,9 +46,76 @@
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
-                
+              <!-- <input type="button" value="Click for Pickup" @click="pickupButton" v-show="!pickupSuccess"> -->
 						</div>
 					</div>
+          </div>
+
+          
+            <form @submit.prevent="submitPatientPickup" v-show="pickupSuccess">
+              <h3>Patient Pickup Portal</h3>
+              <div class="row gtr-uniform">
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient First Name" value
+                      placeholder="Patient First Name" v-model="firstName" />    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient Last Name" value
+                    placeholder="Patient Last Name" v-model="lastName" />
+                    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient's Current Location / Patient's Pickup Location" 
+                    value placeholder="Patient's Pickup Location" v-model="pickupLocation" />
+                    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="text" name="Patient's Drop-Off Location" 
+                    value placeholder="Patient's Drop-Off Location" v-model="dropoffLocation" />
+                    
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <input type="tel" name="Patient/ Contact Person's Phone Number" 
+                    value placeholder="Phone Number" v-model="phoneNumber" />  
+                </div>
+                <div class="form-check form-group">
+                  <p>Type of Vehicle</p>
+                  <input type="radio" name="vehicle" value="Sedan" id="sedan" v-model="vehicle" />
+                  <label for="sedan">Sedan</label>
+                  <input type="radio" name="vehicle" value="SUV" id="suv" v-model="vehicle" />
+                  <label for="suv">SUV</label>
+                </div>
+                <div class="col-6 col-12-xsmall">
+                  <!-- <input type="date" name="date" v-model="date"
+                  value placeholder="Date" /> -->
+                  <datepicker name="date" placeholder="Date"></datepicker>
+                </div>
+                <div class="col-6 col-12-xsmall">
+                   <!-- <label for="time">Choose a pickup time: </label> -->
+                   <p>Choose a pickup time</p>
+                   <input type="time" name="time" v-model="time" value placeholder="time" /> 
+                  <!-- <vue-timepicker format="hh:mm A" name="time" placeholder="Time"></vue-timepicker> -->
+                   <!-- <b-form-timepicker id="timepicker-placeholder" name="time" placeholder="Choose a time" local="en"></b-form-timepicker> -->
+
+                </div>
+
+                <!-- Break -->
+                <div class="col-12">
+                  <ul class="actions">
+                    <li>
+                      <input type="submit" value="Submit" class="primary" />
+                    </li>
+                    <li>
+                      <input type="reset" value="Reset" />
+                    </li>
+                    <li>
+                      <input type="button" value="Cancel" @click="backToDashboard"/>
+                    </li>
+                  </ul>
+                </div>
+
+              </div>
+          </form>
 				</section>
         
             <h2  v-show="hospitalAssitanceSuccessfull ">  Hospital Assitance Form </h2>
@@ -102,8 +171,6 @@
               
              </form>
 
-           
-        
           <!-- Section -->
           <!--  <section>
             <header class="major">
@@ -235,6 +302,60 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
+import formService from "@/apiservices/formService.js";
+import Datepicker from "vuejs-datepicker";
+// import VueTimepicker from "vue2-timepicker";
+
+export default {
+  data() {
+    return {
+      assistanceSuccess: false,
+      pickupSuccess: false,
+      firstName: "",
+      lastName: "",
+      pickupLocation: "",
+      dropoffLocation: "",
+      phoneNumber: "",
+      vehicle: "",
+      date: "",
+      time: ""
+    }
+    
+  },
+  components: { 
+    Header,
+    Sidebar,
+    Datepicker
+    // VueTimepicker
+    },
+    methods: {
+      submitPatientPickup() {
+        formService
+          .submitPatientPickup({
+            firstName: this.firstName,
+            lastName: this.lastName,
+            pickupLocation: this.pickupLocation,
+            dropoffLocation: this.dropoffLocation,
+            phoneNumber: this.phoneNumber,
+            vehicle: this.vehicle,
+            date: this.date,
+            time: this.time
+          })
+
+          .then(response => {
+            response.data;
+            console.log(response);
+                    
+            })
+        },
+      pickupButton() {
+        this.pickupSuccess = true
+      },
+      backToDashboard() {
+        this.pickupSuccess = false
+      }
+    }
+=======
 import formService from "@/apiservices/formService"
 export default {
   components: { Header ,Sidebar},
@@ -265,7 +386,6 @@ export default {
           PatientsContactPhoneNumber: this.PatientsContactPhoneNumber,
         })
         .then(() => {
-          
 
         })
         .catch(error => {

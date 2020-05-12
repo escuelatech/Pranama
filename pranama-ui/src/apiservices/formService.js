@@ -1,7 +1,7 @@
 import apiClient from "@/shared/axios";
 
 export default {
-    submitForm (params) {
+submitForm (params) {
         return apiClient.post("/api/trauma/form1", params);
 },
 submitForm2 (params) {
@@ -12,7 +12,7 @@ submitPatientPickup (params) {
     return apiClient.post("/api/help/patientpickup", params)
 },
 
-submitHospitalAssistanceForm (params) {
+hospitalAssistance (params) {
     return apiClient.post("/api/trauma/form2", params);
 }
 

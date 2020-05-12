@@ -107,6 +107,9 @@
               <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'PatientPickupPage' }">Patient Pickup Form</router-link>
               </li>
+              <li>
+                <router-link @click="handleRouterLinkClick" :to="{ name: 'hospitalAssistancePage' }">HOSPITAL ASSISTANCE</router-link>
+              </li>
             </ul>
           </nav>
 

@@ -24,10 +24,10 @@
                <!-- <a @click="handleLinkClick" href="index.html">Homepage</a>-->
                 <router-link :to="{ name: 'Pranama' }" @click="handleLinkClick" >HOMEPAGE</router-link>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#" v-if="isAuthenticated" @click.prevent="handleLogout">Logout</a>
                 <router-link v-else @click="handleRouterLinkClick" :to="{ name: 'LoginPage' }">Login</router-link>
-              </li>
+              </li> -->
               <!-- <li>
                 <a @click="handleLinkClick" href="Whatwedo.html">WHAT WE DO</a>
                 <router-link :to="{ name: 'WhatWeDo' }" @click="handleLinkClick" >WHAT WE DO</router-link>
@@ -103,9 +103,6 @@
               </li>
                <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'form2' }">FORM2</router-link>
-              </li>
-              <li>
-                <router-link @click="handleRouterLinkClick" :to="{ name: 'PatientPickupPage' }">Patient Pickup Form</router-link>
               </li>
               <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'hospitalAssistancePage' }">HOSPITAL ASSISTANCE</router-link>

@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import ContactPage from '@/components/View/services/email_service/ContactPage.vue';
 import PranamaHomePage from '@/components/View/services/landing_page/PranamaHomePage.vue';
 import ContactEmailPage from '@/components/View/services/email_service/ContactEmailPage.vue';
-import RegistrationForm from '@/components/View/services/registration_service/RegistrationForm.vue';
+import RegistrationPage from '@/components/View/services/registration_service/RegistrationPage.vue';
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
 import TheProcess from '@/components/View/services/navigations/TheProcess.vue';
 import Ayurveda from "@/components/View/services/navigations/Ayurveda.vue";
@@ -13,10 +13,8 @@ import PreventiveHealth from "@/components/View/services/navigations/PreventiveH
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import form1 from "@/traumaservices/form1.vue"
-import form2 from "@/traumaservices/form2.vue"
-import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue'
+import form2 from "@/traumaservices/form2.vue";
 import hospitalAssistancePage from "@/components/View/services/our_services/hospital_assistance/hospitalAssistancePage.vue"
-
 
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
@@ -43,9 +41,9 @@ const router = new VueRouter({
       component: ContactEmailPage
     },
     {
-      path: '/RegistrationForm',
-      name: 'RegistrationForm',
-      component: RegistrationForm
+      path: '/RegistrationPage',
+      name: 'RegistrationPage',
+      component: RegistrationPage
     },
     // {
     //   path: '/WhatWeDo',
@@ -109,11 +107,6 @@ const router = new VueRouter({
       path: '/form2',
       name: 'form2',
       component: form2
-    },
-    {
-      path: '/PatientPickupPage',
-      name: 'PatientPickupPage',
-      component: PatientPickupPage
     },
     {
       path: '/hospitalAssistancePage',

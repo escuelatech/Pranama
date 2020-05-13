@@ -14,6 +14,7 @@ import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vu
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import form1 from "@/traumaservices/form1.vue"
 import form2 from "@/traumaservices/form2.vue"
+import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue'
 
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
@@ -106,6 +107,11 @@ const router = new VueRouter({
       path: '/form2',
       name: 'form2',
       component: form2
+    },
+    {
+      path: '/PatientPickupPage',
+      name: 'PatientPickupPage',
+      component: PatientPickupPage
     },
     { 
       path: '*', 

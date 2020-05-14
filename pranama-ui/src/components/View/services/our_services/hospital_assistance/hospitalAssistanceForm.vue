@@ -1,6 +1,6 @@
 <template>
     <div>
-     <h2 >  Hospital Assitance Form </h2>
+     <h2 >  Hospital Assistance Form </h2>
              <form @submit.prevent="submitHospitalAssistanceForm" >
               <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">

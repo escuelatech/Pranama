@@ -157,7 +157,7 @@ export default {
     },
     gender(value){
       this.userType = value;
-      // this.check_pinNumber(value);
+      // this.check_gender(value);
     }
   },
   

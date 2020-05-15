@@ -72,9 +72,9 @@
               </div>
 
               <div class="form-check form-group">
-                <input type="radio" name="gender" value="Male" id="male" v-model="gender" />
+                <input type="radio" name="userType" value="Male" id="male" v-model="gender" />
                 <label for="male">Male</label>
-                <input type="radio" name="gender" value="female" id="female" v-model="gender" />
+                <input type="radio" name="userType" value="female" id="female" v-model="gender" />
                 <label for="female">Female</label>
               </div>
 
@@ -111,6 +111,7 @@ export default {
       lastName: "",
       phoneNumber: "",
       userName: "",
+      userType: "",
       gender: "",
       country: "",
       pinNumber: "",
@@ -153,6 +154,10 @@ export default {
     pinNumber(value) {
       this.pinNumber = value;
       this.check_pinNumber(value);
+    },
+    gender(value){
+      this.userType = value;
+      // this.check_pinNumber(value);
     }
   },
   
@@ -162,12 +167,13 @@ export default {
       UserService
         .register({
           email: this.email,
-          phone: this.phoneNumber,
+          phoneNumber: this.phoneNumber,
           userName: this.userName,
           firstName: this.firstName,
+          userType:this.userType,
           lastName: this.lastName,
           gender: this.gender,
-          password:this.password,
+          passWord:this.password,
           country: this.country,
           pinNumber: this.pinNumber
         })

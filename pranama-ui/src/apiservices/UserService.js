@@ -8,6 +8,7 @@ export default {
 };
 
 function register (params) {
+  console.log(JSON.stringify(params));
   return apiClient.post("/api/user/register", params);
 }
 

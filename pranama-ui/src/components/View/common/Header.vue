@@ -1,7 +1,8 @@
 <template>
      <header id="header">
             <a href="index.html" class="logo">
-              <strong>Pranama</strong>
+              <a href="#"  class="logo"><img src="@/assets/images/pranama_log_2.jpeg" alt="" height="120"/></a>
+              <!-- <strong>Pranama</strong> -->
             </a>
             <ul class="icons">
               <li v-if="isAuthenticated">

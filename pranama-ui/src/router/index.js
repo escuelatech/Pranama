@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import ContactPage from '@/components/View/services/email_service/ContactPage.vue';
+import ContactPage from '@/components/View/services/contactus_service/ContactPage.vue';
 import PranamaHomePage from '@/components/View/services/landing_page/PranamaHomePage.vue';
-import ContactEmailPage from '@/components/View/services/email_service/ContactEmailPage.vue';
+import ContactEmailPage from '@/components/View/services/contactus_service/ContactEmailPage.vue';
 import RegistrationPage from '@/components/View/services/registration_service/RegistrationPage.vue';
-// import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
 import TheProcess from '@/components/View/services/navigations/TheProcess.vue';
 import Ayurveda from "@/components/View/services/navigations/Ayurveda.vue";
 import Yoga from "@/components/View/services/navigations/Yoga.vue";
@@ -12,11 +11,11 @@ import MentalHealth from "@/components/View/services/navigations/MentalHealth.vu
 import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue"
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
-import form1 from "@/traumaservices/form1.vue"
-import form2 from "@/traumaservices/form2.vue"
 import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue'
 import hospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/hospitalAssistancePage.vue'
-
+// import form1 from "@/traumaservices/form1.vue"
+// import form2 from "@/traumaservices/form2.vue"
+// import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
@@ -92,16 +91,16 @@ const router = new VueRouter({
       component: DashboardPage,
       meta: { requiresAuth: true }
     },
-    {
-      path: '/form1',
-      name: 'form1',
-      component: form1
-    },
-    {
-      path: '/form2',
-      name: 'form2',
-      component: form2
-    },
+    // {
+    //   path: '/form1',
+    //   name: 'form1',
+    //   component: form1
+    // },
+    // {
+    //   path: '/form2',
+    //   name: 'form2',
+    //   component: form2
+    // },
     {
       path: '/PatientPickupPage',
       name: 'PatientPickupPage',

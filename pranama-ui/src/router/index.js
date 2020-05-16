@@ -13,6 +13,8 @@ import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vu
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue'
 import hospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/hospitalAssistancePage.vue'
+import forgotPassword from "@/components/View/services/user_service/forgotPassword.vue"
+
 // import form1 from "@/traumaservices/form1.vue"
 // import form2 from "@/traumaservices/form2.vue"
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
@@ -110,6 +112,11 @@ const router = new VueRouter({
       path: '/hospitalAssistancePage',
       name: 'hospitalAssistancePage',
       component: hospitalAssistancePage
+    },
+    {
+      path: '/forgotPassword',
+      name: 'forgotPassword',
+      component: forgotPassword
     },
     
     { 

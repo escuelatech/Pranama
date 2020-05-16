@@ -9,8 +9,7 @@
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="#">info@pranama.in</a></li>
 										<li class="icon solid fa-phone"> (515) 012-2121</li>
-										<li class="icon solid fa-home">“Sreehari” Post Puthiyara,
-<br />
+										<li class="icon solid fa-home">“Sreehari” Post Puthiyara,<br />
 										Kerala, India, KL 673004</li>
 									</ul>
 		</section>

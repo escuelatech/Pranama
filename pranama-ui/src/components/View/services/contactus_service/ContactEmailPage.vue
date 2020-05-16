@@ -24,6 +24,6 @@
 <script>
   import Header from "@/components/View/common/Header";
   import Sidebar from "@/components/View/common/Sidebar";
-  import ContactForm from "@/components/View/services/email_service/ContactForm";
+  import ContactForm from "@/components/View/services/contactus_service/ContactForm";
   export default {components: { Header, Sidebar, ContactForm }};
 </script> 

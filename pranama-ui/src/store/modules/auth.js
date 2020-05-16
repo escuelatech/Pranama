@@ -26,9 +26,9 @@ const mutations = {
 }
 
 const actions = {
-  login ({ commit }, { username, password }) {
-    commit('LOGIN_REQUEST', { username });
-    return UserService.login(username, password)
+  login ({ commit }, { email, password }) {
+    commit('LOGIN_REQUEST', { email });
+    return UserService.login(email, password)
       .then(response => {
         commit('LOGIN_SUCCESS', response.data.token);
       }).catch(error => {

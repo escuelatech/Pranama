@@ -98,12 +98,12 @@
               <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'ContactEmailPage' }">Contact Us</router-link>
               </li>
-                <li>
+              <!-- <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'form1' }">FORM1</router-link>
               </li>
                <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'form2' }">FORM2</router-link>
-              </li>
+              </li> -->
               <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'hospitalAssistancePage' }">HOSPITAL ASSISTANCE</router-link>
               </li>
@@ -166,9 +166,9 @@
           <!-- Footer -->
           <footer id="footer">
             <p class="copyright">
-              &copy;Pranama. All rights reserved. Demo Images:
-              <a href="https://unsplash.com">Unsplash</a>. Design:
-              <a href="https://html5up.net">HTML5 UP</a>.
+              &copy;Pranama. All rights reserved. 
+              <a href="https://escuelatech.com"> Designed & </a>. Development:
+              <a href="https://escuelatech.com"> Escuela Technologies </a>.
             </p>
           </footer>
         </div>

@@ -16,8 +16,10 @@ function getRegistration () {
   return apiClient.get("/api/user/register");
 }
 
-async function login (username, password) {
-  const response = await apiClient.post("/api/user/login", { userName: username, passWord: password })
+async function login (email, password) {
+  console.log(email);
+  console.log(password);
+  const response = await apiClient.post("/api/user/login", { email: email, passWord: password })
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));
   } else {

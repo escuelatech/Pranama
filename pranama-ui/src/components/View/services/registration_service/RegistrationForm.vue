@@ -3,7 +3,7 @@
           <h3 v-show="!sendingSuccessful">Register here.</h3>
           <form @submit.prevent="submitRegistrationForm" v-show="!sendingSuccessful" >
             <div class="row gtr-uniform">
-              <div class="col-6 col-12-xsmall">
+              <!-- <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
                   name="userName"
@@ -13,6 +13,11 @@
                   required
                 />
                 <span class="errNotific" v-if="msge.userName">{{msge.userName}}</span>
+              </div> -->
+
+              <div class="col-6 col-12-xsmall">
+                <input type="email" name="email" value placeholder="Email" v-model="email" required />
+                <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               
               <div class="col-6 col-12-xsmall">
@@ -42,11 +47,6 @@
                 <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
               </div>
 
-              <div class="col-6 col-12-xsmall">
-                <input type="email" name="email" value placeholder="Email" v-model="email" required />
-                <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
-              </div>
-            
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
@@ -110,7 +110,7 @@ export default {
       firstName:"",
       lastName: "",
       phoneNumber: "",
-      userName: "",
+      // userName: "",
       userType: "",
       gender: "",
       country: "",
@@ -127,10 +127,10 @@ export default {
       this.email = value;
       this.check_email(value);
     },
-    userName(value) {
-      this.userName = value;
-      this.check_userName(value);
-    },
+    // userName(value) {
+    //   this.userName = value;
+    //   this.check_userName(value);
+    // },
     password(value){
       this.password = value;
       this.check_password(value);
@@ -168,7 +168,7 @@ export default {
         .register({
           email: this.email,
           phoneNumber: this.phoneNumber,
-          userName: this.userName,
+          // userName: this.userName,
           firstName: this.firstName,
           userType:this.userType,
           lastName: this.lastName,
@@ -211,13 +211,13 @@ export default {
         }
       }
     },
-    check_userName(value) {
-      if (value == "") {
-        this.msge["userName"] = "Enter a valid  Name";
-      } else {
-        this.msge["userName"] = "";
-      }
-    },
+    // check_userName(value) {
+    //   if (value == "") {
+    //     this.msge["userName"] = "Enter a valid  Name";
+    //   } else {
+    //     this.msge["userName"] = "";
+    //   }
+    // },
     check_firstName(value) {
       if(value == ""){
         this.msge["firstName"] = "Enter first name";

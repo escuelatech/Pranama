@@ -1,24 +1,39 @@
 <template>
   <div>
-    <h3 v-show="!sendingSuccessful">Customer Contact Form</h3>
+    <!-- Section -->
+		<section>
+				<header class="major">
+										<h2>Get in touch</h2>
+				</header>
+					<p>You can easily reach us through any of the below communication mediums .</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="#">info@pranama.in</a></li>
+										<li class="icon solid fa-phone"> (515) 012-2121</li>
+										<li class="icon solid fa-home">“Sreehari” Post Puthiyara,<br />
+										Kerala, India, KL 673004</li>
+									</ul>
+		</section>
+   
+    <br/><br/>
+    <h3 v-show="!sendingSuccessful">Lets us Talk - Drop an email, we will get back ! </h3>
     <form @submit.prevent="submitContactForm" v-show="!sendingSuccessful">
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
             name="firstName"
-            value="First Name"
-            placeholder="First Name"
+            value="Your Name"
+            placeholder="First Name & Last Name"
             v-model="firstName"
           />
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="lastName"
-            value="Last Name"
-            placeholder="First Name"
-            v-model="lastName"
+            name="Watsappnumber"
+            value="Watsapp number"
+            placeholder="Watsapp Number"
+            v-model="Watsappnumber"
           />
         </div>
         <div class="col-6 col-12-xsmall">
@@ -39,7 +54,7 @@
           <textarea
             name="message"
             id="message"
-            placeholder="Enter your message"
+            placeholder="Let us know what assistance you are looking for"
             rows="6"
             v-model="message"
           ></textarea>
@@ -132,7 +147,7 @@ export default {
       email: "",
       phoneNumber: "",
       firstName: "",
-      lastName: "",
+      // lastName: "",
       message: "",
       text: "sent"
     };
@@ -147,7 +162,7 @@ export default {
           email: this.email,
           phone: this.phoneNumber,
           firstName: this.firstName,
-          lastName: this.lastName,
+          // lastName: this.lastName,
           message: this.message
         })
         .then(response => {

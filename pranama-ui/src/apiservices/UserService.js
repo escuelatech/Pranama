@@ -22,6 +22,7 @@ async function login (email, password) {
   const response = await apiClient.post("/api/user/login", { email: email, passWord: password })
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));
+    localStorage.setItem('email', JSON.stringify(email));
   } else {
     return Promise.reject("Wrong credentials");
   }
@@ -30,4 +31,5 @@ async function login (email, password) {
 
 function logout () {
   localStorage.removeItem('token');
+  localStorage.removeItem('email');
 }

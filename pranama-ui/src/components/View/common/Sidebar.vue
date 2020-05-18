@@ -104,20 +104,13 @@
                <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'form2' }">FORM2</router-link>
               </li> -->
-              <li>
-                <router-link @click="handleRouterLinkClick" :to="{ name: 'hospitalAssistancePage' }">HOSPITAL ASSISTANCE</router-link>
-              </li>
-              <li>
-                <router-link @click="handleRouterLinkClick" :to="{ name: 'PatientPickupPage' }">PATIENT PICKUP FORM</router-link>
-              </li>
                <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'resetPassword' }">RESET PASSWORD</router-link>
               </li>
             </ul>
           </nav>
-
-          <!-- Section -->
-        <!--  <section>
+          <!-- Section 
+         <section>
             <header class="major">
               <h2>Ante interdum</h2>
             </header>
@@ -146,7 +139,7 @@
                 <a href="#" class="button">More</a>
               </li>
             </ul>
-          </section>-->
+          </section> -->
 
           <!-- Section -->
          <!-- <section>
@@ -170,7 +163,8 @@
           <footer id="footer">
             <p class="copyright">
               &copy;Pranama. All rights reserved. 
-              <a href="https://escuelatech.com"> Designed & </a>. Development:
+              <a href="https://escuelatech.com"> <br>
+              Designed & </a>. Development:
               <a href="https://escuelatech.com"> Escuela Technologies </a>.
             </p>
           </footer>

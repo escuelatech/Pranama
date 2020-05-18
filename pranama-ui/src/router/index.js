@@ -106,12 +106,14 @@ const router = new VueRouter({
     {
       path: '/PatientPickupPage',
       name: 'PatientPickupPage',
-      component: PatientPickupPage
+      component: PatientPickupPage,
+      meta: { requiresAuth: true }
     },
     {
       path: '/hospitalAssistancePage',
       name: 'hospitalAssistancePage',
-      component: hospitalAssistancePage
+      component: hospitalAssistancePage,
+      meta: { requiresAuth: true }
     },
     {
       path: '/forgotPassword',

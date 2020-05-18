@@ -1,9 +1,11 @@
 <template>
      <header id="header">
             <a href="index.html" class="logo">
-              <a href="#"  class="logo"><img src="@/assets/images/pranama_log_2.jpeg" alt="" height="120"/></a>
+              <a href="#"  class="logo"><img src="@/assets/images/pranama_log_2.jpeg" alt="" height="50"/></a>
               <!-- <strong>Pranama</strong> -->
+              <!-- <h5> "JSON.parse(localStorage.getItem("apiData")) </h5> -->
             </a>
+             
             <ul class="icons">
               <li v-if="isAuthenticated">
                 <button class="button small" @click="handleLogout">
@@ -41,7 +43,9 @@
                 </a>
               </li>
             </ul>
+           
           </header>
+         
 </template>
 
 <script>

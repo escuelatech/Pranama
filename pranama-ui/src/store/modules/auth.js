@@ -31,6 +31,7 @@ const actions = {
     return UserService.login(email, password)
       .then(response => {
         commit('LOGIN_SUCCESS', response.data.token);
+        commit('LOGIN_USER', email);
       }).catch(error => {
         commit('LOGIN_FAILED', error);
         return Promise.reject(error)

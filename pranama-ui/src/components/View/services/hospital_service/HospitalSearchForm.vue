@@ -12,6 +12,7 @@
           <!-- Header -->
           <!-- Form -->
           <h1>Hospital Search Form</h1>
+          
           <form >
               <div class="form-check form-group">
                 <label for="state">Choose a State</label>
@@ -23,6 +24,7 @@
                     <option v-for="city in selectedState.cities" :key="city.cityId" :value="city">{{city.city}}</option>
                 </select>
                 <div>
+                <div class="table-wrapper">
                     <table style="width:100%" v-if="selectedCity">
                         <tr>
                             <th>Hospital Name</th>
@@ -35,6 +37,7 @@
                             <td>{{hospital.phone}}</td>
                         </tr>
                     </table>
+                </div>
                 </div>
 
             </div>

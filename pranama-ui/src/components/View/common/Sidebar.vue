@@ -36,29 +36,10 @@
               <!--  <a @click="handleLinkClick" href="elements.html">Elements</a>-->
                  <router-link :to="{ name: 'TheProcess' }" @click="handleLinkClick" >THE PROCESS</router-link>
               </li>
-              
-                
-                   <li>
-                    <span @click="handleDropdownClick" class="opener" :class="{ active: isDropdownOpen }">HOSPITALS</span>
-                  <ul>
-                  <li>
-                    <a @click="handleLinkClick" href="#">MIMS</a>
-                  </li>
-                  <li>
-                    <a @click="handleLinkClick" href="#">BABY MEMORIAL</a>
-                  </li>
-                  <li>
-                <a @click="handleLinkClick" href="#">CRADLE</a>
-                   </li>
-                  <li>
-                   <a @click="handleLinkClick" href="#">PVS</a>
-                  </li>
-               
-             
-                      
-             
-               </ul>
-                 <li>
+                <li>
+                 <router-link :to="{ name: 'Hospital' }" @click="handleLinkClick" >HOSPITALS</router-link>
+              </li>
+              <li>
                 <!--a @click="handleLinkClick" href="#">Etiam Dolore</a>-->
                  <router-link :to="{ name: 'Ayurveda' }">AYURVEDA</router-link>
               </li>

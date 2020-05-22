@@ -2,7 +2,7 @@
      <header id="header">
             <a href="index.html" class="logo">
               <a href="#"  class="logo"><img src="@/assets/images/pranama_log_2.jpeg" alt="" height="50"/></a>
-              <!-- <strong>Pranama</strong> -->
+              <strong v-show="isAuthenticated">{{loggedinUserName}}</strong>
               <!-- <h5> "JSON.parse(localStorage.getItem("apiData")) </h5> -->
             </a>
              

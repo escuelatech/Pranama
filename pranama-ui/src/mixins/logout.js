@@ -4,7 +4,8 @@ import { mapGetters, mapActions } from "vuex";
 export default {
     computed: {
     ...mapGetters({
-      isAuthenticated: "auth/isAuthenticated"
+      isAuthenticated: "auth/isAuthenticated",
+      loggedinUserName: "auth/loggedinUserName"
     })
   },
   methods: {

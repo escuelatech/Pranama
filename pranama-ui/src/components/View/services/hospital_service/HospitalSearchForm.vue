@@ -25,17 +25,21 @@
                 </select>
                 <div>
                 <div class="table-wrapper">
-                    <table style="width:100%" v-if="selectedCity">
+                    <table style="width:100%" v-if="selectedCity"  class="alt">
+                        <thead>
                         <tr>
                             <th>Hospital Name</th>
                             <th>Address</th>
                             <th>Phone Number</th>
                         </tr>
+                        </thead>
+                        <tbody>
                         <tr v-for="hospital in selectedCity.hospitals" :key="hospital">
                             <td> {{hospital.name}}</td>
                             <td>{{hospital.address}}</td>
                             <td>{{hospital.phone}}</td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
                 </div>

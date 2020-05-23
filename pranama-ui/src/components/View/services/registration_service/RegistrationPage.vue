@@ -24,6 +24,7 @@
 <script>
   import Header from "@/components/View/common/Header";
   import Sidebar from "@/components/View/common/Sidebar";
+  // import Errorbar from "@/components/View/common/Errorbar";
   import RegistrationForm from "@/components/View/services/registration_service/RegistrationForm.vue";
-  export default {components: { Header, Sidebar, RegistrationForm }};
+  export default {components: { Header, Sidebar, RegistrationForm}};
 </script> 

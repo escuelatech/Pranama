@@ -1,7 +1,11 @@
 <template>
   <div>
-          <h3 v-show="!sendingSuccessful">Register here.</h3>
-          <form @submit.prevent="submitRegistrationForm" v-show="!sendingSuccessful" >
+          <div class="box" v-show="isError">
+            <h3>{{errorMessage}}</h3>
+          </div>
+          <!-- <Errorbar/> -->
+          <h3 v-show="!userRegistrationSuccessful">Register here.</h3>
+          <form @submit.prevent="submitRegistrationForm" v-show="!userRegistrationSuccessful" >
             <div class="row gtr-uniform">
               <!-- <div class="col-6 col-12-xsmall">
                 <input
@@ -89,22 +93,21 @@
               </div>
             </div>
           </form>
-          <div class="box" v-show="sendingSuccessful">
-          <h3>{{registrationMessage}}</h3>
-   </div>
+          <div class="box" v-show="userRegistrationSuccessful">
+            <h3>{{registrationMessage}}</h3>
+          </div>
    
 </div>
 </template>
 
 <script>
 import UserService from "@/apiservices/UserService";
+// import Errorbar from "@/components/View/common/Errorbar";
 export default {
-  props: {
-    msg: String
-  },
+  props: {msg: String},
   data() {
     return {
-      sendingSuccessful: false,
+      userRegistrationSuccessful: false,
       email: "",
       password: "",
       firstName:"",
@@ -119,6 +122,7 @@ export default {
       min: "10",
       max: "15",
       registrationMessage:[],
+      errorMessage:[],
     };
   },
  // components: { Header, Sidebar },
@@ -168,7 +172,6 @@ export default {
         .register({
           email: this.email,
           phoneNumber: this.phoneNumber,
-          // userName: this.userName,
           firstName: this.firstName,
           userType:this.userType,
           lastName: this.lastName,
@@ -180,23 +183,13 @@ export default {
         .then( response => {
           response.data;
           console.log(response);
-          this.sendingSuccessful = true;
-          
-          
-          if (response.status == "200"){
-            return this.registrationMessage =  "Thank you for registering with us. You will get an email as part of this this registration."
-
-          }
-          else{
-              return this.registrationMessage = "Sorry, there was an error. Please try again."
-          }
-
-        })
-        .catch(error => {
-          this.sendingSuccessful = false;
-          console.log("There was an error", error.response);
-          this.sendingSuccessful = true;
-          });
+          this.userRegistrationSuccessful = true;
+          return this.registrationMessage = "Registration is sucessfull , please check your inbox for more instructions "
+        }).catch(error => {
+           console.log("Error reported from endpoints :", error.response);
+           this.isError = true;
+           return this.errorMessage =  JSON.stringify(error.response.data.errorMessage);
+        });
        
    },
 

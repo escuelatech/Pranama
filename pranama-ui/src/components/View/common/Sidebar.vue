@@ -88,6 +88,9 @@
                <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'resetPassword' }">RESET PASSWORD</router-link>
               </li>
+              <li>
+                <router-link @click="handleRouterLinkClick" :to="{ name: 'editProfile' }">EDIT PROFILE</router-link>
+              </li>
             </ul>
           </nav>
           <!-- Section 

@@ -15,6 +15,7 @@ import PatientPickupPage from '@/components/View/services/our_services/patient_p
 import hospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/hospitalAssistancePage.vue'
 import forgotPassword from "@/components/View/services/user_service/forgotPassword.vue"
 import resetPassword from "@/components/View/services/user_service/resetPassword.vue"
+import editProfile from "@/components/View/services/user_service/editProfile.vue"
 // import form1 from "@/traumaservices/form1.vue"
 // import form2 from "@/traumaservices/form2.vue"
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
@@ -131,7 +132,11 @@ const router = new VueRouter({
       name: 'resetPassword',
       component: resetPassword
     },
-    
+    {
+      path: '/editProfile',
+      name: 'editProfile',
+      component: editProfile
+    },
     { 
       path: '*', 
       redirect: '/Pranama' 

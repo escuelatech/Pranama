@@ -18,7 +18,7 @@ import resetPassword from "@/components/View/services/user_service/resetPassword
 // import form1 from "@/traumaservices/form1.vue"
 // import form2 from "@/traumaservices/form2.vue"
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
-import HospitalSearchForm from '@/components/View/services/hospital_service/HospitalSearchForm.vue'
+import HospitalSearchPage from '@/components/View/services/hospital_service/HospitalSearchPage.vue'
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
@@ -56,7 +56,7 @@ const router = new VueRouter({
     {
       path: '/Hospital',
       name: 'Hospital',
-      component: HospitalSearchForm
+      component: HospitalSearchPage
     },
     {
       path: '/Ayurveda',

@@ -1,20 +1,11 @@
 <template>
     
     <div>
-    <!-- Wrapper -->
-    <div id="wrapper">
-      <!-- Main -->
-      <div id="main">
-        <div class="inner">
-          <!-- Header -->
-          
-          <Header />
-          <!-- Header -->
-          <!-- Form -->
-          <h1>Hospital Search Form</h1>
+    
+          <h2>Hospital Search Form</h2>
           
           <form >
-              <div class="form-check form-group">
+              <div class="form-check form-group box">
                 <label for="state">Choose a State</label>
                 <select v-model="selectedState">
                     <option v-for="state in states" :value="state" :key="state.stateId">{{state.state}}</option>
@@ -23,9 +14,10 @@
                 <select v-model="selectedCity" v-if="selectedState">
                     <option v-for="city in selectedState.cities" :key="city.cityId" :value="city">{{city.city}}</option>
                 </select>
-                <div>
-                <div class="table-wrapper">
-                    <table style="width:100%" v-if="selectedCity"  class="alt">
+                </div>
+            </form>
+                <div class="table-wrapper box" v-if="selectedCity" >
+                    <table style="width:100%"  class="alt">
                         <thead>
                         <tr>
                             <th>Hospital Name</th>
@@ -42,34 +34,18 @@
                         </tbody>
                     </table>
                 </div>
-                </div>
-
-            </div>
-            
-          </form>
-          <!-- Form -->
-        </div>
-      </div>
-      <!-- Main ends -->
-
-      <!-- Sidebar -->
-      <Sidebar />
-      <!-- Sidebar -->
-    </div>
+     
+       
   </div>
+
 
     
 </template>
 
 <script>
-import Header from "@/components/View/common/Header";
-import Sidebar from "@/components/View/common/Sidebar";
+
   
 export default {
-    components: { 
-        Header, 
-        Sidebar,  
-    }, 
     data() {
         return {
             states: [

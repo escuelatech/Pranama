@@ -24,7 +24,7 @@
                <!-- <a @click="handleLinkClick" href="index.html">Homepage</a>-->
                 <router-link :to="{ name: 'Pranama' }" @click="handleLinkClick" >HOMEPAGE</router-link>
               </li>
-              <li>
+              <li v-if="isAuthenticated">
                 <!-- <a href="#" v-if="isAuthenticated" @click="handleRouterLinkClick"  :to="{ name: 'Dashboard' }">Dashboard</a> -->
                  <router-link v-if="isAuthenticated" @click="handleRouterLinkClick"  :to="{ name: 'Dashboard' }">Dashboard</router-link> 
               </li>

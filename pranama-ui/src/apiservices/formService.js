@@ -13,7 +13,7 @@ submitPatientPickup (params) {
 },
 
 hospitalAssistance (params) {
-    return apiClient.post("/api/trauma/form2", params);
+    return apiClient.post("/api/hospital/assistance", params);
 }
 
 };

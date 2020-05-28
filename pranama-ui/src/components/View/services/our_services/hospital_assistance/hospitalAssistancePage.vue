@@ -9,7 +9,7 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-          <hospitalAssistanceForm />
+          <HospitalAssistanceForm />
           <!-- Form -->
         </div>
       </div>
@@ -24,6 +24,6 @@
 <script>
   import Header from "@/components/View/common/Header";
   import Sidebar from "@/components/View/common/Sidebar";
-  import hospitalAssistanceForm from "@/components/View/services/our_services/hospital_assistance/hospitalAssistanceForm.vue";
-  export default {components: { Header, Sidebar, hospitalAssistanceForm }};
+  import HospitalAssistanceForm from "@/components/View/services/our_services/hospital_assistance/HospitalAssistanceForm.vue";
+  export default {components: { Header, Sidebar, HospitalAssistanceForm }};
 </script> 

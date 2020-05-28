@@ -71,7 +71,7 @@
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
-								<input type="button"  value="Hospital Assistance" class="primary"  @click="$router.push({name: 'hospitalAssistancePage'})" />
+								<input type="button"  value="Hospital Assistance" class="primary"  @click="$router.push({name: 'HospitalAssistancePage'})" />
 						</div>
 					</div>
 				</section>

@@ -114,7 +114,6 @@ export default {
       userType: "",
       gender: "",
       country: "",
-      pinNumber: "",
       msge: [],
       min: "10",
       max: "15",
@@ -152,14 +151,8 @@ export default {
       this.phoneNumber = value;
       this.check_phoneNumber(value);
     },
-    pinNumber(value) {
-      this.pinNumber = value;
-      this.check_pinNumber(value);
-    },
-    gender(value) {
-      this.userType = value;
-      // this.check_gender(value);
-    }
+   
+    
   },
 
   methods: {
@@ -170,11 +163,9 @@ export default {
         firstName: this.firstName,
         userType: this.userType,
         lastName: this.lastName,
-        gender: this.gender,
         passWord: this.password,
         country: this.country,
-        pinNumber: this.pinNumber
-      })
+        })
         .then(response => {
           response.data;
           console.log(response);

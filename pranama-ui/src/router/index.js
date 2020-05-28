@@ -12,9 +12,10 @@ import PreventiveHealth from "@/components/View/services/navigations/PreventiveH
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue'
-import hospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/hospitalAssistancePage.vue'
-import forgotPassword from "@/components/View/services/user_service/forgotPassword.vue"
-import resetPassword from "@/components/View/services/user_service/resetPassword.vue"
+import HospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/HospitalAssistancePage.vue'
+import ForgotPassword from "@/components/View/services/user_service/ForgotPassword.vue"
+import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue"
+import EditProfile from "@/components/View/services/user_service/EditProfile.vue"
 // import form1 from "@/traumaservices/form1.vue"
 // import form2 from "@/traumaservices/form2.vue"
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
@@ -116,22 +117,26 @@ const router = new VueRouter({
       meta: { requiresAuth: true }
     },
     {
-      path: '/hospitalAssistancePage',
-      name: 'hospitalAssistancePage',
-      component: hospitalAssistancePage,
+      path: '/HospitalAssistancePage',
+      name: 'HospitalAssistancePage',
+      component: HospitalAssistancePage,
       meta: { requiresAuth: true }
     },
     {
-      path: '/forgotPassword',
+      path: '/ForgotPassword',
       name: 'forgotPassword',
-      component: forgotPassword
+      component: ForgotPassword
     },
     {
-      path: '/resetPassword',
+      path: '/ResetPassword',
       name: 'resetPassword',
-      component: resetPassword
+      component: ResetPassword
     },
-    
+    {
+      path: '/EditProfile',
+      name: 'editProfile',
+      component: EditProfile
+    },
     { 
       path: '*', 
       redirect: '/Pranama' 

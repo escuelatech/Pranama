@@ -12,7 +12,7 @@
          <div class="box" >
             <h3>{{errorMessage}}</h3>
           </div>
-          <!-- <Errorbar/> -->
+          <!-- <Errorbar/> --> 
           <h4 v-show="!EditProfileSuccessful">Edit your profile here.</h4>
           <form @submit.prevent="submitEditProfile" v-show="!EditProfileSuccessful" >
             <div class="row gtr-uniform">

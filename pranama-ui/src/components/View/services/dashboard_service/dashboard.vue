@@ -29,8 +29,24 @@
 						will be provided. Even pickup and drop services from home to hospital and back will also be
 						provided.
 
-						In between daily reports will be provided to update the status of progress..</p>
+						In between daily reports will be provided to update the status of progress..
+					</p>
+					<br>
+					<div>
+                 <iframe width="560" height="315" src="https://www.youtube.com/embed/aL2nYsXNfMI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
 					<div class="row">
+						<!-- <div class="col-4 col-12-small">
+							<input type="button"  value="Patient Pickup" class="primary"  @click="$router.push({name: 'PatientPickupPage'})" />
+						</div>
+						<div class="col-4 col-12-small">
+							<input type="button"  value="Hospital Assistance" class="primary"  @click="$router.push({name: 'HospitalAssistancePage'})" />
+						</div> -->
+						<div class="col-4 col-12-small">
+							<input type="button"  value="Our Offered Services" class="primary"  @click="$router.push({name: 'OurOfferedServices'})" />
+						</div>
+					</div>
+					<!-- <div class="row"> -->
 						<!-- <div class="col-6 col-12-small">
 							<h3>Sem turpis amet semper</h3>
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
@@ -48,7 +64,7 @@
 								accumsan vis mi accumsan.</p>
 						</div> -->
 						<!-- Break -->
-						<div class="col-4 col-12-medium">
+						<!-- <div class="col-4 col-12-medium">
 							<h3>Ayurveda Treatment</h3>
 							<p>Ayurveda is the 5th Veda needed for health, the traditional natural, healing system, 
                 practiced in India for more than 5000 years. Ayurveda derives the name from the Sanskrit words, “ayur” “veda”. 
@@ -72,8 +88,8 @@
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
 								<input type="button"  value="Hospital Assistance" class="primary"  @click="$router.push({name: 'HospitalAssistancePage'})" />
-						</div>
-					</div>
+						</div> -->
+					<!-- </div> -->
 				</section>
                 <!-- Section 
 				<section>
@@ -126,7 +142,7 @@
       <Sidebar />
       <!-- Sidebar -->
     </div>
-  </div>
+    </div>
 
     
 </template>

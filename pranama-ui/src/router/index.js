@@ -8,18 +8,19 @@ import TheProcess from '@/components/View/services/navigations/TheProcess.vue';
 import Ayurveda from "@/components/View/services/navigations/Ayurveda.vue";
 import Yoga from "@/components/View/services/navigations/Yoga.vue";
 import MentalHealth from "@/components/View/services/navigations/MentalHealth.vue";
-import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue"
+import PreventiveHealth from "@/components/View/services/navigations/PreventiveHealth.vue";
 import DoctorAtHome from "@/components/View/services/navigations/DoctorAtHome.vue";
 import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
-import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue'
-import HospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/HospitalAssistancePage.vue'
-import ForgotPassword from "@/components/View/services/user_service/ForgotPassword.vue"
-import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue"
-import EditProfile from "@/components/View/services/user_service/EditProfile.vue"
+import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue';
+import HospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/HospitalAssistancePage.vue';
+import ForgotPassword from "@/components/View/services/user_service/ForgotPassword.vue";
+import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue";
+import EditProfile from "@/components/View/services/user_service/EditProfile.vue";
 // import form1 from "@/traumaservices/form1.vue"
 // import form2 from "@/traumaservices/form2.vue"
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
-import HospitalSearchPage from '@/components/View/services/hospital_service/HospitalSearchPage.vue'
+import HospitalSearchPage from '@/components/View/services/hospital_service/HospitalSearchPage.vue';
+import OurOfferedServices from '@/components/View/services/dashboard_service/OurOfferedServices.vue';
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
@@ -99,6 +100,11 @@ const router = new VueRouter({
       name: 'Dashboard',
       component: DashboardPage,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/OurOfferedServices',
+      name: 'OurOfferedServices',
+      component: OurOfferedServices
     },
     // {
     //   path: '/form1',

@@ -92,7 +92,7 @@
             <input type="reset" value="Reset" />
           </li>
           <li>
-            <input type="button" value="Cancel" @click="$router.push({name: 'Dashboard'})" />
+            <input type="button" value="Cancel" @click="$router.push({name: 'OurOfferedServices'})" />
           </li>
         </ul>
       </div>

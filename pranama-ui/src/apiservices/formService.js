@@ -9,7 +9,7 @@ submitForm2 (params) {
 },
 
 submitPatientPickup (params) {
-    return apiClient.post("/api/help/patientpickup", params)
+    return apiClient.post("/api/hospital/pickup", params)
 },
 
 hospitalAssistance (params) {

@@ -92,7 +92,8 @@
       </div>
     </form>
     <div class="box" v-show="userRegistrationSuccessful">
-      <h3>{{registrationMessage}}</h3>
+      <!-- <h3>{{registrationMessage}}</h3> -->
+      <RegistrationMessage/>
     </div>
   </div>
 </template>
@@ -100,7 +101,11 @@
 <script>
 import UserService from "@/apiservices/UserService";
 // import Errorbar from "@/components/View/common/Errorbar";
+import RegistrationMessage from '@/components/View/common/RegistrationMessage.vue'
 export default {
+  components: {
+    RegistrationMessage
+  },
   props: { msg: String },
   data() {
     return {
@@ -170,8 +175,8 @@ export default {
           response.data;
           console.log(response);
           this.userRegistrationSuccessful = true;
-          return (this.registrationMessage =
-            "Registration is sucessfull , please check your inbox for more instructions ");
+          // return (this.registrationMessage =
+          //   "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process.");
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);

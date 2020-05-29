@@ -9,7 +9,7 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-         <div class="box" v-show="isError">
+         <div class="box" >
             <h3>{{errorMessage}}</h3>
           </div>
           <!-- <Errorbar/> -->

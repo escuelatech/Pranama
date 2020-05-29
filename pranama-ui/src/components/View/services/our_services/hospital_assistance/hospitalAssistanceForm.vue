@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h3>Hospital Assistance</h3>
-    <form @submit.prevent="submitHospitalAssistanceForm" >
+  <div class="box" v-show="isError">
+  <h4 >{{errorMessage}}</h4>
+  </div>
+   
+  <!-- <Errorbar/> -->
+    <h3 v-show=" !hospitalAssistanceSuccessful">Hospital Assistance</h3>
+    <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !hospitalAssistanceSuccessful">
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
@@ -87,18 +92,23 @@
         </ul>
       </div>
     </form>
+    <div class="box" v-show=" hospitalAssistanceSuccessful">
+    <SuccessMessage />
+     <!-- <h3>{{hospitlAssisregistrationMessage}}</h3>-->
+    </div>
   </div>
 </template>
 
 <script>
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
-
-
+import SuccessMessage from "@/components/View/common/SuccessMessage.vue"
 export default {
 
   data() {
     return {
+      isError: false,
+      hospitalAssistanceSuccessful: false,
       PatientFirstName: "",
       PatientLastName: "",
       hospitalLocation: "",
@@ -106,21 +116,17 @@ export default {
       time:"",
       hospitalTobeVisit: "",
       doctorNameToConsult: "",
-     
+      hospitlAssisregistrationMessage: [],
+      errorMessage: []
     };
   },
- 
-  
+   
   components: {
-   Datepicker
+   Datepicker, SuccessMessage
   },
 
   methods: {
- 
- 
-
-   
-    submitHospitalAssistanceForm() {
+      submitHospitalAssistanceForm() {
       formService
         .hospitalAssistance({
           PatientFirstName: this.PatientFirstName,
@@ -135,10 +141,16 @@ export default {
         .then(response => {
           response.data;
           console.log(response);
-                   
+          this.hospitalAssistanceSuccessful = true
+          // return (this.hospitlAssisregistrationMessage =
+         //   "Thank you for filling out your information in HospitalAssistance form!!! While we do our best to answer your  queries quickly, it may take about 10 hours to receive a response from us during peak hours. Incase not received any confirmation email please contact to the number provided in the contact US.Thanks in advance for your patience.  Have a great day!!! ");        
         })
         .catch(error => {
-          console.log("There was an error", error.response);
+          console.log("Error reported from endpoints :", error.response);
+          this.isError = true;
+          return (this.errorMessage = JSON.stringify(
+            error.response.data.errorMessage
+          ))
         });
     }
   }

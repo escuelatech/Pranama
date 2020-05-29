@@ -1,12 +1,18 @@
 <template>
   <div>
-  <div class="box" v-show="isError">
-  <h4 >{{errorMessage}}</h4>
+  <div class="box" v-if="isErrorMessage === true && isSuccessMessage === false" >
+   <h4  v-show="isErrorMessage" class="errMsg">{{message}}</h4>
   </div>
+   <div class="box" v-if="isSuccessMessage === true && isErrorMessage === false">
+    <h3   v-show="isSuccessMessage" class="message">{{message}}</h3>
+    </div>
+    <div class="box" v-if="isSuccessMessage === true && isErrorMessage === true">
+    <h3   v-show="isSuccessMessage" class="message">{{message}}</h3>
+    </div>
    
   <!-- <Errorbar/> -->
-    <h3 v-show=" !hospitalAssistanceSuccessful">Hospital Assistance</h3>
-    <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !hospitalAssistanceSuccessful">
+    <h3 v-show=" !isSuccessMessage">Hospital Assistance</h3>
+    <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !isSuccessMessage">
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
@@ -74,8 +80,7 @@
             locale="en" v-model="time" 
             required  autocomplete="on"  
           ></b-form-timepicker>
-        
-        </div>
+         </div>
       </div>
       
       <div>
@@ -92,23 +97,18 @@
         </ul>
       </div>
     </form>
-    <div class="box" v-show=" hospitalAssistanceSuccessful">
-    <SuccessMessage />
-     <!-- <h3>{{hospitlAssisregistrationMessage}}</h3>-->
-    </div>
-  </div>
+     </div>
 </template>
 
 <script>
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
-import SuccessMessage from "@/components/View/common/SuccessMessage.vue"
 export default {
 
   data() {
     return {
-      isError: false,
-      hospitalAssistanceSuccessful: false,
+      isErrorMessage: false,
+      isSuccessMessage: false,
       PatientFirstName: "",
       PatientLastName: "",
       hospitalLocation: "",
@@ -116,13 +116,12 @@ export default {
       time:"",
       hospitalTobeVisit: "",
       doctorNameToConsult: "",
-      hospitlAssisregistrationMessage: [],
-      errorMessage: []
+      message: []
     };
   },
    
   components: {
-   Datepicker, SuccessMessage
+   Datepicker
   },
 
   methods: {
@@ -141,14 +140,13 @@ export default {
         .then(response => {
           response.data;
           console.log(response);
-          this.hospitalAssistanceSuccessful = true
-          // return (this.hospitlAssisregistrationMessage =
-         //   "Thank you for filling out your information in HospitalAssistance form!!! While we do our best to answer your  queries quickly, it may take about 10 hours to receive a response from us during peak hours. Incase not received any confirmation email please contact to the number provided in the contact US.Thanks in advance for your patience.  Have a great day!!! ");        
+          this.isSuccessMessage = true
+           return (this.message = "Thank you for filling out your information in  HospitalAssistance form!!! While we do our best to answer your  queries quickly, it may take about 10 hours to receive a response from us during peak hours. Incase not received any confirmation email please contact to the number provided in the contact US.Thanks in advance for your patience.  Have a great day!!! ");        
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
-          this.isError = true;
-          return (this.errorMessage = JSON.stringify(
+          this.isErrorMessage = true;
+          return (this.message = JSON.stringify(
             error.response.data.errorMessage
           ))
         });
@@ -157,5 +155,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
+.errMsg {
+  color: red;
+  font: 1em sans-serif;;
+  }
+  .message{
+     color: rgb(72, 162, 236);
+     font: 1.5em sans-serif;
+  }
+  .box{
+    margin-top:50px;
+  }
 </style>

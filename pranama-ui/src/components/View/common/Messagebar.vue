@@ -1,6 +1,6 @@
 <template>
 <!-- v-show="isError" -->
     <div class="box" >
-            <h3>{{errorMessage}}</h3>
+            <h3>{{message}}</h3>
     </div>
 </template>

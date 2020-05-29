@@ -1,5 +1,6 @@
 <template>
   <div>
+ 
         <form @submit.prevent="submitPatientPickup">
             <h3>Patient Pickup Portal</h3>
             <div class="row gtr-uniform">

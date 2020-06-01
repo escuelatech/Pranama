@@ -1,7 +1,7 @@
 <template>
   <div>
  
-        <form @submit.prevent="submitPatientPickup">
+        <form @submit.prevent="submitPatientPickup" v-show="!patientPickupSuccessful">
             <h3>Patient Pickup Portal</h3>
             <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
@@ -51,13 +51,16 @@
                     <input type="reset" value="Reset" />
                 </li>
                 <li>
-                    <input type="button" value="Cancel" @click="$router.push({name : 'Dashboard'})"/>
+                    <input type="button" value="Cancel" @click="$router.push({name : 'OurOfferedServices'})"/>
                 </li>
                 </ul>
             </div>
 
             </div>
         </form>
+        <div class="box" v-show="patientPickupSuccessful">
+          <SuccessMessage/>
+        </div>
       </div>
 </template>
 
@@ -66,10 +69,13 @@
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
 //import VueTimepicker from "vue2-timepicker";
+import SuccessMessage from "@/components/View/common/SuccessMessage.vue"
 
 export default {
   data() {
     return {
+      isError: false,
+      patientPickupSuccessful: false,
       firstName: "",
       lastName: "",
       pickupLocation: "",
@@ -77,12 +83,15 @@ export default {
       phoneNumber: "",
       vehicle: "",
       date: "",
-      time: ""
+      time: "",
+      pickupRegistrationMessage: [],
+      errorMessage: []
     }
     
   },
   components: { 
-    Datepicker
+    Datepicker,
+    SuccessMessage
     },
     methods: {
       submitPatientPickup() {
@@ -99,9 +108,17 @@ export default {
           })
           .then(response => {
             response.data;
-            console.log(response);        
+            console.log(response); 
+            this.patientPickupSuccessful = true;       
             })
-        },
+            .catch(error => {
+              console.log("Error reported from endpoints: ", error.response);
+              this.isError = true;
+              return (this.errorMessage = JSON.stringify(
+                error.response.data.errorMessage
+              ))
+            });
+        }
     }
 };
 </script>

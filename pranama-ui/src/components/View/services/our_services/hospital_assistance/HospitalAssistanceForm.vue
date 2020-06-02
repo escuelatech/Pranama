@@ -17,20 +17,20 @@
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="PatientFirstName"
+            name="patientFirstName"
             value
             placeholder="Patients First Name"
-            v-model="PatientFirstName"
+            v-model="patientFirstName"
             required
           />
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="PatientLastName"
+            name="patientLastName"
             value
             placeholder="Patients Last Name"
-            v-model="PatientLastName"
+            v-model="patientLastName"
             required
           />
         </div>
@@ -109,8 +109,8 @@ export default {
     return {
       isErrorMessage: false,
       isSuccessMessage: false,
-      PatientFirstName: "",
-      PatientLastName: "",
+      patientFirstName: "",
+      patientLastName: "",
       hospitalLocation: "",
       date:"",
       time:"",
@@ -128,9 +128,9 @@ export default {
       submitHospitalAssistanceForm() {
       formService
         .hospitalAssistance({
-          PatientFirstName: this.PatientFirstName,
-          PatientLastName: this.PatientLastName,
-          PatientLocation: this.PatientLocation,
+          patientFirstName: this.patientFirstName,
+          patientLastName: this.patientLastName,
+          patientLocation: this.patientLocation,
           hospitalLocation: this.hospitalLocation,
           hospitalTobeVisit: this.hospitalTobeVisit,
           doctorNameToConsult: this.doctorNameToConsult,

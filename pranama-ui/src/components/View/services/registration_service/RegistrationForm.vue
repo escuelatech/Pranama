@@ -4,22 +4,10 @@
       <h3>{{errorMessage}}</h3>
     </div>
     <!-- <Errorbar/> -->
-    <h3 v-show="!userRegistrationSuccessful">Register here.</h3>
+    <h3 v-show="!userRegistrationSuccessful">Sign Up with Us</h3>
     <form @submit.prevent="submitRegistrationForm" v-show="!userRegistrationSuccessful">
       <div class="row gtr-uniform">
-        <!-- <div class="col-6 col-12-xsmall">
-                <input
-                  type="text"
-                  name="userName"
-                  value="user Name"
-                  placeholder="User Name"
-                  v-model="userName"
-                  required
-                />
-                <span class="errNotific" v-if="msge.userName">{{msge.userName}}</span>
-        </div>-->
-
-        <div class="col-6 col-12-xsmall">
+          <div class="col-6 col-12-xsmall">
           <input type="email" name="email" value placeholder="Email" v-model="email" required />
           <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
         </div>
@@ -123,7 +111,8 @@ export default {
       min: "10",
       max: "15",
       registrationMessage: [],
-      errorMessage: []
+      errorMessage: [],
+      isError: false
     };
   },
   // components: { Header, Sidebar },

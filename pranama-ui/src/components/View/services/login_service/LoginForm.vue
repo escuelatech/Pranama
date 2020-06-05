@@ -1,5 +1,8 @@
 <template>
   <div>
+  <div class="col-12"  v-if="!isAuthenticated && processing">
+          <div >{{message}}</div>
+        </div>
     <h3 v-show="!sendingSuccessful">LOGIN</h3>
     <form @reset="reset" @submit.prevent="submitContactForm" v-show="!sendingSuccessful">
       <div class="row gtr-uniform">
@@ -30,8 +33,9 @@
           <Spinner :centered="true" size="80" />
         </div>
         <!-- Break -->
+        
         <div class="col-12">
-          <div class="errNotific" v-if="error">Wrong credentials</div>
+          <div class="errNotific" v-show="error">{{message}}</div>
         </div>
         <!-- Break -->
         <div class="col-12">
@@ -65,7 +69,9 @@ export default {
       email: "",
       password: "",
       error: false,
-      processing: false
+      processing: false,
+      isAuthenticated: "",
+       message: []
     };
   },
   components: {
@@ -91,8 +97,12 @@ export default {
         this.sendingSuccessful = true;
         this.$router.push({ name: "Dashboard" }).catch(err => console.log(err));
       } catch (error) {
-        this.sendingSuccessful = false;
-        this.error = true;
+       // this.sendingSuccessful = false;
+           console.log("Error reported from endpoints :", error.response);
+           this.error = true;
+          return (this.message = JSON.stringify(
+            error.response.data.errorMessage
+          ))
       } finally {
         this.processing = false;
       }

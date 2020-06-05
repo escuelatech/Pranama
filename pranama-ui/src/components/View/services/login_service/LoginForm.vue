@@ -1,8 +1,5 @@
 <template>
   <div>
-  <div class="col-12"  v-if="!isAuthenticated && processing">
-          <div >{{message}}</div>
-        </div>
     <h3 v-show="!sendingSuccessful">LOGIN</h3>
     <form @reset="reset" @submit.prevent="submitContactForm" v-show="!sendingSuccessful">
       <div class="row gtr-uniform">
@@ -35,7 +32,7 @@
         <!-- Break -->
         
         <div class="col-12">
-          <div class="errNotific" v-show="error">{{message}}</div>
+          <div class="errNotific" v-if="error">Wrong Credentials</div>
         </div>
         <!-- Break -->
         <div class="col-12">

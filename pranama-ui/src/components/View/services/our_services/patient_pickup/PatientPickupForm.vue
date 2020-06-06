@@ -5,26 +5,26 @@
             <h3>Patient Pickup Portal</h3>
             <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
-                <input type="text" name="Patient First Name" value
+                <input type="text" name="firstName" value
                     placeholder="Patient First Name" v-model="firstName" required />    
             </div>
             <div class="col-6 col-12-xsmall">
-                <input type="text" name="Patient Last Name" value
+                <input type="text" name="lastName" value
                 placeholder="Patient Last Name" v-model="lastName" required />
                 
             </div>
             <div class="col-6 col-12-xsmall">
-                <input type="text" name="Patient's Current Location / Patient's Pickup Location" 
+                <input type="text" name="pickupLocation" 
                 value placeholder="Patient's Pickup Location" v-model="pickupLocation" required />
                 
             </div>
             <div class="col-6 col-12-xsmall">
-                <input type="text" name="Patient's Drop-Off Location" 
+                <input type="text" name="dropoffLocation" 
                 value placeholder="Patient's Drop-Off Location" v-model="dropoffLocation" required />
                 
             </div>
             <div class="col-6 col-12-xsmall">
-                <input type="tel" name="Patient/ Contact Person's Phone Number" 
+                <input type="tel" name="phoneNumber" 
                 value placeholder="Phone Number" v-model="phoneNumber" required />  
             </div>
             <div class="form-check form-group">
@@ -45,7 +45,7 @@
             <div class="col-12">
                 <ul class="actions">
                 <li>
-                    <input type="submit" value="Submit" class="primary" />
+                    <input type="submit" value="Submit" class="primary" @click="addPickupAssistanceMessage" />
                 </li>
                 <li>
                     <input type="reset" value="Reset" />
@@ -58,8 +58,8 @@
 
             </div>
         </form>
-        <div class="box" v-show="patientPickupSuccessful">
-          <SuccessMessage/>
+        <div v-show="patientPickupSuccessful">
+          <Messagebar />
         </div>
       </div>
 </template>
@@ -68,8 +68,9 @@
 
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
+import Messagebar from '@/components/View/common/Messagebar.vue'
 //import VueTimepicker from "vue2-timepicker";
-import SuccessMessage from "@/components/View/common/SuccessMessage.vue"
+//import SuccessMessage from "@/components/View/common/SuccessMessage.vue"
 
 export default {
   data() {
@@ -91,9 +92,13 @@ export default {
   },
   components: { 
     Datepicker,
-    SuccessMessage
+    Messagebar
+    //SuccessMessage
     },
     methods: {
+      addPickupAssistanceMessage() {
+        this.$store.dispatch('addPickupAssistanceMessage')
+      },
       submitPatientPickup() {
         formService
           .submitPatientPickup({

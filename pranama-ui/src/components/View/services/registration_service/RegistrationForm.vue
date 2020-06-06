@@ -70,7 +70,7 @@
         <div class="col-12">
           <ul class="actions">
             <li>
-              <input type="submit" value="Register" class="primary" />
+              <input type="submit" value="Register" class="primary" @click="addRegMessage" />
             </li>
             <li>
               <input type="reset" value="Reset" />
@@ -79,9 +79,10 @@
         </div>
       </div>
     </form>
-    <div class="box" v-show="userRegistrationSuccessful">
+    <div v-show="userRegistrationSuccessful">
       <!-- <h3>{{registrationMessage}}</h3> -->
-      <RegistrationMessage/>
+      <!-- <RegistrationMessage/> -->
+      <Messagebar />
     </div>
   </div>
 </template>
@@ -89,10 +90,12 @@
 <script>
 import UserService from "@/apiservices/UserService";
 // import Errorbar from "@/components/View/common/Errorbar";
-import RegistrationMessage from '@/components/View/common/RegistrationMessage.vue'
+//import RegistrationMessage from '@/components/View/common/RegistrationMessage.vue'
+import Messagebar from '@/components/View/common/Messagebar.vue'
 export default {
   components: {
-    RegistrationMessage
+   // RegistrationMessage,
+    Messagebar
   },
   props: { msg: String },
   data() {
@@ -115,6 +118,7 @@ export default {
       isError: false
     };
   },
+  
   // components: { Header, Sidebar },
   watch: {
     email(value) {
@@ -150,6 +154,14 @@ export default {
   },
 
   methods: {
+    addRegMessage(){
+      this.$store.dispatch('addRegMessage')
+     // this.$store.state.messages = "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process."
+    },
+    addErrorMessage() {
+      this.store.dispatch('addErrorMessage')
+      //this.$store.commit('ADD_ERROR_MESSAGE', error)
+    },
     submitRegistrationForm() {
       UserService.register({
         email: this.email,
@@ -164,8 +176,11 @@ export default {
           response.data;
           console.log(response);
           this.userRegistrationSuccessful = true;
-          // return (this.registrationMessage =
-          //   "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process.");
+           //this.$store.dispatch('regMessage')
+           
+          //  return (this.registrationMessage =
+          //    "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process.");
+           
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);

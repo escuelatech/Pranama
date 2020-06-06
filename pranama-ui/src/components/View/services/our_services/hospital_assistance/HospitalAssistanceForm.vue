@@ -1,14 +1,18 @@
 <template>
   <div>
-  <div class="box" v-if="isErrorMessage === true && isSuccessMessage === false" >
-   <h4  v-show="isErrorMessage" class="errMsg">{{message}}</h4>
+  <!-- <div class="box" v-if="isErrorMessage === true && isSuccessMessage === false" >
+   <h4  v-show="isErrorMessage" class="errMsg">
+     {{message}}
+   </h4>
   </div>
-   <div class="box" v-if="isSuccessMessage === true && isErrorMessage === false">
-    <h3   v-show="isSuccessMessage" class="message">{{message}}</h3>
+   <div v-if="isSuccessMessage === true && isErrorMessage === false">
+    <h3 v-show="isSuccessMessage" class="message">
+       {{message}}
+    </h3>
     </div>
     <div class="box" v-if="isSuccessMessage === true && isErrorMessage === true">
     <h3   v-show="isSuccessMessage" class="message">{{message}}</h3>
-    </div>
+    </div> -->
    
   <!-- <Errorbar/> -->
     <h3 v-show=" !isSuccessMessage">Hospital Assistance</h3>
@@ -17,20 +21,20 @@
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="patientFirstName"
+            name="PatientFirstName"
             value
             placeholder="Patients First Name"
-            v-model="patientFirstName"
+            v-model="PatientFirstName"
             required
           />
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="patientLastName"
+            name="PatientLastName"
             value
             placeholder="Patients Last Name"
-            v-model="patientLastName"
+            v-model="PatientLastName"
             required
           />
         </div>
@@ -86,7 +90,7 @@
       <div>
         <ul class="actions">
           <li>
-            <input type="submit" value="Submit" class="primary"/>
+            <input type="submit" value="Submit" class="primary" @click="addPickupAssistanceMessage" />
           </li>
           <li>
             <input type="reset" value="Reset" />
@@ -97,20 +101,27 @@
         </ul>
       </div>
     </form>
+     <div v-show="isSuccessMessage">
+      <Messagebar />
+    </div>
+     <!-- <div v-show="isErrorMessage">
+      <Messagebar />
+    </div> -->
      </div>
 </template>
 
 <script>
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
+import Messagebar from "@/components/View/common/Messagebar.vue"
 export default {
 
   data() {
     return {
       isErrorMessage: false,
       isSuccessMessage: false,
-      patientFirstName: "",
-      patientLastName: "",
+      PatientFirstName: "",
+      PatientLastName: "",
       hospitalLocation: "",
       date:"",
       time:"",
@@ -121,16 +132,24 @@ export default {
   },
    
   components: {
-   Datepicker
+   Datepicker,
+   Messagebar
   },
 
   methods: {
+    addPickupAssistanceMessage() {
+      this.$store.dispatch('addPickupAssistanceMessage')
+    },
+    addErrorMessage() {
+      this.store.dispatch('addErrorMessage')
+      //this.$store.commit('ADD_ERROR_MESSAGE', error)
+    },
       submitHospitalAssistanceForm() {
       formService
         .hospitalAssistance({
-          patientFirstName: this.patientFirstName,
-          patientLastName: this.patientLastName,
-          patientLocation: this.patientLocation,
+          PatientFirstName: this.PatientFirstName,
+          PatientLastName: this.PatientLastName,
+          PatientLocation: this.PatientLocation,
           hospitalLocation: this.hospitalLocation,
           hospitalTobeVisit: this.hospitalTobeVisit,
           doctorNameToConsult: this.doctorNameToConsult,
@@ -141,12 +160,12 @@ export default {
           response.data;
           console.log(response);
           this.isSuccessMessage = true
-           return (this.message = "Thank you for filling out your information in  HospitalAssistance form!!! While we do our best to answer your  queries quickly, it may take about 10 hours to receive a response from us during peak hours. Incase not received any confirmation email please contact to the number provided in the contact US.Thanks in advance for your patience.  Have a great day!!! ");        
+         //  return (this.message = "Thank you for filling out your information in  HospitalAssistance form!!! While we do our best to answer your  queries quickly, it may take about 10 hours to receive a response from us during peak hours. Incase not received any confirmation email please contact to the number provided in the contact US.Thanks in advance for your patience.  Have a great day!!! ");        
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
           this.isErrorMessage = true;
-          return (this.message = JSON.stringify(
+          return (this.errorMessage = JSON.stringify(
             error.response.data.errorMessage
           ))
         });

@@ -5,17 +5,12 @@
     </div>
 </template>
 <script>
-//import mapState from 'vuex'
+
 export default {
     computed: {
         messages() {
         return this.$store.state.messages
     }
-    },  
-//      methods: {
-//        regMessage(){
-//        this.$store.dispatch('regMessage')
-//     },
-//   }
+    }
 }
 </script>

@@ -10,13 +10,14 @@
           <div class="col-6 col-12-xsmall">
           <h3>India</h3>
 									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">info@pranama.in</a></li>
+										<li class="icon solid fa-envelope"><a href="#">pranamaindia@gmail.com
+</a></li>
 										<li class="icon solid fa-phone"> (515) 012-2121</li>
 										<li class="icon solid fa-home">“Sreehari” Post Puthiyara,<br />
 										Kerala, India, PIN 673004</li>
 									</ul>
                   </div>
-                  <div class="col-6 col-12-xsmall">
+                  <!-- <div class="col-6 col-12-xsmall">
                   <h3>US</h3>
 									<ul class="contact">
 										<li class="icon solid fa-envelope"><a href="#">info@pranama.us</a></li>
@@ -24,8 +25,8 @@
 										<li class="icon solid fa-home">12345 Texas Avenue<br />
 										Austin,Texas, PIN 78759</li>
 									</ul>
-                  </div>
-                  </div>
+                  </div> -->
+                  </div> 
 		</section>
    
     <br/><br/>

@@ -18,7 +18,8 @@
 							</header> -->
 							<p> If you have any queries or suggestions. Please get in touch with us</p>
 							<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#" @click="$router.push('/contactus')">info@pranama.in</a></li>
+										<li class="icon solid fa-envelope"><a href="#" @click="$router.push('/contactus')">pranamaindia@gmail.com
+</a></li>
 										<li class="icon solid fa-phone">(000) 000-0000</li>
 										<li class="icon solid fa-home">1234 Somewhere Road #8254<br />
 										Nashville, TN 00000-0000</li>

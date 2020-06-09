@@ -1,7 +1,9 @@
 <template>
   <div>
- 
-        <form @submit.prevent="submitPatientPickup" v-show="!patientPickupSuccessful">
+        <div v-show="isError">
+          <Messagebar />
+        </div>
+        <form @submit.prevent="submitPatientPickup" v-show="!patientPickupSuccessful && !displayMessage">
             <h3>Patient Pickup Portal</h3>
             <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
@@ -45,7 +47,7 @@
             <div class="col-12">
                 <ul class="actions">
                 <li>
-                    <input type="submit" value="Submit" class="primary" @click="addPickupAssistanceMessage" />
+                    <input type="submit" value="Submit" class="primary" />
                 </li>
                 <li>
                     <input type="reset" value="Reset" />
@@ -60,7 +62,7 @@
         </form>
         <div v-show="patientPickupSuccessful">
           <Messagebar />
-        </div>
+        </div> 
       </div>
 </template>
 
@@ -69,8 +71,6 @@
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
 import Messagebar from '@/components/View/common/Messagebar.vue'
-//import VueTimepicker from "vue2-timepicker";
-//import SuccessMessage from "@/components/View/common/SuccessMessage.vue"
 
 export default {
   data() {
@@ -86,19 +86,15 @@ export default {
       date: "",
       time: "",
       pickupRegistrationMessage: [],
-      errorMessage: []
+      errorMessage: [],
     }
     
   },
   components: { 
     Datepicker,
     Messagebar
-    //SuccessMessage
     },
     methods: {
-      addPickupAssistanceMessage() {
-        this.$store.dispatch('addPickupAssistanceMessage')
-      },
       submitPatientPickup() {
         formService
           .submitPatientPickup({
@@ -114,11 +110,14 @@ export default {
           .then(response => {
             response.data;
             console.log(response); 
-            this.patientPickupSuccessful = true;       
+            this.patientPickupSuccessful = true;  
+            this.isError = false;  
+            this.$store.dispatch('addPickupAssistanceMessage');  
             })
             .catch(error => {
               console.log("Error reported from endpoints: ", error.response);
-              this.isError = true;
+              this.isError = true; 
+              this.$store.dispatch('addErrorMessage');
               return (this.errorMessage = JSON.stringify(
                 error.response.data.errorMessage
               ))

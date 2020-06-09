@@ -1,22 +1,11 @@
 <template>
   <div>
-  <!-- <div class="box" v-if="isErrorMessage === true && isSuccessMessage === false" >
-   <h4  v-show="isErrorMessage" class="errMsg">
-     {{message}}
-   </h4>
-  </div>
-   <div v-if="isSuccessMessage === true && isErrorMessage === false">
-    <h3 v-show="isSuccessMessage" class="message">
-       {{message}}
-    </h3>
+    <div v-show="isError">
+      <Messagebar />
     </div>
-    <div class="box" v-if="isSuccessMessage === true && isErrorMessage === true">
-    <h3   v-show="isSuccessMessage" class="message">{{message}}</h3>
-    </div> -->
-   
-  <!-- <Errorbar/> -->
-    <h3 v-show=" !isSuccessMessage">Hospital Assistance</h3>
-    <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !isSuccessMessage">
+    
+    <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !isSuccessMessage && !displayMessage">
+      <h3>Hospital Assistance</h3>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
@@ -90,7 +79,7 @@
       <div>
         <ul class="actions">
           <li>
-            <input type="submit" value="Submit" class="primary" @click="addPickupAssistanceMessage" />
+            <input type="submit" value="Submit" class="primary"  />
           </li>
           <li>
             <input type="reset" value="Reset" />
@@ -104,9 +93,6 @@
      <div v-show="isSuccessMessage">
       <Messagebar />
     </div>
-     <!-- <div v-show="isErrorMessage">
-      <Messagebar />
-    </div> -->
      </div>
 </template>
 
@@ -127,7 +113,7 @@ export default {
       time:"",
       hospitalTobeVisit: "",
       doctorNameToConsult: "",
-      message: []
+      message: [],
     };
   },
    
@@ -137,13 +123,6 @@ export default {
   },
 
   methods: {
-    addPickupAssistanceMessage() {
-      this.$store.dispatch('addPickupAssistanceMessage')
-    },
-    addErrorMessage() {
-      this.store.dispatch('addErrorMessage')
-      //this.$store.commit('ADD_ERROR_MESSAGE', error)
-    },
       submitHospitalAssistanceForm() {
       formService
         .hospitalAssistance({
@@ -159,12 +138,14 @@ export default {
         .then(response => {
           response.data;
           console.log(response);
-          this.isSuccessMessage = true
-         //  return (this.message = "Thank you for filling out your information in  HospitalAssistance form!!! While we do our best to answer your  queries quickly, it may take about 10 hours to receive a response from us during peak hours. Incase not received any confirmation email please contact to the number provided in the contact US.Thanks in advance for your patience.  Have a great day!!! ");        
+          this.isSuccessMessage = true;
+          this.isErrorMessage = false;
+          this.$store.dispatch('addPickupAssistanceMessage')
         })
         .catch(error => {
-          console.log("Error reported from endpoints :", error.response);
+          console.log("Error reported from endpoints :", JSON.stringify(error.response));
           this.isErrorMessage = true;
+          this.$store.dispatch('addErrorMessage')
           return (this.errorMessage = JSON.stringify(
             error.response.data.errorMessage
           ))

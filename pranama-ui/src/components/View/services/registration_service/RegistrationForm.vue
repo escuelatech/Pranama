@@ -3,9 +3,9 @@
     <div class="box" v-show="isError">
       <h3>{{errorMessage}}</h3>
     </div>
-    <!-- <Errorbar/> -->
-    <h3 v-show="!userRegistrationSuccessful">Sign Up with Us</h3>
-    <form @submit.prevent="submitRegistrationForm" v-show="!userRegistrationSuccessful">
+    
+    <form @submit.prevent="submitRegistrationForm" v-show="!userRegistrationSuccessful  && !displayMessage">
+      <h3>Sign Up with Us</h3>
       <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
           <input type="email" name="email" value placeholder="Email" v-model="email" required />
@@ -70,7 +70,7 @@
         <div class="col-12">
           <ul class="actions">
             <li>
-              <input type="submit" value="Register" class="primary" @click="addRegMessage" />
+              <input type="submit" value="Register" class="primary" />
             </li>
             <li>
               <input type="reset" value="Reset" />
@@ -80,8 +80,6 @@
       </div>
     </form>
     <div v-show="userRegistrationSuccessful">
-      <!-- <h3>{{registrationMessage}}</h3> -->
-      <!-- <RegistrationMessage/> -->
       <Messagebar />
     </div>
   </div>
@@ -89,12 +87,9 @@
 
 <script>
 import UserService from "@/apiservices/UserService";
-// import Errorbar from "@/components/View/common/Errorbar";
-//import RegistrationMessage from '@/components/View/common/RegistrationMessage.vue'
 import Messagebar from '@/components/View/common/Messagebar.vue'
 export default {
   components: {
-   // RegistrationMessage,
     Messagebar
   },
   props: { msg: String },
@@ -106,7 +101,6 @@ export default {
       firstName: "",
       lastName: "",
       phoneNumber: "",
-      // userName: "",
       userType: "",
       gender: "",
       country: "",
@@ -115,20 +109,15 @@ export default {
       max: "15",
       registrationMessage: [],
       errorMessage: [],
-      isError: false
+      isError: false,
+      //displayMessage: false
     };
   },
-  
-  // components: { Header, Sidebar },
   watch: {
     email(value) {
       this.email = value;
       this.check_email(value);
     },
-    // userName(value) {
-    //   this.userName = value;
-    //   this.check_userName(value);
-    // },
     password(value) {
       this.password = value;
       this.check_password(value);
@@ -154,14 +143,6 @@ export default {
   },
 
   methods: {
-    addRegMessage(){
-      this.$store.dispatch('addRegMessage')
-     // this.$store.state.messages = "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process."
-    },
-    addErrorMessage() {
-      this.store.dispatch('addErrorMessage')
-      //this.$store.commit('ADD_ERROR_MESSAGE', error)
-    },
     submitRegistrationForm() {
       UserService.register({
         email: this.email,
@@ -176,15 +157,15 @@ export default {
           response.data;
           console.log(response);
           this.userRegistrationSuccessful = true;
-           //this.$store.dispatch('regMessage')
-           
-          //  return (this.registrationMessage =
-          //    "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process.");
-           
+          //this.displayMessage = true;
+           this.isError = false;
+           this.$store.dispatch('addRegMessage')
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
           this.isError = true;
+          //this.displayMessage = true;
+          // this.$store.dispatch('addErrorMessage')
           return (this.errorMessage = JSON.stringify(
             error.response.data.errorMessage
           ));
@@ -201,13 +182,6 @@ export default {
         }
       }
     },
-    // check_userName(value) {
-    //   if (value == "") {
-    //     this.msge["userName"] = "Enter a valid  Name";
-    //   } else {
-    //     this.msge["userName"] = "";
-    //   }
-    // },
     check_firstName(value) {
       if (value == "") {
         this.msge["firstName"] = "Enter first name";

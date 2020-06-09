@@ -15,6 +15,7 @@ submitPatientPickup (params) {
 hospitalAssistance (params) {
     console.log(JSON.stringify(params));
     return apiClient.post("/api/hospital/assistance", params);
+    
 }
 
 };

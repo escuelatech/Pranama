@@ -10,7 +10,7 @@
           <div class="col-6 col-12-xsmall">
           <h3>India</h3>
 									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">pranamaindia@gmail.com
+										<li class="icon solid fa-envelope"><a href="#contactForm" @click="displaySubmitForm">pranamaindia@gmail.com
 </a></li>
 										<li class="icon solid fa-phone"> (515) 012-2121</li>
 										<li class="icon solid fa-home">“Sreehari” Post Puthiyara,<br />
@@ -30,26 +30,32 @@
 		</section>
    
     <br/><br/>
-    <h3 v-show="!sendingSuccessful">Lets us Talk - Drop an email, we will get back ! </h3>
-    <form @submit.prevent="submitContactForm" v-show="!sendingSuccessful">
+    <h3 v-show="!sendingSuccessful && displaySubmit">Lets us Talk - Drop an email, we will get back ! </h3>
+    <form @submit.prevent="submitContactForm" 
+      v-show="!sendingSuccessful && displaySubmit" 
+      id="contactForm">
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="firstName"
+            name="name"
             value="Your Name"
-            placeholder="First Name & Last Name"
-            v-model="firstName"
-          />
+            placeholder="Full Name"
+            v-model="name"
+            required
+          /> 
+          <span class="errorNotification" v-if="msg.name">{{msg.name}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="Watsappnumber"
+            name="watsappNumber"
             value="Watsapp number"
             placeholder="Watsapp Number"
-            v-model="Watsappnumber"
+            v-model="watsappNumber"
+            required
           />
+           <span class="errorNotification" v-if="msg.watsappNumber">{{msg.watsappNumber}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
           <input
@@ -58,10 +64,13 @@
             value
             placeholder="Phone Number"
             v-model="phoneNumber"
+            required
           />
+          <span class="errorNotification" v-if="msg.phoneNumber">{{msg.phoneNumber}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
-          <input type="email" name="email" value placeholder="Email" v-model="email" />
+          <input type="email" name="email" value placeholder="Email" v-model="email" required />
+          <span class="errorNotification" v-if="msg.email">{{msg.email}}</span>
         </div>
 
         <!-- Break -->
@@ -72,7 +81,9 @@
             placeholder="Let us know what assistance you are looking for"
             rows="6"
             v-model="message"
+            required
           ></textarea>
+          <span class="errorNotification" v-if="msg.message">{{msg.message}}</span>
         </div>
         <!-- Break -->
         <div class="col-12">
@@ -85,22 +96,15 @@
             </li>
           </ul>
         </div>
-        <!-- <div  v-if="sendingSuccessful"> Successs </div>  -->
-        <!-- <div   v-show="firstName"></div> -->
       </div>
     </form>
 
     <!-- hidden Div Starts -->
     <div v-show="sendingSuccessful">
-      <!-- <h3>Pranama</h3> -->
-      <div class="box">
-        <p>
-          We received your email, our team will reach out to you as soon as possible . Felis sagittis eget tempus primis in faucibus vestibulum.
-          Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget.
-          tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum.
-        </p>
-      </div>
-      <!-- Section -->
+        <Messagebar />
+    </div>
+      
+      <!-- Section
       <section v-show="sendingSuccessful">
         <header class="major">
           <h2>What we do</h2>
@@ -147,49 +151,114 @@
             </div>
           </article>
         </div>
-      </section>
-    </div>
+      </section> -->
     <!-- hidden Div Ends -->
   </div>
 </template>
 <script>
 import ContactService from "@/apiservices/ContactService";
+import Messagebar from '@/components/View/common/Messagebar.vue';
 
 export default {
+  components: {
+    Messagebar
+  },
   data() {
     return {
       sendingSuccessful: false,
       email: "",
+      watsappNumber: "",
       phoneNumber: "",
-      firstName: "",
-      // lastName: "",
+      name: "",
       message: "",
-      text: "sent"
+      text: "sent",
+      displaySubmit: false,
+      msg: []
     };
   },
- 
+  watch: {
+    email(value) {
+      this.email = value;
+      this.validateEmail(value);
+    },
+    phoneNumber(value) {
+      this.phoneNumber = value;
+      this.validatePhoneNumber(value);
+    },
+    name(value) {
+      this.name = value;
+      this.validateName(value);
+    },
+    message(value) {
+      this.message = value;
+      this.validateMessage(value);
+    },
+    watsappNumber(value) {
+      this.watsappNumber = value;
+      this.validateWatsappNumber(value);
+    }
+  },
   methods: {
+    displaySubmitForm() {
+      this.displaySubmit = true;
+    },
     submitContactForm() {
       console.log("Ready to submit the contact form  ");
-      //console.log(API);
       ContactService
         .submitContact({
           email: this.email,
           phone: this.phoneNumber,
           firstName: this.firstName,
-          // lastName: this.lastName,
-          message: this.message
+          message: this.message,
+          watsappNumber: this.watsappNumber
         })
         .then(response => {
           console.log(response.data);
           console.log(response);
           this.sendingSuccessful = true;
+          this.$store.dispatch('addContactSuccessMessage')
           return response;
         })
         .catch(error => {
           this.sendingSuccessful = false;
           console.log(error);
         });
+    },
+    validateEmail(value) {
+        // eslint-disable-next-line no-useless-escape
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+          this.msg["email"] = "";
+        } else {
+          this.msg["email"] = "Enter a valid email";
+        }
+    },
+    validatePhoneNumber(value) {
+      if (value.length >= "10" && value.length <= "15") {
+        this.msg["phoneNumber"] = " ";
+      } else {
+        this.msg["phoneNumber"] = "Enter a valid Phone Number";
+      }
+    },
+    validateWatsappNumber(value) {
+      if (value.length >= "10" && value.length <= "15") {
+        this.msg["watsappNumber"] = " ";
+      } else {
+        this.msg["watsappNumber"] = "Enter a valid Phone Number";
+      }
+    },
+    validateName(value) {
+       if (value == "") {
+        this.msg["name"] = "Enter Full Name";
+      } else {
+        this.msg["name"] = "";
+      }
+    },
+    validateMessage(value) {
+       if (value == "") {
+        this.msg["message"] = "Enter your message here";
+      } else {
+        this.msg["message"] = "";
+      }
     }
   }
 };
@@ -197,4 +266,7 @@ export default {
 
 <style lang="scss" >
 @import "@/design/sass/main.scss";
+.errorNotification {
+  color: red;
+}
 </style>

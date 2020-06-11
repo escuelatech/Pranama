@@ -164,8 +164,7 @@ export default {
         .hospitalAssistance({
           PatientFirstName: this.PatientFirstName,
           PatientLastName: this.PatientLastName,
-         // PatientLocation: this.PatientLocation,
-          hospitalLocation: this.hospitalLocation,
+          hospitalLocation: this.hospitalLocaon,
           hospitalTobeVisit: this.hospitalTobeVisit,
           doctorNameToConsult: this.doctorNameToConsult,
           date: new Date(this.date),

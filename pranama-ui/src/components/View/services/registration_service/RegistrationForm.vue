@@ -137,9 +137,7 @@ export default {
     phoneNumber(value) {
       this.phoneNumber = value;
       this.check_phoneNumber(value);
-    },
-   
-    
+    }
   },
 
   methods: {

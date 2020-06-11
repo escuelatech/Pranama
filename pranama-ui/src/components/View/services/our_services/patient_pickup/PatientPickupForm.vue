@@ -3,31 +3,33 @@
         <div v-show="isError">
           <Messagebar />
         </div>
-        <form @submit.prevent="submitPatientPickup" v-show="!patientPickupSuccessful && !displayMessage">
+        <form @submit.prevent="submitPatientPickupForm" v-show="!patientPickupSuccessful">
             <h3>Patient Pickup Portal</h3>
             <div class="row gtr-uniform">
             <div class="col-6 col-12-xsmall">
                 <input type="text" name="firstName" value
-                    placeholder="Patient First Name" v-model="firstName" required />    
+                    placeholder="Patient First Name" v-model="firstName" required /> 
+                <span class="errorNotification" v-if="message.firstName">{{message.firstName}}</span>   
             </div>
             <div class="col-6 col-12-xsmall">
                 <input type="text" name="lastName" value
-                placeholder="Patient Last Name" v-model="lastName" required />
-                
+                placeholder="Patient Last Name" v-model="lastName" required /> 
+                <span class="errorNotification" v-if="message.lastName">{{message.lastName}}</span>
             </div>
             <div class="col-6 col-12-xsmall">
                 <input type="text" name="pickupLocation" 
                 value placeholder="Patient's Pickup Location" v-model="pickupLocation" required />
-                
+                <span class="errorNotification" v-if="message.pickupLocation">{{message.pickupLocation}}</span>
             </div>
             <div class="col-6 col-12-xsmall">
                 <input type="text" name="dropoffLocation" 
                 value placeholder="Patient's Drop-Off Location" v-model="dropoffLocation" required />
-                
+                <span class="errorNotification" v-if="message.dropoffLocation">{{message.dropoffLocation}}</span>
             </div>
             <div class="col-6 col-12-xsmall">
                 <input type="tel" name="phoneNumber" 
-                value placeholder="Phone Number" v-model="phoneNumber" required />  
+                value placeholder="Phone Number" v-model="phoneNumber" required /> 
+                <span class="errorNotification" v-if="message.phoneNumber">{{message.phoneNumber}}</span> 
             </div>
             <div class="form-check form-group">
                 <select id="vehicle" name="vehicle">
@@ -35,12 +37,16 @@
                   <option value="suv">SUV</option>
                   <option value="sedan">Sedan</option>
                 </select>
+                <span class="errorNotification" v-if="message.vehicle">{{message.vehicle}}</span>
             </div>
             <div class="col-6 col-12-xsmall">
-                <datepicker name="date" placeholder="Date" required></datepicker>
+                <datepicker name="date" placeholder="Date" v-model="date" required></datepicker>
+                <span class="errorNotification" v-if="message.date">{{message.date}}</span>
             </div>
             <div class="col-6 col-12-xsmall">
-                <b-form-timepicker id="timepicker-placeholder" name="time" placeholder="Choose a time" local="en" required></b-form-timepicker>
+                <b-form-timepicker id="timepicker-placeholder" name="time" v-model="time"
+                placeholder="Choose a time" local="en" required></b-form-timepicker>
+                <span class="errorNotification" v-if="message.time">{{message.time}}</span>
             </div>
 
             <!-- Break -->
@@ -87,6 +93,7 @@ export default {
       time: "",
       pickupRegistrationMessage: [],
       errorMessage: [],
+      message: []
     }
     
   },
@@ -94,8 +101,42 @@ export default {
     Datepicker,
     Messagebar
     },
+  watch: {
+    firstName(value){
+      this.firstName = value;
+      this.validateFirstName(value);
+    },
+    lastName(value){
+      this.lastName = value;
+      this.validateLastName(value);
+    },
+    pickupLocation(value){
+      this.pickupLocation = value;
+      this.validatePickupLocation(value);
+    },
+    dropoffLocation(value){
+      this.dropoffLocation = value;
+      this.validateDropoffLocation(value);
+    },
+    time(value){
+      this.time = value;
+      this.validateTime(value);
+    },
+     vehicle(value){
+      this.vehicle = value;
+      this.validateVehicle(value);
+    },
+     date(value){
+      this.date = value;
+      this.validateDate(value);
+    },
+     phoneNumber(value){
+      this.phoneNumber = value;
+      this.validatePhoneNumber(value);
+    },
+  },
     methods: {
-      submitPatientPickup() {
+      submitPatientPickupForm() {
         formService
           .submitPatientPickup({
             firstName: this.firstName,
@@ -122,11 +163,75 @@ export default {
                 error.response.data.errorMessage
               ))
             });
-        }
-    }
-};
+        },
+    validateFirstName(value) {
+    if (value == "") {
+        this.message["firstName"] = "Enter Patient First Name";
+      } else {
+        this.message["firstName"] = "";
+      }
+  },
+  validateLastName(value) {
+    if (value == "") {
+        this.message["lastName"] = "Enter Patient Last Name";
+      } else {
+        this.message["lastName"] = "";
+      }
+  },
+  validatePickupLocation(value) {
+    if (value == "") {
+        this.message["pickupLocation"] = "Enter valid location";
+      } else {
+        this.message["pickupLocation"] = "";
+      }
+  },
+  validateDropoffLocation(value) {
+    if (value == "") {
+        this.message["dropoffLocation"] = "Enter valid location";
+      } else {
+        this.message["dropoffLocation"] = "";
+      }
+  },
+  validateDate(value) {
+    if (value == "") {
+        this.message["date"] = "Enter valid date";
+      } else {
+        this.message["date"] = "";
+      }
+  },
+  validateTime(value) {
+    if (value == "") {
+        this.message["time"] = "Enter valid time";
+      } else {
+        this.message["time"] = "";
+      }
+  },
+  validateVehicle(value) {
+    if (value == "Choose the type of vehicle") {
+        this.message["vehicle"] = "Enter the type of Vehicle";
+      } else {
+        this.message["vehicle"] = "";
+      }
+  },
+  validatePhoneNumber(value) {
+    if (value.length >= "10" && value.length <= "15") {
+        this.message["phoneNumber"] = "";
+      } else {
+        this.message["phoneNumber"] = "Enter a valid Phone Number";
+      }
+  }
+}
+}
+
 </script>
 
 <style lang="scss" >
 @import "@/design/main.scss";
+.errorNotification {
+  color: red;
+}
+input[type="tel"] {
+  border: 1px solid #ddd;
+  padding: 4px 8px;
+}
 </style>

@@ -27,6 +27,19 @@
                 <input type="email" name="email" value placeholder="Email" v-model="email" required />
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
+               <div class="col-12">
+                 <ul class="actions">
+                    <li>
+                       <input type="submit" value="Submit" class="primary" />
+                    </li>
+                     <li>
+                    <input type="reset" value="Reset" />
+                    </li>
+                    <li>
+                    <input type="button" value="Cancel" />
+                    </li>
+                </ul>
+            </div>
        </div>
        </form>
     </div>

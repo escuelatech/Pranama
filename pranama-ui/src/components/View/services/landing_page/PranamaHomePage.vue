@@ -86,8 +86,23 @@
 
 <script>
 import Header from "@/components/View/common/Header";
-import Sidebar from "@/components/View/common/Sidebar"
+import Sidebar from "@/components/View/common/Sidebar";
+import formService from "@/apiservices/formService.js";
 export default {
+  created() {
+    console.log('Panama page is loaded !');
+    formService.commonService().then(response => {
+          console.log(response);
+          this.users = response.data.data;
+          this.userRegistrationSuccessful = true;
+        }).catch(error => {
+          console.log("Error reported from endpoints :", error.response);
+          this.isError = true;
+          return (this.errorMessage = JSON.stringify(
+            error.response.data.errorMessage
+          ));
+        }); 
+  },
   components: { Header ,Sidebar},
   data(){
     return{

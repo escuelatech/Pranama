@@ -3,28 +3,30 @@
     <div v-show="isErrorMessage">
       <Messagebar />
     </div>
-    
+
     <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !isSuccessMessage">
       <h3>Hospital Assistance</h3>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="PatientFirstName"
+            name="patientFirstName"
             value
             placeholder="Patients First Name"
-            v-model="PatientFirstName"
+            v-model="patientFirstName"
             required
           />
-           <span class="errorNotification" v-if="message.PatientFirstName">{{message.PatientFirstName}}</span>
+           <span class="errorNotification" v-if="message.PatientFirstName">
+             {{message.PatientFirstName}}
+             </span>
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="PatientLastName"
+            name="patientLastName"
             value
             placeholder="Patients Last Name"
-            v-model="PatientLastName"
+            v-model="patientLastName"
             required
           />
           <span class="errorNotification" v-if="message.PatientLastName">{{message.PatientLastName}}</span>
@@ -36,27 +38,30 @@
             name="hospitalLocation"
             value
             placeholder="Location of hospital you want to visit"
-            v-model="hospitalLocation" required
+            v-model="hospitalLocation" 
+            required
           />
           <span class="errorNotification" v-if="message.hospitalLocation">{{message.hospitalLocation}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="HospitalTobeVisit"
+            name="hospitalName"
             value
             placeholder="Name of the Hospital you want to visit"
-            v-model="hospitalTobeVisit" required
+            v-model="hospitalName" 
+            required
           />
           <span class="errorNotification" v-if="message.hospitalTobeVisit">{{message.hospitalTobeVisit}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
           <input
             type="text"
-            name="doctorNameToConsult"
+            name="doctorName"
             value
             placeholder="Name of the doctor you want to consult"
-            v-model="doctorNameToConsult" required
+            v-model="doctorName" 
+            required
           />
           <span class="errorNotification" v-if="message.doctorNameToConsult">{{message.doctorNameToConsult}}</span>
         </div>
@@ -65,7 +70,9 @@
           <datepicker
             name="date"
             placeholder="Choose the day you want to visit the doctor" 
-            required v-model="date" type="text" format="dd-MM-yyyy" :v-model="date"  
+            required v-model="date" 
+            type="text" 
+            format="dd-MM-yyyy" :v-model="date"  
           ></datepicker>
           <span class="errorNotification" v-if="message.date">{{message.date}}</span>
           {{date}}
@@ -104,37 +111,35 @@
 </template>
 
 <script>
+
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
-import Messagebar from "@/components/View/common/Messagebar.vue"
+import Messagebar from "@/components/View/common/Messagebar.vue";
+
 export default {
 
   data() {
     return {
       isErrorMessage: false,
       isSuccessMessage: false,
-      PatientFirstName: "",
-      PatientLastName: "",
+      patientFirstName: "",
+      patientLastName: "",
       hospitalLocation: "",
       date:"",
       time:"",
-      hospitalTobeVisit: "",
-      doctorNameToConsult: "",
+      hospitalName: "",
+      doctorName: "",
       message: [],
     };
   },
-   
-  components: {
-   Datepicker,
-   Messagebar
-  },
+  components: {Datepicker,Messagebar},
   watch: {
-    PatientFirstName(value){
-      this.PatientFirstName = value;
+    patientFirstName(value){
+      this.patientFirstName = value;
       this.validatePatientFirstName(value);
     },
-    PatientLastName(value){
-      this.PatientLastName = value;
+    patientLastName(value){
+      this.patientLastName = value;
       this.validatePatientLastName(value);
     },
     hospitalLocation(value){
@@ -149,56 +154,54 @@ export default {
       this.time = value;
       this.validateTime(value);
     },
-     hospitalTobeVisit(value){
-      this.hospitalTobeVisit = value;
+     hospitalName(value){
+      this.hospitalName = value;
       this.validateHospitalTobeVisit(value);
     },
-     doctorNameToConsult(value){
-      this.doctorNameToConsult = value;
+     doctorName(value){
+      this.doctorName = value;
       this.validateDoctorNameToConsult(value);
     },
   },
   methods: {
       submitHospitalAssistanceForm() {
-      formService
-        .hospitalAssistance({
-          PatientFirstName: this.PatientFirstName,
-          PatientLastName: this.PatientLastName,
-          hospitalLocation: this.hospitalLocaon,
-          hospitalTobeVisit: this.hospitalTobeVisit,
-          doctorNameToConsult: this.doctorNameToConsult,
+        console.log("Hospital Assistance ----");
+      formService.hospitalAssistance({
+          patientFirstName: this.patientFirstName,
+          patientLastName: this.patientLastName,
+          hospitalLocation: this.hospitalLocation,
+          hospitalName: this.hospitalName,
+          doctorName: this.doctorName,
           date: new Date(this.date),
           time: this.time
-        })
-        .then(response => {
+        }) .then(response => {
           response.data;
           console.log(response);
           this.isSuccessMessage = true;
           this.isErrorMessage = false;
           this.$store.dispatch('addPickupAssistanceMessage')
-        })
-        .catch(error => {
+        }).catch(error => {
           console.log("Error reported from endpoints :", JSON.stringify(error.response));
           this.isErrorMessage = true;
           this.$store.dispatch('addErrorMessage')
           return (this.errorMessage = JSON.stringify(
             error.response.data.errorMessage
           ))
-        });
+      });
     },
   
   validatePatientFirstName(value) {
     if (value == "") {
-        this.message["PatientFirstName"] = "Enter Patient First Name";
+        this.message["patientFirstName"] = "Enter Patient First Name";
       } else {
-        this.message["PatientFirstName"] = "";
+        this.message["patientFirstName"] = "";
       }
   },
   validatePatientLastName(value) {
     if (value == "") {
-        this.message["PatientLastName"] = "Enter Patient Last Name";
+        this.message["patientLastName"] = "Enter Patient Last Name";
       } else {
-        this.message["PatientLastName"] = "";
+        this.message["patientLastName"] = "";
       }
   },
   validateHospitalLocation(value) {
@@ -224,16 +227,16 @@ export default {
   },
   validateHospitalTobeVisit(value) {
     if (value == "") {
-        this.message["hospitalTobeVisit"] = "Enter valid Hospital Name";
+        this.message["hospitalName"] = "Enter valid Hospital Name";
       } else {
-        this.message["hospitalTobeVisit"] = "";
+        this.message["hospitalName"] = "";
       }
   },
   validateDoctorNameToConsult(value) {
     if (value == "") {
-        this.message["doctorNameToConsult"] = "Enter Doctor Name";
+        this.message["doctorName"] = "Enter Doctor Name";
       } else {
-        this.message["doctorNameToConsult"] = "";
+        this.message["doctorName"] = "";
       }
   },
 }

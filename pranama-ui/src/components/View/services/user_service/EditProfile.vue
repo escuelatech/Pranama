@@ -5,7 +5,7 @@
             <h3>{{errorMessage}}</h3>
           </div>-->
           <!-- <Errorbar/> --> 
-          <h4 v-show="!EditProfileSuccessful">Edit your profile here.</h4>
+          <h4 v-show="!EditProfileSuccessful">Find Registered User.</h4>
           <form @submit.prevent="submitEditProfile" v-show="!EditProfileSuccessful" >
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
@@ -66,6 +66,24 @@
           <div class="box" v-show="EditProfileSuccessful">
             <h3>{{EditMessage}}</h3>
           </div>
+
+          <!-- <div id="datablock">
+           {{ users }}
+          </div> -->
+          
+
+          <!-- <ul>
+            <li v-for="task in tasks" :key="task">{{task.text}}</li>
+          </ul> -->
+       
+    <!-- <ul>
+      <li v-for="user in users" :key="user">{{user.firstName}} {{user.active}}</li>
+    </ul> -->
+
+    <table>
+      <tr><td>Name</td><td>status</td></tr>
+      <tr v-for="user in users" :key="user"><td>{{user.firstName}}</td><td>{{user.active}}</td></tr>
+    </table>
        
 
     </div>
@@ -119,21 +137,12 @@ import UserService from "@/apiservices/UserService";
    },
      methods: {
       submitEditProfile() {
-      UserService.register({
-        email: this.email,
-        phoneNumber: this.phoneNumber,
-        firstName: this.firstName,
-        userType: this.userType,
-        lastName: this.lastName,
-        passWord: this.password,
-        country: this.country,
-        })
+      UserService.getUsers()
         .then(response => {
           response.data;
           console.log(response);
+          this.users = response.data.data;
           this.userRegistrationSuccessful = true;
-          // return (this.registrationMessage =
-          //   "Thank you for registering with us. A verification link has been sent to your email account. Please click on the click to verify your email and continue the registration process.");
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);

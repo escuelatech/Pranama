@@ -37,7 +37,7 @@ const router = new VueRouter({
       component: ContactPage
     },
     {
-      path: '/Pranama',
+      path: '/home',
       name: 'Pranama',
       component: PranamaHomePage
     },
@@ -151,7 +151,7 @@ const router = new VueRouter({
     },
     { 
       path: '*', 
-      redirect: '/Pranama' 
+      redirect: '/home' 
     }
   ],
   scrollBehavior (to, from, savedPosition) {

@@ -139,23 +139,20 @@ export default {
       submitPatientPickupForm() {
         formService
           .submitPatientPickup({
-            firstName: this.firstName,
-            lastName: this.lastName,
+            patientFirstName: this.firstName,
+            patientLastName: this.lastName,
             pickupLocation: this.pickupLocation,
             dropoffLocation: this.dropoffLocation,
             phoneNumber: this.phoneNumber,
             vehicle: this.vehicle,
             date: this.date,
             time: this.time
-          })
-          .then(response => {
-            response.data;
+          }).then(response => {
             console.log(response); 
             this.patientPickupSuccessful = true;  
             this.isError = false;  
             this.$store.dispatch('addPickupAssistanceMessage');  
-            })
-            .catch(error => {
+            }).catch(error => {
               console.log("Error reported from endpoints: ", error.response);
               this.isError = true; 
               this.$store.dispatch('addErrorMessage');

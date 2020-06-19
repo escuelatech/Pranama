@@ -10,8 +10,12 @@ export default {
 
     submitPatientPickup (params) {
         console.log(JSON.stringify(params));
-        return apiClient.post("/api/hospital/pickup", params)
+        return apiClient.post("/api/hospital/pickup", params);
     },
+
+    // getPatientPickupData(email){
+    //     return apiClient.get('/api/hospital/pickup');
+    // },
 
     hospitalAssistance (params) {
         console.log(JSON.stringify(params));

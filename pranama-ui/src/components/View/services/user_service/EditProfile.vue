@@ -5,26 +5,45 @@
             <h3>{{errorMessage}}</h3>
           </div>-->
           <!-- <Errorbar/> --> 
-          <h4 v-show="!EditProfileSuccessful">Find Registered User.</h4>
+          <h4 v-show="!EditProfileSuccessful">Edit Profile</h4>
           <form @submit.prevent="submitEditProfile" v-show="!EditProfileSuccessful" >
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
-                <input type="email" name="email" value placeholder="Email" v-model="email" required />
+                <input 
+                type="email" 
+                name="email" 
+                value 
+                v-model="user.email" required />
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               
               <div class="col-6 col-12-xsmall">
-                <input type="password" name="password" value placeholder="Password" v-model="password" autocomplete="off"  required />
+                <input 
+                type="password" 
+                name="password" 
+                value 
+                v-model="user.password" 
+                autocomplete="off"  required />
                 <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
               </div>
 
               <div class="col-6 col-12-xsmall">
-                <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required />
+                <input 
+                type="text" 
+                name="firstName" 
+                value 
+                v-model="user.firstName" 
+                required />
                 <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
               </div>
 
               <div class="col-6 col-12-xsmall">
-                <input type="text" name="lastName" value placeholder="Last Name" v-model="lastName" required />
+                <input 
+                type="text" 
+                name="lastName" 
+                value  
+                v-model="user.lastName" 
+                required />
                 <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
               </div>
 
@@ -33,8 +52,7 @@
                   type="text"
                   name="phoneNumber"
                   value
-                  placeholder="Phone Number xxx-xxx-xxxx"
-                  v-model="phoneNumber"
+                  v-model="user.phoneNumber"
                   required
                 />
                 <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
@@ -43,10 +61,9 @@
               <div class="col-6 col-12-xsmall">
                 <input
                   type="text"
-                  name="State"
+                  name="country"
                   value
-                  placeholder="Country"
-                  v-model="country"
+                  v-model="user.country"
                   required
                 />
                 <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
@@ -54,7 +71,7 @@
               <!-- Break -->
               <div class="col-12">
                 <ul class="actions">
-                  <li><input type="submit" value="Edit MY Profile" class="primary"  /></li>
+                  <li><input type="submit" value="Update My Profile" class="primary"  /></li>
                   <li>
                     <input type="reset" value="Reset" />
                   </li>
@@ -63,35 +80,20 @@
               </div>
             </div>
           </form>
-          <div class="box" v-show="EditProfileSuccessful">
-            <h3>{{EditMessage}}</h3>
+          <div v-show="EditProfileSuccessful">
+            <Messagebar />
           </div>
-
-          <!-- <div id="datablock">
-           {{ users }}
-          </div> -->
-          
-
-          <!-- <ul>
-            <li v-for="task in tasks" :key="task">{{task.text}}</li>
-          </ul> -->
-       
-    <!-- <ul>
-      <li v-for="user in users" :key="user">{{user.firstName}} {{user.active}}</li>
-    </ul> -->
-
-    <table>
-      <tr><td>Name</td><td>status</td></tr>
-      <tr v-for="user in users" :key="user"><td>{{user.firstName}}</td><td>{{user.active}}</td></tr>
-    </table>
-       
 
     </div>
 </template>
 
 <script>
 import UserService from "@/apiservices/UserService";
+import Messagebar from '@/components/View/common/Messagebar.vue';
     export default {
+      components: {
+        Messagebar
+      },
     data() {
      return {
       EditProfileSuccessful: false,
@@ -106,6 +108,8 @@ import UserService from "@/apiservices/UserService";
       max: "15",
       editMessage:[],
      // errorMessage:[],
+      loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
+      user: ''
       };
      },
   
@@ -135,14 +139,28 @@ import UserService from "@/apiservices/UserService";
        this.check_phoneNumber(value);
      }
    },
+   mounted() {
+    this.getLoggedInUser();
+  },
      methods: {
+       getLoggedInUser() {
+            UserService.getUser(this.loggedInUserEmail)
+                .then(response => {
+                    this.user = response.data.data;
+                   }).catch(error => {
+                    console.log("Error reported from endpoints :", error.response);
+                    this.isError = true;
+                    return (this.errorMessage = JSON.stringify(error.response.data.errorMessage));
+                });
+        },
       submitEditProfile() {
-      UserService.getUsers()
+      UserService.updateUser()
         .then(response => {
           response.data;
           console.log(response);
           this.users = response.data.data;
           this.userRegistrationSuccessful = true;
+          this.$store.dispatch('addEditMessage');
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
@@ -187,7 +205,7 @@ check_firstName(value) {
     
  check_country(value) {
       if (value == "") {
-        this.msge["country"] = " Enter the state";
+        this.msge["country"] = " Enter country";
       } else {
         this.msge["country"] = "";
       }

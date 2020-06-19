@@ -14,6 +14,7 @@
 						<h1>Elements</h1>
 					</header> -->
 					<!-- Content -->
+					<button type="button" @click="$router.push({name: 'ViewStatus'})">View Status</button>
 					<h2 id="content">How it works </h2>
 					<p>If have a requirement to take care of your Nears & Dears in India, Kerala, Kozhikode you can go
 						to the contact us page and submit your requirement or else please feel free to call ———-
@@ -59,7 +60,7 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
-export default {components: { Header, Sidebar,  }};
+export default {components: { Header, Sidebar  }};
 </script>
 
 <style lang="scss" scoped>

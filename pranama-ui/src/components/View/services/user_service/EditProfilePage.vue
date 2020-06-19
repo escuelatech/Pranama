@@ -24,7 +24,11 @@
 <script>
   import Header from "@/components/View/common/Header";
   import Sidebar from "@/components/View/common/Sidebar";
-  import EditProfile from "@/components/View/services/user_service/EditProfile.vue";
-  // import Errorbar from "@/components/View/common/Errorbar";
-   export default {components: { Header, Sidebar, EditProfile}};
+   import EditProfile from "@/components/View/services/user_service/EditProfile.vue";
+
+   export default {components: { 
+     Header, 
+     Sidebar, 
+     EditProfile
+   }};
 </script> 

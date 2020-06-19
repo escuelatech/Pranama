@@ -62,7 +62,7 @@
         </div>
 
         <div class="col-6 col-12-xsmall">
-          <input type="text" name="State" value placeholder="Country" v-model="country" required />
+          <input type="text" name="country" value placeholder="Country" v-model="country" required />
           <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
         </div>
 

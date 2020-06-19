@@ -22,6 +22,7 @@ import AgentOnboardPage from "@/components/View/services/agent_service/AgentOnBo
 // import WhatWeDo from '@/components/View/services/navigations/WhatWeDo.vue';
 import HospitalSearchPage from '@/components/View/services/hospital_service/HospitalSearchPage.vue';
 import OurOfferedServices from '@/components/View/services/dashboard_service/OurOfferedServices.vue';
+import ViewStatusPage from '@/components/View/services/user_status_service/ViewStatusPage.vue'
 
 const DashboardPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/dashboard_service/dashboard.vue')
 const LogoutPage = () => import(/* webpackChunkName: "dashboard" */ '@/components/View/services/login_service/LogoutPage.vue')
@@ -148,6 +149,11 @@ const router = new VueRouter({
       path: '/AgentOnBoardPage',
       name: 'AgentOnBoardPage',
       component: AgentOnboardPage
+    },
+    {
+      path: '/viewstatus',
+      name: 'ViewStatus',
+      component: ViewStatusPage
     },
     { 
       path: '*', 

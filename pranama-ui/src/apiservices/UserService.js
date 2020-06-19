@@ -4,7 +4,10 @@ export default {
   register,
   getRegistration,
   login,
-  logout
+  logout,
+  getUsers,
+  getUser,
+  updateUser
 };
 
 function register (params) {
@@ -14,6 +17,18 @@ function register (params) {
 
 function getRegistration () {
   return apiClient.get("/api/user/register");
+}
+
+function getUsers () {
+  return apiClient.get("/api/user/getallusers");
+}
+
+function getUser (email) {
+  return apiClient.get("/api/user/fetchuser/?registereduser="+email);
+}
+
+function updateUser (params) {
+  return apiClient.put("/api/user/user", params);
 }
 
 async function login (email, password) {

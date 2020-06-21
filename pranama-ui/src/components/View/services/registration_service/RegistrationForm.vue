@@ -1,10 +1,17 @@
 <template>
   <div>
+   <div class ="row" v-show="userRegistrationSuccessful">
+   <div class= "col">
+  <div class= "alert show alertmsg" role="alert" >
+  <Timercount ref="child"/>
+   </div>
+   </div>
+  </div>
     <div class="box" v-show="isError">
       <h3>{{errorMessage}}</h3>
     </div>
     
-    <form @submit.prevent="submitRegistrationForm" v-show="!userRegistrationSuccessful  && !displayMessage">
+    <form @submit.prevent="submitRegistrationForm();accesTimercount()" v-show="!userRegistrationSuccessful  && !displayMessage">
       <h3>Sign Up with Us</h3>
       <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
@@ -62,7 +69,7 @@
         </div>
 
         <div class="col-6 col-12-xsmall">
-          <input type="text" name="country" value placeholder="Country" v-model="country" required />
+          <input type="text" name="State" value placeholder="Country" v-model="country" required />
           <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
         </div>
 
@@ -82,15 +89,16 @@
     <div v-show="userRegistrationSuccessful">
       <Messagebar />
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
 import UserService from "@/apiservices/UserService";
-import Messagebar from '@/components/View/common/Messagebar.vue'
+import Messagebar from '@/components/View/common/Messagebar.vue';
+import Timercount from "@/components/View/common/Timercount.vue";
 export default {
   components: {
-    Messagebar
+    Messagebar,Timercount
   },
   props: { msg: String },
   data() {
@@ -157,7 +165,8 @@ export default {
           this.userRegistrationSuccessful = true;
           //this.displayMessage = true;
            this.isError = false;
-           this.$store.dispatch('addRegMessage')
+           this.$store.dispatch('addRegMessage');
+            setTimeout(() => this.$router.push({ name: "LoginPage"}),10000);
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
@@ -169,7 +178,9 @@ export default {
           ));
         });
     },
-
+         accesTimercount(){
+        this.$refs.child.countDownTimer()
+       },
     check_email(value) {
       {
         // eslint-disable-next-line no-useless-escape

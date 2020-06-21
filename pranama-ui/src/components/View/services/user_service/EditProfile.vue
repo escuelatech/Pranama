@@ -5,15 +5,15 @@
             <Messagebar />
           </div>
           <!-- <Errorbar/> --> 
-          <h4 v-show="!EditProfileSuccessful">Edit Profile</h4>
-          <form @submit.prevent="submitEditProfile" v-show="!EditProfileSuccessful" >
+          <form @submit.prevent="submitEditProfile" v-show="!editProfileSuccessful" >
+            <h4>Edit Profile</h4>
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
                 <input 
                 type="email" 
                 name="email" 
                 value 
-                v-model="user.email" required />
+                v-model="user.email" readonly />
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               
@@ -80,7 +80,7 @@
               </div>
             </div>
           </form>
-          <div v-show="EditProfileSuccessful">
+          <div v-show="editProfileSuccessful">
             <Messagebar />
           </div>
 
@@ -96,7 +96,7 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       },
     data() {
      return {
-      EditProfileSuccessful: false,
+      editProfileSuccessful: false,
       user: '',
       email: '',
       password: '',
@@ -153,13 +153,21 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
                 });
         },
       submitEditProfile() {
-      UserService.updateUser()
+      UserService.updateUser({
+         email: this.email,
+        phoneNumber: this.phoneNumber,
+        firstName: this.firstName,
+        // userType: this.userType,
+        lastName: this.lastName,
+        passWord: this.password,
+        country: this.country
+      })
         .then(response => {
           response.data;
           console.log(response);
           console.log(this.loggedInUserEmail);
           this.users = response.data.data;
-          this.userRegistrationSuccessful = true;
+          this.editProfileSuccessful = true;
           this.isError = false;
           this.$store.dispatch('addEditMessage');
         })

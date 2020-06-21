@@ -1,9 +1,9 @@
 <template>
     <div>
             <!-- Form -->
-         <!--<div class="box" >
-            <h3>{{errorMessage}}</h3>
-          </div>-->
+         <div v-show="isError" >
+            <Messagebar />
+          </div>
           <!-- <Errorbar/> --> 
           <h4 v-show="!EditProfileSuccessful">Edit Profile</h4>
           <form @submit.prevent="submitEditProfile" v-show="!EditProfileSuccessful" >
@@ -97,19 +97,18 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
     data() {
      return {
       EditProfileSuccessful: false,
-      email: "",
-      password: "",
-      firstName:"",
-      lastName: "",
-      phoneNumber: "",
-      country: "",
+      user: '',
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      phoneNumber: '',
+      country: '',
       msge: [],
-      min: "10",
-      max: "15",
-      editMessage:[],
+      isError: false,
      // errorMessage:[],
       loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
-      user: ''
+      
       };
      },
   
@@ -158,13 +157,16 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
         .then(response => {
           response.data;
           console.log(response);
+          console.log(this.loggedInUserEmail);
           this.users = response.data.data;
           this.userRegistrationSuccessful = true;
+          this.isError = false;
           this.$store.dispatch('addEditMessage');
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
           this.isError = true;
+           this.$store.dispatch('addErrorMessage');
           return (this.errorMessage = JSON.stringify(
             error.response.data.errorMessage
           ));

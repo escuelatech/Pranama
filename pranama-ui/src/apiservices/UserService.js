@@ -1,4 +1,5 @@
 import apiClient from "@/shared/axios";
+import apimapping from "@/shared/apimapping.js";
 
 export default {
   register,
@@ -12,29 +13,29 @@ export default {
 
 function register (params) {
   console.log(JSON.stringify(params));
-  return apiClient.post("/api/user/register", params);
+  return apiClient.post(apimapping.USER_REGISTRATION, params);
 }
 
 function getRegistration () {
-  return apiClient.get("/api/user/register");
+  return apiClient.get(apimapping.USER_REGISTRATION);
 }
 
 function getUsers () {
-  return apiClient.get("/api/user/getallusers");
+  return apiClient.get(apimapping.GET_USERS);
 }
 
 function getUser (email) {
-  return apiClient.get("/api/user/fetchuser/?registereduser="+email);
+  return apiClient.get(apimapping.GET_USER+email);
 }
 
 function updateUser (params) {
-  return apiClient.put("/api/user/user", params);
+  return apiClient.put(apimapping.UPDATE_USER, params);
 }
 
 async function login (email, password) {
   console.log(email);
   console.log(password);
-  const response = await apiClient.post("/api/user/login", { email: email, passWord: password })
+  const response = await apiClient.post(apimapping.LOGIN, { email: email, passWord: password })
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));
     localStorage.setItem('email', JSON.stringify(email));

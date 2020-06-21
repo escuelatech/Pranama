@@ -1,10 +1,16 @@
 <template>
-  <div>
-    <div v-show="isErrorMessage">
+   <div>
+   <div class ="row" v-show="isSuccessMessage">
+   <div class= "col">
+  <div class= "alert show alertmsg" role="alert" >
+  <Timercount ref="child"/>
+   </div>
+   </div>
+  </div>
+    <div v-show="isErrorMessage" >
       <Messagebar />
     </div>
-
-    <form @submit.prevent="submitHospitalAssistanceForm" v-show=" !isSuccessMessage">
+      <form @submit.prevent="submitHospitalAssistanceForm(); accesTimercount()" v-show=" !isSuccessMessage">
       <h3>Hospital Assistance</h3>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
@@ -107,18 +113,19 @@
      <div v-show="isSuccessMessage">
       <Messagebar />
     </div>
+    <div  v-show="isSuccessMessage">
+      <router-link :to="{ name: 'OurOfferedServices' }">Need a patient pickup assistance?</router-link>
      </div>
+    </div>
 </template>
 
 <script>
-
 import formService from "@/apiservices/formService.js";
 import Datepicker from "vuejs-datepicker";
 import Messagebar from "@/components/View/common/Messagebar.vue";
-
+ import Timercount from "@/components/View/common/Timercount.vue";
 export default {
-
-  data() {
+   data() {
     return {
       isErrorMessage: false,
       isSuccessMessage: false,
@@ -130,10 +137,12 @@ export default {
       hospitalName: "",
       doctorName: "",
       message: [],
-    };
+      };
   },
-  components: {Datepicker,Messagebar},
+   components: {Datepicker,Messagebar,Timercount},
+  
   watch: {
+           
     patientFirstName(value){
       this.patientFirstName = value;
       this.validatePatientFirstName(value);
@@ -162,7 +171,9 @@ export default {
       this.doctorName = value;
       this.validateDoctorNameToConsult(value);
     },
+    
   },
+  
   methods: {
       submitHospitalAssistanceForm() {
         console.log("Hospital Assistance ----");
@@ -179,8 +190,9 @@ export default {
           console.log(response);
           this.isSuccessMessage = true;
           this.isErrorMessage = false;
-          this.$store.dispatch('addPickupAssistanceMessage')
-        }).catch(error => {
+          this.$store.dispatch('addPickupAssistanceMessage');
+          setTimeout( () => this.$router.push({ name: 'OurOfferedServices'}),10000);
+          }).catch(error => {
           console.log("Error reported from endpoints :", JSON.stringify(error.response));
           this.isErrorMessage = true;
           this.$store.dispatch('addErrorMessage')
@@ -188,8 +200,11 @@ export default {
             error.response.data.errorMessage
           ))
       });
-    },
-  
+      },
+       accesTimercount(){
+        this.$refs.child.countDownTimer()
+       },
+      
   validatePatientFirstName(value) {
     if (value == "") {
         this.message["patientFirstName"] = "Enter Patient First Name";
@@ -239,7 +254,8 @@ export default {
         this.message["doctorName"] = "";
       }
   },
-}
+  },
+
 }
 </script>
 
@@ -258,4 +274,11 @@ export default {
   .errorNotification {
   color: red;
 }
+.alertmsg{
+  align-items:center;
+  display:block;
+  background-color: rgb(132, 199, 253);
+  text-align: center;
+}
+
 </style>

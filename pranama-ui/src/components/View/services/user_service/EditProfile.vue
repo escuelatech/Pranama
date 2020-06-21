@@ -103,12 +103,11 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       firstName: '',
       lastName: '',
       phoneNumber: '',
+      userType: '',
       country: '',
       msge: [],
       isError: false,
-     // errorMessage:[],
-      loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
-      
+      loggedInUserEmail: JSON.parse(localStorage.getItem('email'))
       };
      },
   
@@ -154,13 +153,13 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
         },
       submitEditProfile() {
       UserService.updateUser({
-         email: this.email,
-        phoneNumber: this.phoneNumber,
-        firstName: this.firstName,
-        // userType: this.userType,
-        lastName: this.lastName,
-        passWord: this.password,
-        country: this.country
+         email: this.user.email,
+        phoneNumber: this.user.phoneNumber,
+        firstName: this.user.firstName,
+         userType: this.user.userType,
+        lastName: this.user.lastName,
+        passWord: this.user.password,
+        country: this.user.country
       })
         .then(response => {
           response.data;

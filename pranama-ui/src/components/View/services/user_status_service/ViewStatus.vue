@@ -5,7 +5,7 @@
             <table style="width:100%"  class="alt">
                 <thead>
                 <tr>
-                    <th>Date</th>
+                    
                     <th>Request</th>
                     <th>Status</th>
                     
@@ -13,7 +13,7 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>{{user.date}}</td>
+                    
                     <td>{{user}}</td>
                     <td>{{user.active}}</td>
                     
@@ -39,7 +39,7 @@ import formService from '@/apiservices/formService.js';
         },
         mounted(){
             this.getLoggedInUser();
-            this.getDataFromPatientPickup();
+            // this.getDataFromPatientPickup();
         },
         methods: {
        getLoggedInUser() {

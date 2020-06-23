@@ -19,7 +19,7 @@
             name="firstName"
             value
             placeholder="Patient First Name"
-            v-model="firstName"
+            v-model="firstName" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.firstName">{{message.firstName}}</span>
@@ -30,7 +30,7 @@
             name="lastName"
             value
             placeholder="Patient Last Name"
-            v-model="lastName"
+            v-model="lastName" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.lastName">{{message.lastName}}</span>
@@ -42,7 +42,7 @@
             value
             placeholder="Patient's Pickup Location"
             v-model="pickupLocation"
-            required
+            required autocomplete="off"
           />
           <span class="errorNotification" v-if="message.pickupLocation">{{message.pickupLocation}}</span>
         </div>
@@ -52,7 +52,7 @@
             name="dropoffLocation"
             value
             placeholder="Patient's Drop-Off Location"
-            v-model="dropoffLocation"
+            v-model="dropoffLocation" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.dropoffLocation">{{message.dropoffLocation}}</span>
@@ -63,7 +63,7 @@
             name="phoneNumber"
             value
             placeholder="Phone Number"
-            v-model="phoneNumber"
+            v-model="phoneNumber" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.phoneNumber">{{message.phoneNumber}}</span>

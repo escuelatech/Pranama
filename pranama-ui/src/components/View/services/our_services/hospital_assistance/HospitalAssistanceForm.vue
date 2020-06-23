@@ -19,7 +19,7 @@
             name="patientFirstName"
             value
             placeholder="Patients First Name"
-            v-model="patientFirstName"
+            v-model="patientFirstName" autocomplete="off"
             required
           />
            <span class="errorNotification" v-if="message.PatientFirstName">
@@ -32,7 +32,7 @@
             name="patientLastName"
             value
             placeholder="Patients Last Name"
-            v-model="patientLastName"
+            v-model="patientLastName" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.PatientLastName">{{message.PatientLastName}}</span>
@@ -44,7 +44,7 @@
             name="hospitalLocation"
             value
             placeholder="Location of hospital you want to visit"
-            v-model="hospitalLocation" 
+            v-model="hospitalLocation" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.hospitalLocation">{{message.hospitalLocation}}</span>
@@ -55,7 +55,7 @@
             name="hospitalName"
             value
             placeholder="Name of the Hospital you want to visit"
-            v-model="hospitalName" 
+            v-model="hospitalName" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.hospitalTobeVisit">{{message.hospitalTobeVisit}}</span>
@@ -66,7 +66,7 @@
             name="doctorName"
             value
             placeholder="Name of the doctor you want to consult"
-            v-model="doctorName" 
+            v-model="doctorName" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="message.doctorNameToConsult">{{message.doctorNameToConsult}}</span>

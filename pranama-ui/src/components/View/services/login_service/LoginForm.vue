@@ -10,7 +10,7 @@
               name="email"
               value="Your Email"
               placeholder="Your Email"
-              v-model="email"
+              v-model="email" autocomplete="off"
             />
           </div>
           <div class="col-6 col-12-xsmall"></div>
@@ -19,7 +19,7 @@
               type="password"
               name="password"
               placeholder="Password"
-              v-model="password"
+              v-model="password" autocomplete="off"
             />
           </div>
           <div class="col-12">

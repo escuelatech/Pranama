@@ -41,7 +41,7 @@
             name="name"
             value="Your Name"
             placeholder="Full Name"
-            v-model="name"
+            v-model="name" autocomplete="off"
             required
           /> 
           <span class="errorNotification" v-if="msg.name">{{msg.name}}</span>
@@ -52,7 +52,7 @@
             name="watsappNumber"
             value="Watsapp number"
             placeholder="Watsapp Number"
-            v-model="watsappNumber"
+            v-model="watsappNumber" autocomplete="off"
             required
           />
            <span class="errorNotification" v-if="msg.watsappNumber">{{msg.watsappNumber}}</span>
@@ -63,13 +63,13 @@
             name="phoneNumber"
             value
             placeholder="Phone Number"
-            v-model="phoneNumber"
+            v-model="phoneNumber" autocomplete="off"
             required
           />
           <span class="errorNotification" v-if="msg.phoneNumber">{{msg.phoneNumber}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
-          <input type="email" name="email" value placeholder="Email" v-model="email" required />
+          <input type="email" name="email" value placeholder="Email" v-model="email" required autocomplete="off" />
           <span class="errorNotification" v-if="msg.email">{{msg.email}}</span>
         </div>
 

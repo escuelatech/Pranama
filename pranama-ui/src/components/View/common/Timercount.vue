@@ -1,6 +1,6 @@
 <template>
 <div>
-<h4>You will be forwarded to services pages in {{ countDown }} seconds</h4>
+<h4>You will be forwarded to services page in {{ countDown }} seconds</h4>
 </div>
 </template>
 

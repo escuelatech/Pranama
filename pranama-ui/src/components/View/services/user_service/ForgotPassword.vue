@@ -14,7 +14,7 @@
         <form @submit.prevent="forgotPassword">
         <div class="row gtr-uniform">
          <div class="col-6 col-12-xsmall">
-                <input type="email" name="email" value placeholder="Email" v-model="email" required />
+                <input type="email" name="email" value placeholder="Email" v-model="email" required autocomplete="off"/>
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
             </div> 
             <div class="col-12">

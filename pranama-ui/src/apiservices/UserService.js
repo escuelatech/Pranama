@@ -14,7 +14,7 @@ export default {
 
 function register (params) {
   console.log(JSON.stringify(params));
-  return apiClient.get(apimapping.USER_REGISTRATION, params);
+  return apiClient.post(apimapping.USER_REGISTRATION, params);
 }
 
 function getRegistration () {

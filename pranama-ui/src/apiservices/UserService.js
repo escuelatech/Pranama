@@ -8,7 +8,8 @@ export default {
   logout,
   getUsers,
   getUser,
-  updateUser
+  updateUser,
+  getUserRequests
 };
 
 function register (params) {
@@ -26,6 +27,10 @@ function getUsers () {
 
 function getUser (email) {
   return apiClient.get(apimapping.GET_USER+email);
+}
+
+function getUserRequests (email) {
+  return apiClient.get("/api/hospital/fetch/requests?email="+email);
 }
 
 function updateUser (params) {

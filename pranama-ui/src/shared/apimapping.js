@@ -8,6 +8,8 @@ const PATIENT_PICKUP = "/api/hospital/pickup";
 const ACCESS = "/api/access";
 const CONTACT_US_EMAIL = "/api/email/contactus";
 
+const DUMMY_PICKUP = "http://localhost:3000/db";
+
 export default {
     USER_REGISTRATION,
     GET_USERS,
@@ -17,5 +19,6 @@ export default {
     LOGIN,
     PATIENT_PICKUP,
     ACCESS,
-    CONTACT_US_EMAIL
+    CONTACT_US_EMAIL,
+    DUMMY_PICKUP
 }

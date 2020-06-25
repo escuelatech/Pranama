@@ -8,12 +8,13 @@ export default {
   logout,
   getUsers,
   getUser,
-  updateUser
+  updateUser,
+  getUserRequests
 };
 
 function register (params) {
   console.log(JSON.stringify(params));
-  return apiClient.post(apimapping.USER_REGISTRATION, params);
+  return apiClient.get(apimapping.USER_REGISTRATION, params);
 }
 
 function getRegistration () {
@@ -26,6 +27,10 @@ function getUsers () {
 
 function getUser (email) {
   return apiClient.get(apimapping.GET_USER+email);
+}
+
+function getUserRequests (email) {
+  return apiClient.get("/api/hospital/fetch/requests?email="+email);
 }
 
 function updateUser (params) {

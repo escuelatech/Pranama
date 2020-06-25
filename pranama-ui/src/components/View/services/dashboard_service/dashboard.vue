@@ -15,6 +15,8 @@
 					</header> -->
 					<!-- Content -->
 					<button type="button" @click="$router.push({name: 'ViewStatus'})">View Status</button>
+					<br>
+					<br>
 					<h2 id="content">How it works </h2>
 					<p>If have a requirement to take care of your Nears & Dears in India, Kerala, Kozhikode you can go
 						to the contact us page and submit your requirement or else please feel free to call ———-

@@ -48,63 +48,63 @@ const router = new VueRouter({
       component: ContactEmailPage
     },
     {
-      path: '/RegistrationPage',
+      path: '/registrationpage',
       name: 'RegistrationPage',
       component: RegistrationPage
     },
     {
-      path: '/TheProcess',
+      path: '/theprocess',
       name: 'TheProcess',
       component: TheProcess
     },
     {
-      path: '/Hospital',
+      path: '/hospital',
       name: 'Hospital',
       component: HospitalSearchPage
     },
     {
-      path: '/Ayurveda',
+      path: '/ayurveda',
       name: 'Ayurveda',
       component: Ayurveda
     },
     {
-      path: '/Yoga',
+      path: '/yoga',
       name: 'Yoga',
       component: Yoga
     },
     {
-      path: '/MentalHealth',
+      path: '/mentalhealth',
       name: 'MentalHealth',
       component: MentalHealth
     },
     {
-      path: '/PreventiveHealth',
+      path: '/preventivehealth',
       name: 'PreventiveHealth',
       component: PreventiveHealth
     },
     {
-      path: '/DoctorAtHome',
+      path: '/doctorathome',
       name: 'DoctorAtHome',
       component: DoctorAtHome
     },
     {
-      path: '/LoginPage',
+      path: '/loginpage',
       name: 'LoginPage',
       component: LoginPage
     },
     {
-      path: '/LogoutPage',
+      path: '/logoutpage',
       name: 'LogoutPage',
       component: LogoutPage
     },
     {
-      path: '/Dashboard',
+      path: '/dashboard',
       name: 'Dashboard',
       component: DashboardPage,
       meta: { requiresAuth: true }
     },
     {
-      path: '/OurOfferedServices',
+      path: '/ourofferedservices',
       name: 'OurOfferedServices',
       component: OurOfferedServices
     },
@@ -119,34 +119,34 @@ const router = new VueRouter({
     //   component: form2
     // },
     {
-      path: '/PatientPickupPage',
+      path: '/patientpickuppage',
       name: 'PatientPickupPage',
       component: PatientPickupPage,
       meta: { requiresAuth: true }
     },
     {
-      path: '/HospitalAssistancePage',
+      path: '/hospitalassistancepage',
       name: 'HospitalAssistancePage',
       component: HospitalAssistancePage,
       meta: { requiresAuth: true }
     },
     {
-      path: '/ForgotPassword',
+      path: '/forgotpassword',
       name: 'forgotPassword',
       component: ForgotPassword
     },
     {
-      path: '/ResetPassword',
+      path: '/resetpassword',
       name: 'resetPassword',
       component: ResetPassword
     },
     {
-      path: '/EditProfilePage',
+      path: '/editprofilepage',
       name: 'editProfile',
       component: EditProfilePage
     },
     {
-      path: '/AgentOnBoardPage',
+      path: '/agentonboardpage',
       name: 'AgentOnBoardPage',
       component: AgentOnboardPage
     },

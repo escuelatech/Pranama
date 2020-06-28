@@ -9,15 +9,12 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-          <section>
-					<!-- <header class="main">
-						<h1>Elements</h1>
-					</header> -->
-					<!-- Content -->
-					<button type="button" @click="$router.push({name: 'ViewStatus'})">View Status</button>
-					<br>
-					<br>
-					<h2 id="content">How it works </h2>
+          <!-- <section> -->
+          <div>
+            <header class="major">
+              <h2>How it works</h2>
+            </header>
+					<!-- <h2 id="content">How it works </h2> -->
 					<p>If have a requirement to take care of your Nears & Dears in India, Kerala, Kozhikode you can go
 						to the contact us page and submit your requirement or else please feel free to call ———-
 						(America’s mobile number) or give your requirement in Whatsapp in the same number. The
@@ -31,22 +28,17 @@
 
 						In between daily reports will be provided to update the status of progress..
 					</p>
-					<br>
-					<div>
-                 <iframe width="560" height="315" src="https://www.youtube.com/embed/kKZo89FYZeY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
+					
 					<div class="row">
-						<!-- <div class="col-4 col-12-small">
-							<input type="button"  value="Patient Pickup" class="primary"  @click="$router.push({name: 'PatientPickupPage'})" />
-						</div>
-						<div class="col-4 col-12-small">
-							<input type="button"  value="Hospital Assistance" class="primary"  @click="$router.push({name: 'HospitalAssistancePage'})" />
-						</div> -->
 						<div class="col-4 col-12-small">
 							<input type="button"  value="Our Offered Services" class="primary"  @click="$router.push({name: 'OurOfferedServices'})" />
 						</div>
 					</div>
-				</section>
+					<div>
+                
+            </div>
+				</div>
+				<!-- </section> -->
           <!-- Form -->
         </div>
       </div>

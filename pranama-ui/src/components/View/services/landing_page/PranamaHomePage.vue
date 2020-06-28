@@ -10,7 +10,7 @@
           <!-- Banner -->
           <section id="banner">
             <div class="content">
-              <header>
+              <header class="major">
                 <h2> Parental Care
                   <br> by PRANAMA</h2>
                 <p>Taking care of your aging parents is a noble move .</p>

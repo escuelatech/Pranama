@@ -1,9 +1,9 @@
 <template>
     
     <div>
-    
-          <h2>Hospital Search Form</h2>
-          
+        <header class="major">
+            <h2>Hospital Search Form</h2>
+        </header>  
           <form >
               <div class="form-check form-group box">
                 <label for="state">Choose a State</label>

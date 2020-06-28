@@ -11,13 +11,17 @@
           <!-- Header -->
           <!-- Form -->
          
-          <section>
+          <!-- <section> -->
 					<!-- <header class="main">
 						<h1>Elements</h1>
 					</header> -->
 
 					<!-- Content -->
-					<h2 id="content">How it works </h2>
+					<!-- <h2 id="content">How it works </h2> -->
+			<div>
+					<header class="major">
+						<h2>How it works </h2>
+					</header>
 					<p>If have a requirement to take care of your Nears & Dears in India, Kerala, Kozhikode you can go
 						to the contact us page and submit your requirement or else please feel free to call ———-
 						(America’s mobile number) or give your requirement in Whatsapp in the same number. The
@@ -67,7 +71,12 @@
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
 						</div>
 					</div>
-				</section>
+			</div>
+				<!-- </section> -->
+				<div>
+					<h3><a href="#process" @click="clickToShowProcess">Checkout How We Work Here</a></h3>
+				</div>
+				<br>
                 <!-- Section 
 				<section>
 					<header class="major">
@@ -109,11 +118,17 @@
 					</div>
 				</section> -->
                <!-- Section -->
-				<section>
+				<!-- <section v-show="displayProcess" id="process"> -->
+				<div v-show="displayProcess" id="process">	
 					<header class="major">
-						<h2>The way it works</h2>
+						<h3>The way it works</h3>
 					</header>
+					<div>
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/kKZo89FYZeY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+					<br>
 					<div class="posts">
+						
 						<article>
 							<a href="#" class="image"><img src="@/assets/images/7.jpg" alt="" /></a>
 							<h3>Interdum aenean</h3>
@@ -171,7 +186,8 @@
 							</ul>
 						</article>
 					</div>
-				</section>
+				</div>
+				<!-- </section> -->
           <!-- Form -->
         </div>
       </div>
@@ -190,7 +206,19 @@
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
   
-  export default {components: { Header, Sidebar,  }};
+  export default {
+	components: { Header, Sidebar },
+	data() {
+		return {
+			displayProcess: false
+		}
+	},
+	methods: {
+		clickToShowProcess() {
+			this.displayProcess = true;
+		}
+	}
+	};
    
 </script>
 

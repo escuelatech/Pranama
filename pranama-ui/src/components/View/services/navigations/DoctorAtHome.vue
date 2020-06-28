@@ -11,10 +11,13 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-          <section>
-					
+          <!-- <section> -->
+				<div>
 					<!-- Content -->
-					<h2 id="content"> Doctor at Home </h2>
+					<header class="major">
+						<h2> Doctor at Home </h2>
+					</header>
+						<!-- <h2 id="content"> Doctor at Home </h2> -->
 					<p>
 						We are associated with a new startup company QURE CONNECT who are focusing in this area. So our
 						customers can enjoy this facility with our supervision..</p>
@@ -55,7 +58,8 @@
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
 						</div>
 					</div>
-				</section>
+				</div>	
+				<!-- </section> -->
                 <!-- Section 
 				<section>
 					<header class="major">

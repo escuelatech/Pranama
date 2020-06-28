@@ -11,7 +11,11 @@
       <Messagebar />
     </div>
     <form @submit.prevent="submitPatientPickupForm();accesTimercount()" v-show="!patientPickupSuccessful">
-      <h3>Patient Pickup Portal</h3>
+      <header class="major">
+        <h2>Patient Pickup</h2>
+      </header>
+      
+      <br>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
@@ -92,6 +96,17 @@
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
         </div>
 
+         <div class="col-12">
+          <textarea
+            name="description"
+            placeholder="Please describe your needs"
+            rows="6"
+            v-model="description"
+            required
+          ></textarea>
+          <span class="errorNotification" v-if="message.description">{{message.description}}</span>
+        </div>
+
         <!-- Break -->
         <div class="col-12">
           <ul class="actions">
@@ -139,6 +154,7 @@ export default {
       vehicle: "",
       date: "",
       time: "",
+      description: "",
       pickupRegistrationMessage: [],
       errorMessage: [],
       message: []
@@ -181,6 +197,10 @@ export default {
     phoneNumber(value) {
       this.phoneNumber = value;
       this.validatePhoneNumber(value);
+    },
+     description(value) {
+      this.description = value;
+      this.validateDescription(value);
     }
   },
   methods: {
@@ -194,7 +214,8 @@ export default {
           phoneNumber: this.phoneNumber,
           vehicle: this.vehicle,
           date: this.date,
-          time: this.time
+          time: this.time,
+          description: this.description
         })
         .then(response => {
           console.log(response);
@@ -271,6 +292,13 @@ export default {
         this.message["phoneNumber"] = "";
       } else {
         this.message["phoneNumber"] = "Enter a valid Phone Number";
+      }
+    },
+    validateDescription(value) {
+      if (value == "") {
+        this.message["description"] = "Enter a description";
+      } else {
+        this.message["description"] = "";
       }
     }
   }

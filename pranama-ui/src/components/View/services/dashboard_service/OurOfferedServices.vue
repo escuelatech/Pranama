@@ -8,8 +8,16 @@
           <!-- Header -->
           <Header />
           <!-- Header -->
-          
-          <section>
+         
+        <!-- <section> -->
+        <div>
+           <header class="major">
+            <h2>Our Services</h2>
+          </header>
+              <div>
+                <button type="button" @click="$router.push({name: 'ViewStatus'})">View Your Request Status</button>
+              </div>
+              <br>
               <div class="row">
                   <!-- <div class="col-4 col-12-medium">
                       <h3>Ayurveda Treatment</h3>
@@ -40,7 +48,8 @@
                   </div>
                   
               </div>
-          </section>
+            </div>
+          <!-- </section> -->
 
         </div>
       </div>

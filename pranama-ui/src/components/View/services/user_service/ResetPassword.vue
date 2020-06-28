@@ -11,7 +11,10 @@
           <!-- Form -->
           <div >
           <div class="align">
-          <h2>Reset your password.</h2>
+            <header class="major">
+               <h2>Reset your password.</h2>
+            </header>
+         
         <p>Please enter your new password below. </p>
         </div>
            <form @submit.prevent="resetPassword">

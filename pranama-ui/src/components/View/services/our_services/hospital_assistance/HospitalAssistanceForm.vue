@@ -10,8 +10,13 @@
     <div v-show="isErrorMessage" >
       <Messagebar />
     </div>
+    
       <form @submit.prevent="submitHospitalAssistanceForm(); accesTimercount()" v-show=" !isSuccessMessage">
-      <h3>Hospital Assistance</h3>
+      <header class="major">
+        <h2>Hospital Assistance</h2>
+      </header>
+      
+      <br>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
           <input
@@ -94,6 +99,17 @@
           ></b-form-timepicker>
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
          </div>
+
+         <div class="col-12">
+          <textarea
+            name="description"
+            placeholder="Please describe your needs"
+            rows="6"
+            v-model="description"
+            required
+          ></textarea>
+          <span class="errorNotification" v-if="message.description">{{message.description}}</span>
+        </div>
       </div>
       
       <div>
@@ -136,6 +152,7 @@ export default {
       time:"",
       hospitalName: "",
       doctorName: "",
+      description: "",
       message: [],
       };
   },
@@ -171,6 +188,10 @@ export default {
       this.doctorName = value;
       this.validateDoctorNameToConsult(value);
     },
+     description(value) {
+      this.description = value;
+      this.validateDescription(value);
+    }
     
   },
   
@@ -184,7 +205,8 @@ export default {
           hospitalName: this.hospitalName,
           doctorName: this.doctorName,
           date: new Date(this.date),
-          time: this.time
+          time: this.time,
+          description: this.description
         }) .then(response => {
           response.data;
           console.log(response);
@@ -254,6 +276,13 @@ export default {
         this.message["doctorName"] = "";
       }
   },
+   validateDescription(value) {
+      if (value == "") {
+        this.message["description"] = "Enter a description";
+      } else {
+        this.message["description"] = "";
+      }
+    },
   },
 
 }

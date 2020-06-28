@@ -3,7 +3,7 @@
     <!-- Section -->
 		<section>
 				<header class="major">
-										<h2>Get in touch</h2>
+					<h2>Get in touch</h2>
 				</header>
 					<p>You can easily reach us through any of the below communication mediums .</p>
           <div class="row gtr-uniform">

@@ -6,7 +6,10 @@
           </div>
           <!-- <Errorbar/> --> 
           <form @submit.prevent="submitEditProfile" v-show="!editProfileSuccessful" >
-            <h4>Edit Profile</h4>
+            
+            <header class="major">
+              <h2>Edit Profile</h2>
+            </header>
             <div class="row gtr-uniform">
               <div class="col-6 col-12-xsmall">
                 <input 

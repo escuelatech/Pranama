@@ -15,7 +15,7 @@
       <h3>Sign Up with Us</h3>
       <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
-          <input type="email" name="email" value placeholder="Email" v-model="email" required />
+          <input type="email" name="email" value placeholder="Email" v-model="email" autocomplete="off" required />
           <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
         </div>
 
@@ -38,7 +38,7 @@
             name="firstName"
             value
             placeholder="First Name"
-            v-model="firstName"
+            v-model="firstName" autocomplete="off"
             required
           />
           <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
@@ -50,7 +50,7 @@
             name="lastName"
             value
             placeholder="Last Name"
-            v-model="lastName"
+            v-model="lastName" autocomplete="off"
             required
           />
           <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
@@ -62,14 +62,14 @@
             name="phoneNumber"
             value
             placeholder="Phone Number xxx-xxx-xxxx"
-            v-model="phoneNumber"
+            v-model="phoneNumber" autocomplete="off"
             required
           />
           <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
-          <input type="text" name="State" value placeholder="Country" v-model="country" required />
+          <input type="text" name="State" value placeholder="Country" v-model="country"  autocomplete="off" required />
           <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
         </div>
 

@@ -45,7 +45,7 @@
                 type="text" 
                 name="lastName" 
                 value  
-                v-model="user.lastName" 
+                v-model="user.lastName" autocomplete="off"
                 required />
                 <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
               </div>
@@ -55,7 +55,7 @@
                   type="text"
                   name="phoneNumber"
                   value
-                  v-model="user.phoneNumber"
+                  v-model="user.phoneNumber" autocomplete="off"
                   required
                 />
                 <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
@@ -66,7 +66,7 @@
                   type="text"
                   name="country"
                   value
-                  v-model="user.country"
+                  v-model="user.country" autocomplete="off"
                   required
                 />
                 <span class="errNotific" v-if="msge.country">{{msge.country}}</span>

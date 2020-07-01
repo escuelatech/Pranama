@@ -14,7 +14,8 @@ export default {
     }),
     handleLogout() {
       this.logout();
-      this.$router.push({name: 'LogoutPage' }).catch(err => console.log(err));
+      // this.$router.push({name: 'LogoutPage' }).catch(err => console.log(err));
+      this.$router.push({name: 'LogoutPage' }).catch(err => (err));
     }
   }
 }

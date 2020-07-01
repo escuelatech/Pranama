@@ -11,13 +11,10 @@
       <Messagebar />
     </div>
     <form @submit.prevent="submitPatientPickupForm();accesTimercount()" v-show="!patientPickupSuccessful">
-      <header class="major">
-        <h2>Patient Pickup</h2>
-      </header>
-      
-      <br>
+      <h3>Patient Pickup Portal</h3>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="firstName"
@@ -26,9 +23,12 @@
             v-model="firstName" autocomplete="off"
             required
           />
+          <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="message.firstName">{{message.firstName}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="lastName"
@@ -37,9 +37,12 @@
             v-model="lastName" autocomplete="off"
             required
           />
+          <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="message.lastName">{{message.lastName}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="pickupLocation"
@@ -48,9 +51,12 @@
             v-model="pickupLocation"
             required autocomplete="off"
           />
+          <i class="fas fa-location-arrow"></i>
+          </div>
           <span class="errorNotification" v-if="message.pickupLocation">{{message.pickupLocation}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="dropoffLocation"
@@ -59,9 +65,12 @@
             v-model="dropoffLocation" autocomplete="off"
             required
           />
+          <i class="fas fa-location-arrow"></i>
+          </div>
           <span class="errorNotification" v-if="message.dropoffLocation">{{message.dropoffLocation}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="tel"
             name="phoneNumber"
@@ -70,18 +79,25 @@
             v-model="phoneNumber" autocomplete="off"
             required
           />
+          <i class="fas fa-mobile" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="message.phoneNumber">{{message.phoneNumber}}</span>
         </div>
         <div class="form-check form-group">
+       
           <select id="vehicle" name="vehicle">
             <option value="default">Choose the type of vehicle</option>
             <option value="suv">SUV</option>
             <option value="sedan">Sedan</option>
           </select>
+          
           <span class="errorNotification" v-if="message.vehicle">{{message.vehicle}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <datepicker name="date" placeholder="Date" v-model="date" required></datepicker>
+          <i class="fas fa-calendar-day"></i>
+          </div>
           <span class="errorNotification" v-if="message.date">{{message.date}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
@@ -94,17 +110,6 @@
             required
           ></b-form-timepicker>
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
-        </div>
-
-         <div class="col-12">
-          <textarea
-            name="description"
-            placeholder="Please describe your needs"
-            rows="6"
-            v-model="description"
-            required
-          ></textarea>
-          <span class="errorNotification" v-if="message.description">{{message.description}}</span>
         </div>
 
         <!-- Break -->
@@ -154,7 +159,6 @@ export default {
       vehicle: "",
       date: "",
       time: "",
-      description: "",
       pickupRegistrationMessage: [],
       errorMessage: [],
       message: []
@@ -197,10 +201,6 @@ export default {
     phoneNumber(value) {
       this.phoneNumber = value;
       this.validatePhoneNumber(value);
-    },
-     description(value) {
-      this.description = value;
-      this.validateDescription(value);
     }
   },
   methods: {
@@ -214,11 +214,10 @@ export default {
           phoneNumber: this.phoneNumber,
           vehicle: this.vehicle,
           date: this.date,
-          time: this.time,
-          description: this.description
+          time: this.time
         })
         .then(response => {
-          console.log(response);
+          response;
           this.patientPickupSuccessful = true;
           this.isError = false;
           this.$store.dispatch("addPickupAssistanceMessage");
@@ -227,7 +226,6 @@ export default {
           );
         })
         .catch(error => {
-          console.log("Error reported from endpoints: ", error.response);
           this.isError = true;
           this.$store.dispatch("addErrorMessage");
           return (this.errorMessage = JSON.stringify(
@@ -292,13 +290,6 @@ export default {
         this.message["phoneNumber"] = "";
       } else {
         this.message["phoneNumber"] = "Enter a valid Phone Number";
-      }
-    },
-    validateDescription(value) {
-      if (value == "") {
-        this.message["description"] = "Enter a description";
-      } else {
-        this.message["description"] = "";
       }
     }
   }

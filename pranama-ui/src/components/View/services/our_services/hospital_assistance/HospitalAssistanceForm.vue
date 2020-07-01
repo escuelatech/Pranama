@@ -10,15 +10,11 @@
     <div v-show="isErrorMessage" >
       <Messagebar />
     </div>
-    
       <form @submit.prevent="submitHospitalAssistanceForm(); accesTimercount()" v-show=" !isSuccessMessage">
-      <header class="major">
-        <h2>Hospital Assistance</h2>
-      </header>
-      
-      <br>
+      <h3>Hospital Assistance</h3>
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="patientFirstName"
@@ -27,11 +23,14 @@
             v-model="patientFirstName" autocomplete="off"
             required
           />
+          <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
            <span class="errorNotification" v-if="message.PatientFirstName">
              {{message.PatientFirstName}}
              </span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="patientLastName"
@@ -40,10 +39,13 @@
             v-model="patientLastName" autocomplete="off"
             required
           />
+         <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="message.PatientLastName">{{message.PatientLastName}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="hospitalLocation"
@@ -52,9 +54,12 @@
             v-model="hospitalLocation" autocomplete="off"
             required
           />
+           <i class="fas fa-location-arrow"></i>
+          </div>
           <span class="errorNotification" v-if="message.hospitalLocation">{{message.hospitalLocation}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="hospitalName"
@@ -63,9 +68,12 @@
             v-model="hospitalName" autocomplete="off"
             required
           />
+          <i class="fas fa-hospital-symbol"></i>
+          </div>
           <span class="errorNotification" v-if="message.hospitalTobeVisit">{{message.hospitalTobeVisit}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="doctorName"
@@ -74,10 +82,13 @@
             v-model="doctorName" autocomplete="off"
             required
           />
+          <i class="fas fa-user-md"></i>
+          </div>
           <span class="errorNotification" v-if="message.doctorNameToConsult">{{message.doctorNameToConsult}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <datepicker
             name="date"
             placeholder="Choose the day you want to visit the doctor" 
@@ -85,11 +96,14 @@
             type="text" 
             format="dd-MM-yyyy" :v-model="date"  
           ></datepicker>
+          <i class="fas fa-calendar-day"></i>
+          </div>
           <span class="errorNotification" v-if="message.date">{{message.date}}</span>
           {{date}}
         </div>
 
         <div class="col-6 col-12-xsmall">
+        
           <b-form-timepicker
             id="timepicker-placeholder"
             name="time"
@@ -97,19 +111,9 @@
             locale="en" v-model="time" 
             required  autocomplete="on"  
           ></b-form-timepicker>
+          
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
          </div>
-
-         <div class="col-12">
-          <textarea
-            name="description"
-            placeholder="Please describe your needs"
-            rows="6"
-            v-model="description"
-            required
-          ></textarea>
-          <span class="errorNotification" v-if="message.description">{{message.description}}</span>
-        </div>
       </div>
       
       <div>
@@ -152,7 +156,6 @@ export default {
       time:"",
       hospitalName: "",
       doctorName: "",
-      description: "",
       message: [],
       };
   },
@@ -188,34 +191,27 @@ export default {
       this.doctorName = value;
       this.validateDoctorNameToConsult(value);
     },
-     description(value) {
-      this.description = value;
-      this.validateDescription(value);
-    }
     
   },
   
   methods: {
       submitHospitalAssistanceForm() {
-        console.log("Hospital Assistance ----");
-      formService.hospitalAssistance({
+          formService.hospitalAssistance({
           patientFirstName: this.patientFirstName,
           patientLastName: this.patientLastName,
           hospitalLocation: this.hospitalLocation,
           hospitalName: this.hospitalName,
           doctorName: this.doctorName,
           date: new Date(this.date),
-          time: this.time,
-          description: this.description
+          time: this.time
         }) .then(response => {
           response.data;
-          console.log(response);
+          response;
           this.isSuccessMessage = true;
           this.isErrorMessage = false;
           this.$store.dispatch('addPickupAssistanceMessage');
           setTimeout( () => this.$router.push({ name: 'OurOfferedServices'}),10000);
           }).catch(error => {
-          console.log("Error reported from endpoints :", JSON.stringify(error.response));
           this.isErrorMessage = true;
           this.$store.dispatch('addErrorMessage')
           return (this.errorMessage = JSON.stringify(
@@ -276,13 +272,6 @@ export default {
         this.message["doctorName"] = "";
       }
   },
-   validateDescription(value) {
-      if (value == "") {
-        this.message["description"] = "Enter a description";
-      } else {
-        this.message["description"] = "";
-      }
-    },
   },
 
 }

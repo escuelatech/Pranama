@@ -3,7 +3,7 @@
     <!-- Section -->
 		<section>
 				<header class="major">
-					<h2>Get in touch</h2>
+										<h2>Get in touch</h2>
 				</header>
 					<p>You can easily reach us through any of the below communication mediums .</p>
           <div class="row gtr-uniform">
@@ -36,6 +36,7 @@
       id="contactForm">
       <div class="row gtr-uniform">
         <div class="col-6 col-12-xsmall">
+         <div class="inputIcons">
           <input
             type="text"
             name="name"
@@ -44,9 +45,12 @@
             v-model="name" autocomplete="off"
             required
           /> 
+          <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="msg.name">{{msg.name}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="watsappNumber"
@@ -55,9 +59,13 @@
             v-model="watsappNumber" autocomplete="off"
             required
           />
+            <i class="fab fa-whatsapp" ></i>
+          </div>
            <span class="errorNotification" v-if="msg.watsappNumber">{{msg.watsappNumber}}</span>
+         
         </div>
-        <div class="col-6 col-12-xsmall">
+        <div class="col-6 col-12-xsmall"> 
+         <div class="inputIcons">
           <input
             type="text"
             name="phoneNumber"
@@ -66,10 +74,15 @@
             v-model="phoneNumber" autocomplete="off"
             required
           />
+          <i class="fas fa-mobile" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="msg.phoneNumber">{{msg.phoneNumber}}</span>
         </div>
         <div class="col-6 col-12-xsmall">
+         <div class="inputIcons">
           <input type="email" name="email" value placeholder="Email" v-model="email" required autocomplete="off" />
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          </div>
           <span class="errorNotification" v-if="msg.email">{{msg.email}}</span>
         </div>
 
@@ -203,8 +216,7 @@ export default {
       this.displaySubmit = true;
     },
     submitContactForm() {
-      console.log("Ready to submit the contact form  ");
-      ContactService
+         ContactService
         .submitContact({
           email: this.email,
           phone: this.phoneNumber,
@@ -213,15 +225,15 @@ export default {
           watsappNumber: this.watsappNumber
         })
         .then(response => {
-          console.log(response.data);
-          console.log(response);
+          response.data;
+          response;
           this.sendingSuccessful = true;
           this.$store.dispatch('addContactSuccessMessage')
           return response;
         })
         .catch(error => {
           this.sendingSuccessful = false;
-          console.log(error);
+          error;
         });
     },
     validateEmail(value) {

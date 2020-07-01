@@ -10,17 +10,17 @@ export default {
     },
 
     submitPatientPickup (params) {
-        console.log(JSON.stringify(params));
+        // console.log(JSON.stringify(params));
         return apiClient.post(apimapping.PATIENT_PICKUP, params);
     },
 
     hospitalAssistance (params) {
-        console.log(JSON.stringify(params));
+        // console.log(JSON.stringify(params));
         return apiClient.post(apimapping.HOSPITAL_ASSISTANCE, params);
     },
 
     commonService () {
-        console.log(JSON.stringify());
+        // console.log(JSON.stringify());
         return apiClient.get(apimapping.ACCESS);
     }
     

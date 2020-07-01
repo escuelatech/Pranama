@@ -5,6 +5,7 @@
       <div class="row gtr-uniform">
         <template v-if="!processing">
           <div class="col-6 col-12-xsmall">
+          <div class="inputIcons">
             <input
               type="text"
               name="email"
@@ -12,15 +13,20 @@
               placeholder="Your Email"
               v-model="email" autocomplete="off"
             />
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </div>
           </div>
           <div class="col-6 col-12-xsmall"></div>
           <div class="col-6 col-12-xsmall">
+          <div class="inputIcons">
             <input 
               type="password"
               name="password"
               placeholder="Password"
               v-model="password" autocomplete="off"
             />
+            <i class="fas fa-lock" aria-hidden="true"></i>
+          </div>
           </div>
           <div class="col-12">
              <small><router-link :to="{ name: 'forgotPassword' }">Forgot password</router-link></small>
@@ -91,10 +97,11 @@ export default {
           password: this.password
         });
         this.sendingSuccessful = true;
-        this.$router.push({ name: "Dashboard" }).catch(err => console.log(err));
+        // this.$router.push({ name: "Dashboard" }).catch(err => console.log(err));
+        this.$router.push({ name: "Dashboard" }).catch(err => (err));
       } catch (error) {
        // this.sendingSuccessful = false;
-           console.log("Error reported from endpoints :", error.response);
+          //  console.log("Error reported from endpoints :", error.response);
            this.error = true;
           return (this.message = JSON.stringify(
             error.response.data.errorMessage

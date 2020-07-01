@@ -15,11 +15,15 @@
       <h3>Sign Up with Us</h3>
       <div class="row gtr-uniform">
           <div class="col-6 col-12-xsmall">
+          <div class="inputIcons">
           <input type="email" name="email" value placeholder="Email" v-model="email" autocomplete="off" required />
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+          </div>
           <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="password"
             name="password"
@@ -29,10 +33,13 @@
             autocomplete="off"
             required
           />
+           <i class="fas fa-lock" aria-hidden="true"></i>
+          </div>
           <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="firstName"
@@ -41,10 +48,13 @@
             v-model="firstName" autocomplete="off"
             required
           />
+           <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
           <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="lastName"
@@ -53,10 +63,13 @@
             v-model="lastName" autocomplete="off"
             required
           />
+           <i class="fas fa-user" aria-hidden="true"></i>
+          </div>
           <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input
             type="text"
             name="phoneNumber"
@@ -65,11 +78,16 @@
             v-model="phoneNumber" autocomplete="off"
             required
           />
+           <i class="fas fa-mobile" aria-hidden="true"></i>
+          </div>
           <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
         </div>
 
         <div class="col-6 col-12-xsmall">
+        <div class="inputIcons">
           <input type="text" name="State" value placeholder="Country" v-model="country"  autocomplete="off" required />
+           <i class="fas fa-globe" aria-hidden="true"></i>
+          </div>
           <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
         </div>
 
@@ -118,7 +136,7 @@ export default {
       registrationMessage: [],
       errorMessage: [],
       isError: false,
-      //displayMessage: false
+      displayMessage: false
     };
   },
   watch: {
@@ -161,7 +179,7 @@ export default {
         })
         .then(response => {
           response.data;
-          console.log(response);
+          response;
           this.userRegistrationSuccessful = true;
           //this.displayMessage = true;
            this.isError = false;
@@ -169,8 +187,7 @@ export default {
             setTimeout(() => this.$router.push({ name: "LoginPage"}),10000);
         })
         .catch(error => {
-          console.log("Error reported from endpoints :", error.response);
-          this.isError = true;
+         this.isError = true;
           //this.displayMessage = true;
           // this.$store.dispatch('addErrorMessage')
           return (this.errorMessage = JSON.stringify(
@@ -253,5 +270,19 @@ export default {
 }
 .errNotific {
   color: red;
+}
+.inputIcons{
+  position:relative;
+ }
+.inputIcons i{
+  position:absolute;
+  left: 0px;
+  top: 8px;
+  padding: 9px 8px;
+  transition:.3s;
+  color: gray;
+}
+input{
+   padding-left: 25px !important;
 }
 </style>

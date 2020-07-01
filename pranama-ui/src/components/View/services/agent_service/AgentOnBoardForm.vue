@@ -1,11 +1,7 @@
 <template>
     <div>
-       
+       <h3 v-show="!agentSighUpSuccessful">Agent Sign Up</h3>
        <form @submit.prevent="agentSighUpSuccessful" v-show="!agentSighUpSuccessful">
-         <header class="major">
-           <h2>Agent Sign Up</h2>
-         </header>
-         
        <div class="row gtr-uniform">
        <div class="col-6 col-12-xsmall">
                 <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required autocomplete="off"/>

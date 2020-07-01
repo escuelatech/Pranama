@@ -13,7 +13,7 @@ export default {
 };
 
 function register (params) {
-  console.log(JSON.stringify(params));
+  // console.log(JSON.stringify(params));
   return apiClient.post(apimapping.USER_REGISTRATION, params);
 }
 
@@ -38,8 +38,8 @@ function updateUser (params) {
 }
 
 async function login (email, password) {
-  console.log(email);
-  console.log(password);
+  // console.log(email);
+  // console.log(password);
   const response = await apiClient.post(apimapping.LOGIN, { email: email, passWord: password })
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));

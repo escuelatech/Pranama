@@ -9,8 +9,7 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-         <EditProfile/>
-         <!-- <ResetPassword /> -->
+         <ResetPassword />
           <!-- Form -->
         </div>
       </div>
@@ -25,13 +24,11 @@
 <script>
   import Header from "@/components/View/common/Header";
   import Sidebar from "@/components/View/common/Sidebar";
-  import EditProfile from "@/components/View/services/user_service/EditProfile.vue";
-  // import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue";
+  import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue";
    export default {
     components: { 
       Header, 
-      Sidebar, 
-      EditProfile,
-      // ResetPassword
+      Sidebar,
+      ResetPassword
    }};
 </script> 

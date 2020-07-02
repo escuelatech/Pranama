@@ -1,31 +1,9 @@
 <template>
     <div>
-        <h4>Status</h4>
-          <!-- <div class="box table-wrapper" > 
-             <table style="width:100%"  class="alt"> 
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Patient First Name</th>
-                  <th>Request Type</th>
-                  <th>Email</th>
-                  <th>Description</th>
-                  <th>title</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="request in userRequests" :key="request.email">
-                  <td> {{ request.msgId }}</td>
-                  <td>{{ request.patientFirstName }}</td>
-                  <td>{{ request.requestType }}</td>
-                  <td>{{ request.userEmail }}</td>
-                  <td>{{ request.description }}</td>
-                  <td>{{request.title}}</td>
-                </tr>
-                 
-              </tbody>
-            </table> 
-            </div>  -->
+      <header class="major">
+        <h2>Status</h2>
+      </header>
+        
 
             <VueFaqAccordion 
                 :items="jsonArr"
@@ -47,7 +25,6 @@ import moment from "moment";
                 loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
                 userRequests: [],
                 jsonArr: [],
-                // date: this.userRequests.date.getDate()
             }
         },
         mounted(){
@@ -63,10 +40,33 @@ import moment from "moment";
                     this.userRequests=response.data.data;
                       console.log(this.userRequests);
                       for (var i = 0; i < this.userRequests.length; i++) {
+                        if(this.userRequests[i].requestType == "Patient Pickup") {
                         this.jsonArr.push({
-                          title: this.userRequests[i].requestType + " ( " + moment(this.userRequests[i].date).format('MMMM Do YYYY') + " )",
-                          value: this.userRequests[i].description
-                        });
+                        title: "<b>" + this.userRequests[i].requestType + "</b> ( " + moment(this.userRequests[i].date).format('MMMM Do YYYY') + " )",
+                        value: "<b>Patient Name: </b>" + this.userRequests[i].patientFirstName + " " + this.userRequests[i].patientLastName + 
+                                "<br /><b>Email: </b>" + this.userRequests[i].userEmail +
+                                "<br /><b>Pickup Location: </b>" + this.userRequests[i].pickupLocation +
+                                "<br /><b>Dropoff Location: </b>" + this.userRequests[i].dropoffLocation +
+                                "<br /><b>Time: </b>" + this.userRequests[i].time + 
+                                "<br /><b>Vehicle Type: </b>" + this.userRequests[i].vehicle +
+                                "<br /><b>Phone Number: </b>" + this.userRequests[i].phoneNumber +  
+                                "<br /><b>Description: </b>" + this.userRequests[i].description
+                        
+                      })
+                      } else {
+                         this.jsonArr.push({
+                        title: "<b>" + this.userRequests[i].requestType + "</b> ( " + moment(this.userRequests[i].date).format('MMMM Do YYYY') + " )",
+                        value: "<b>Patient Name: </b>" + this.userRequests[i].patientFirstName + " " + this.userRequests[i].patientLastName + 
+                                "<br /><b>Email: </b>" + this.userRequests[i].userEmail +
+                                "<br /><b>Doctor: </b>" + this.userRequests[i].doctorName + 
+                                "<br /><b>Hospital: </b>" + this.userRequests[i].hospitalName + 
+                                "<br /><b>Hospital Location: </b>" + this.userRequests[i].hospitalLocation + 
+                                "<br /><b>Time: </b>" + this.userRequests[i].time + 
+                                "<br /><b>Description: </b>" + this.userRequests[i].description
+                        
+                      })
+                      }
+                      
                       }
                       console.log('JSON ARRAY',this.jsonArr)
               }).catch(error => {

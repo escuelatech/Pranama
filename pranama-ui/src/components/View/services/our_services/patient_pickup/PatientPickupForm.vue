@@ -107,6 +107,8 @@
             v-model="time"
             placeholder="Choose a time"
             local="en"
+            format="hh:mm A"
+            label="format: am/pm"
             required
           ></b-form-timepicker>
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
@@ -136,7 +138,7 @@
               <input
                 type="button"
                 value="Cancel"
-                @click="$router.push({name : 'OurOfferedSerces'})"
+                @click="$router.push({name : 'OurOfferedServices'})"
               />
             </li>
           </ul>

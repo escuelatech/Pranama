@@ -32,9 +32,10 @@
             
       </form>
       <div v-show="resetPasswordSuccessful">
-            <Messagebar />
-          </div>
+        <Messagebar />
       </div>
+      <router-link :to="{ name: 'editProfile' }">Go back to Edit Profile</router-link>
+    </div>
           <!-- Form -->
   </div>
 </template>

@@ -14,7 +14,7 @@ import LoginPage from "@/components/View/services/login_service/LoginPage.vue";
 import PatientPickupPage from '@/components/View/services/our_services/patient_pickup/PatientPickupPage.vue';
 import HospitalAssistancePage from '@/components/View/services/our_services/hospital_assistance/HospitalAssistancePage.vue';
 import ForgotPassword from "@/components/View/services/user_service/ForgotPassword.vue";
-import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue";
+import ResetPasswordPage from "@/components/View/services/user_service/ResetPasswordPage.vue";
 import EditProfilePage from "@/components/View/services/user_service/EditProfilePage.vue";
 import AgentOnboardPage from "@/components/View/services/agent_service/AgentOnBoardPage.vue"
 // import form1 from "@/traumaservices/form1.vue"
@@ -138,7 +138,7 @@ const router = new VueRouter({
     {
       path: '/resetpassword',
       name: 'resetPassword',
-      component: ResetPassword
+      component: ResetPasswordPage
     },
     {
       path: '/editprofilepage',

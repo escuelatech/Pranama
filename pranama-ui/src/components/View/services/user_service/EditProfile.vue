@@ -87,6 +87,7 @@
             <Messagebar />
           </div>
 
+          
     </div>
 </template>
 
@@ -168,7 +169,8 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
           response.data;
           console.log(response);
           console.log(this.loggedInUserEmail);
-          this.users = response.data.data;
+          this.user = response.data.data;
+          console.log('in edit profile',this.user)
           this.editProfileSuccessful = true;
           this.isError = false;
           this.$store.dispatch('addEditMessage');

@@ -10,6 +10,7 @@ const pickupAssistanceSuccessMessage = `<header class="major"><h4>Thank you for 
 const contactSuccessMessage =  `<h4>We received your email, our team will reach out to you as soon as possible.</h4>`
 const editMessage = `<h4>Your profile has been successfully edited.</h4>`
 const agentMessage = `<header class="major"><h4>Thank you for getting in touch with us!!</h4></header><h4>You will receive an email as part of registration,one of our team member will getting back to you for further proceedings.</h4><br><h6>If you haven't received the email, do the following:<ul><li>Make sure the provided email address is correct</li><li>Check Promotions and Spam Folders</li><!-- <li>Resend confirmation email</li> --></ul>If none of the above helps, please contact us at <a href="/contactus">pranamaindia@gmail.com</a></h6>`
+const resetPasswordSuccessMessage = `<h4>Your password has been reset successfully.</h4>`;
 
 export default new Vuex.Store({
   modules: {
@@ -39,6 +40,9 @@ export default new Vuex.Store({
     },
     ADD_AGENT_MESSAGE: state => {
       state.message = agentMessage
+    },
+    ADD_RESET_PASSWORD_MESSAGE: state => {
+      state.message = resetPasswordSuccessMessage
     }
 },
   actions : {
@@ -60,5 +64,8 @@ export default new Vuex.Store({
     addAgentMessage: ({commit}) => {
       commit('ADD_AGENT_MESSAGE')
     },
+    addResetPasswordMessage: ({commit}) => {
+      commit('ADD_RESET_PASSWORD_MESSAGE')
+    }
 }
 })

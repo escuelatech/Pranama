@@ -115,6 +115,17 @@
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
          </div>
       </div>
+       <div class="col-12">
+          <textarea
+            name="description"
+            id="description"
+            placeholder="Describe your needs"
+            rows="6"
+            v-model="description"
+            required
+          ></textarea>
+          <span class="errorNotification" v-if="message.description">{{message.description}}</span>
+        </div>
       
       <div>
         <ul class="actions">
@@ -156,6 +167,7 @@ export default {
       time:"",
       hospitalName: "",
       doctorName: "",
+      description: "",
       message: [],
       };
   },
@@ -191,6 +203,10 @@ export default {
       this.doctorName = value;
       this.validateDoctorNameToConsult(value);
     },
+    description(value){
+      this.description = value;
+      this.validateDescription(value);
+    },
     
   },
   
@@ -203,7 +219,8 @@ export default {
           hospitalName: this.hospitalName,
           doctorName: this.doctorName,
           date: new Date(this.date),
-          time: this.time
+          time: this.time,
+          description: this.description
         }) .then(response => {
           response.data;
           response;
@@ -270,6 +287,13 @@ export default {
         this.message["doctorName"] = "Enter Doctor Name";
       } else {
         this.message["doctorName"] = "";
+      }
+  },
+  validateDescription(value) {
+    if (value == "") {
+        this.message["description"] = "Please provide a description of your needs";
+      } else {
+        this.message["description"] = "";
       }
   },
   },

@@ -4,27 +4,45 @@
        <form @submit.prevent="submitAgentOnBoardForm" v-show="!agentSighUpSuccessful">
        <div class="row gtr-uniform">
        <div class="col-6 col-12-xsmall">
+       <div class="inputIcons">
                 <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required autocomplete="off"/>
+                 <i class="fas fa-user" aria-hidden="true"></i>
+                </div>
                 <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
+              <div class="inputIcons">
                 <input type="text" name="lastName" value placeholder="Last Name" v-model="lastName" required autocomplete="off"/>
+                <i class="fas fa-user" aria-hidden="true"></i>
+                </div>
                 <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
+              <div class="inputIcons">
                 <input type="text" name="licenseNo" value placeholder="License Number" v-model="licenseNo" required autocomplete="off"/>
                 <span class="errNotific" v-if="msge.licenseNo">{{msge.licenseNo}}</span>
+                <i class="fas fa-id-badge"></i>
+                </div>
               </div>
               <div class="col-6 col-12-xsmall">
+              <div class="inputIcons">
                 <input type="text" name="passportNo" value placeholder="Passport Number" v-model="passportNo" required autocomplete="off"/>
+                <i class="fas fa-passport"></i>
+              </div>
                 <span class="errNotific" v-if="msge.passportNo">{{msge.passportNo}}</span>
               </div>
                <div class="col-6 col-12-xsmall">
+                <div class="inputIcons">
                 <input type="text" name="adharNo" value placeholder="Adhar Number" v-model="adharNo" required autocomplete="off"/>
+                <i class="fas fa-id-badge"></i>
+                </div>
                 <span class="errNotific" v-if="msge.adharNo">{{msge.adharNo}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
+              <div class="inputIcons">
                 <input type="email" name="email" value placeholder="Email" v-model="email" required autocomplete="off"/>
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </div>
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
@@ -40,7 +58,7 @@
                     <input type="reset" value="Reset" />
                     </li>
                     <li>
-                    <input type="button" value="Cancel" />
+                    <input type="button" value="Cancel" @click="$router.push({name: 'Pranama'})"/>
                     </li>
                 </ul>
             </div>

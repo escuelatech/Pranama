@@ -125,7 +125,7 @@
               <input
                 type="button"
                 value="Cancel"
-                @click="$router.push({name : 'OurOfferedServices'})"
+                @click="$router.push({name : 'OurOfferedSerces'})"
               />
             </li>
           </ul>

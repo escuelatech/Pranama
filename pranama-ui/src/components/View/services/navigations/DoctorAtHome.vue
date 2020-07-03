@@ -17,11 +17,16 @@
 					<header class="major">
 						<h2> Doctor at Home </h2>
 					</header>
+					<button class="button secondary contact" @click="$router.push({ name: 'ContactEmailPage' })">Contact Us</button>
 						<!-- <h2 id="content"> Doctor at Home </h2> -->
 					<p>
-						We are associated with a new startup company QURE CONNECT who are focusing in this area. So our
-						customers can enjoy this facility with our supervision..</p>
-					<div class="row">
+						We are associated with a new startup company “MEDICAR” who are arranging Doctor Visits at
+                        home, Small medical Procedures like wound dressings, Injections, Intravenous Drips, Naso-
+                        gastric Tube insertion, Foley’s Catheter for urine output etc. Over and above that you will get
+                        our professional supervision and daily reports of Status and progress of our services.</p>
+
+						<!--parahraph section begins here-->
+					<!--<div class="row">-->
 						<!-- <div class="col-6 col-12-small">
 							<h3>Sem turpis amet semper</h3>
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
@@ -39,7 +44,7 @@
 								accumsan vis mi accumsan.</p>
 						</div> -->
 						<!-- Break -->
-						<div class="col-4 col-12-medium">
+						<!--<div class="col-4 col-12-medium">
 							<h3>Interdum sapien gravida</h3>
 							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
@@ -57,7 +62,7 @@
 								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante
 								lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit.</p>
 						</div>
-					</div>
+					</div>-->
 				</div>	
 				<!-- </section> -->
                 <!-- Section 

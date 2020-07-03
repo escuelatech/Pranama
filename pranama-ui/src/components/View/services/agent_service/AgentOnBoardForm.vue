@@ -1,7 +1,7 @@
 <template>
     <div>
        <h3 v-show="!agentSighUpSuccessful">Agent Sign Up</h3>
-       <form @submit.prevent="agentSighUpSuccessful" v-show="!agentSighUpSuccessful">
+       <form @submit.prevent="submitAgentOnBoardForm" v-show="!agentSighUpSuccessful">
        <div class="row gtr-uniform">
        <div class="col-6 col-12-xsmall">
                 <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required autocomplete="off"/>
@@ -27,6 +27,10 @@
                 <input type="email" name="email" value placeholder="Email" v-model="email" required autocomplete="off"/>
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
+              <div class="col-6 col-12-xsmall">
+                <input type="text" name="phoneNumber" value placeholder="Phone Number" v-model="licenseNo" required autocomplete="off"/>
+                <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
+              </div>
                <div class="col-12">
                  <ul class="actions">
                     <li>
@@ -46,8 +50,13 @@
 </template>
 
 <script>
+
+import AgentService from "@/apiservices/AgentService";
     export default {
-        data() {
+      components:{
+        
+      },
+      data() {
         return {
         agentSighUpSuccessful: false, 
         firstName: "",
@@ -83,9 +92,27 @@
       adharNo(value) {
       this.adharNo = value;
       this.check_adharNo(value)
+       },
+      phoneNumber(value) {
+      this.phoneNumber = value;
+      this.check_phoneNumber(value)
        }
      },
       methods: {
+        submitAgentOnBoardForm(){
+          AgentService.onBoardAgent({
+            email: this.email,
+            phone: '17263186237',
+            name: this.firstNamel,
+            licenseNumber: this.llicenseNo,
+            passportNumber: this.passportNo,
+            adharNumber: this.adharNo,
+          }).then(response =>{
+              console.log(response.data);
+          }).catch(error => {
+            console.log("Error reported from endpoints :", error.response);
+          });
+        },
         check_email(value) {
             
               // eslint-disable-next-line no-useless-escape

@@ -1,5 +1,8 @@
 <template>
     <div>
+      <div class="box" v-show="isError">
+      <h3>{{errorMessage}}</h3>
+      </div>
        <h3 v-show="!agentSighUpSuccessful">Agent Sign Up</h3>
        <form @submit.prevent="submitAgentOnBoardForm" v-show="!agentSighUpSuccessful">
        <div class="row gtr-uniform">
@@ -46,7 +49,10 @@
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
-                <input type="text" name="phoneNumber" value placeholder="Phone Number" v-model="licenseNo" required autocomplete="off"/>
+               <div class="inputIcons">
+                <input type="tel" name="phoneNumber" value placeholder="Phone Number" v-model="phoneNumber" required autocomplete="off"/>
+                 <i class="fas fa-mobile" aria-hidden="true"></i>
+              </div>
                 <span class="errNotific" v-if="msge.phoneNumber">{{msge.phoneNumber}}</span>
               </div>
                <div class="col-12">
@@ -64,26 +70,33 @@
             </div>
        </div>
        </form>
+       <div v-show="agentSighUpSuccessful">
+      <Messagebar />
+    </div>
     </div>
 </template>
 
 <script>
 
 import AgentService from "@/apiservices/AgentService";
+import Messagebar from "@/components/View/common/Messagebar.vue";
     export default {
       components:{
-        
+        Messagebar
       },
       data() {
         return {
         agentSighUpSuccessful: false, 
+        isError: false,
         firstName: "",
         lastName: "",
         licenseNo: "",
         passportNo: "",
         adharNo: "",
+        phoneNumber:"",
         email:"",
-        msge: []
+        msge: [],
+         errorMessage: []
         };  
       },
      watch: {
@@ -120,14 +133,19 @@ import AgentService from "@/apiservices/AgentService";
         submitAgentOnBoardForm(){
           AgentService.onBoardAgent({
             email: this.email,
-            phone: '17263186237',
-            name: this.firstNamel,
-            licenseNumber: this.llicenseNo,
+            phone: this.phoneNumber,
+            name: this.firstName,
+            licenseNumber: this.licenseNo,
             passportNumber: this.passportNo,
             adharNumber: this.adharNo,
           }).then(response =>{
               console.log(response.data);
+              this.agentSighUpSuccessful = true;
+              this.isError = false;
+              this.$store.dispatch("addAgentMessage"); 
           }).catch(error => {
+            this.isError = true;
+             this.$store.dispatch("addErrorMessage");
             console.log("Error reported from endpoints :", error.response);
           });
         },
@@ -176,7 +194,14 @@ import AgentService from "@/apiservices/AgentService";
          } else {
         this.msge["adharNo"] = "";
          }
-        }
+        },
+         check_phoneNumber(value) {
+      if (value.length >= "10" && value.length <= "15") {
+        this.msge["phoneNumber"] = "";
+      } else {
+        this.msge["phoneNumber"] = "Enter a valid Phone Number";
+      }
+    }
       }
       
     };

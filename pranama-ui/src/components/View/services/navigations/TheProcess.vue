@@ -9,46 +9,22 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-
-          <!-- <section> -->
-          <!-- <header class="main">
-						<h1>Elements</h1>
-          </header>-->
-
-          <!-- Content -->
-          <!-- <h2 id="content">How it works </h2> -->
           <div>
             <header class="major">
               <h2>How PRANAMA works</h2>
-			</header>
-			<button class="button secondary contact" @click="$router.push({ name: 'ContactEmailPage' })">Contact Us</button>
-			<p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
-			<p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
-			<p>We will immediately contact you, understand your requirements and communicate with your relative at their convenience. We will then work out a plan and the approximate budget. We will send you the report in your email and Whatsapp.</p>
-			<p>Our services start immediately after signing the contract with our terms and conditions. You will be updated daily about the status and progress of the patient via, Whatsapp, email etc.</p>
+            </header>                
+              <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
+              <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
+              <p>We will immediately contact you, understand your requirements and communicate with your relative at their convenience. We will then work out a plan and the approximate budget. We will send you the report in your email and Whatsapp.</p>
+              <p>Our services start immediately after signing the contract with our terms and conditions. You will be updated daily about the status and progress of the patient via, Whatsapp, email etc.</p>
+              <h5>
+                 <input type="button" value="Contact US" @click="$router.push({ name: 'ContactEmailPage' })" />
+              </h5>
             <div>
               <header class="major">
-                <h2>Our Services.</h2>
+                <h2>Our Services. </h2>
               </header>
               <div class="row">
-                <!-- <div class="col-6 col-12-small">
-							<h3>Sem turpis amet semper</h3>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi
-								integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat commodo eu sed
-								ante lacinia. Sapien a lorem in integer ornare praesent commodo adipiscing arcu in massa
-								commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius montes viverra nibh
-								in adipiscing blandit tempus accumsan.</p>
-						</div>
-						<div class="col-6 col-12-small">
-							<h3>Magna odio tempus commodo</h3>
-							<p>In arcu accumsan arcu adipiscing accumsan orci ac. Felis id enim aliquet. Accumsan ac
-								integer lobortis commodo ornare aliquet accumsan erat tempus amet porttitor. Ante
-								commodo blandit adipiscing integer semper orci eget. Faucibus commodo adipiscing mi eu
-								nullam accumsan morbi arcu ornare odio mi adipiscing nascetur lacus ac interdum morbi
-								accumsan vis mi accumsan.</p>
-                </div>-->
-                <!-- Break -->
-
                 <div class="col-4 col-12-medium">
                   <h3>Pick up and Drop</h3>
                   <h4>Option 1:</h4>

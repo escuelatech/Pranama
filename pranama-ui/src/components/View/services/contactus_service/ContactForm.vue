@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Section -->
-		<section>
+		<section v-show="!displaySubmit">
 				<header class="major">
 										<h2>Get in touch</h2>
 				</header>

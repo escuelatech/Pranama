@@ -3,19 +3,20 @@
       <div class="box" v-show="isError">
       <h3>{{errorMessage}}</h3>
       </div>
+     <!--  <inputDataReset ref="dataReset"/> -->             
        <h3 v-show="!agentSighUpSuccessful">Agent Sign Up</h3>
-       <form @submit.prevent="submitAgentOnBoardForm" v-show="!agentSighUpSuccessful">
+       <form @submit.prevent="submitAgentOnBoardForm" v-show="!agentSighUpSuccessful" ref="form">
        <div class="row gtr-uniform">
        <div class="col-6 col-12-xsmall">
        <div class="inputIcons">
-                <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required autocomplete="off"/>
+                <input type="text" name="firstName" value placeholder="First Name" v-model="firstName" required autocomplete="off" />
                  <i class="fas fa-user" aria-hidden="true"></i>
                 </div>
                 <span class="errNotific" v-if="msge.firstName">{{msge.firstName}}</span>
               </div>
               <div class="col-6 col-12-xsmall">
               <div class="inputIcons">
-                <input type="text" name="lastName" value placeholder="Last Name" v-model="lastName" required autocomplete="off"/>
+                <input type="text" name="lastName" value placeholder="Last Name" v-model="lastName" required autocomplete="off" />
                 <i class="fas fa-user" aria-hidden="true"></i>
                 </div>
                 <span class="errNotific" v-if="msge.lastName">{{msge.lastName}}</span>
@@ -62,7 +63,7 @@
                     </li>
                      <li>
                     <input type="reset" value="Reset" />
-                    </li>
+                     </li>
                     <li>
                     <input type="button" value="Cancel" @click="$router.push({name: 'Pranama'})"/>
                     </li>
@@ -80,9 +81,10 @@
 
 import AgentService from "@/apiservices/AgentService";
 import Messagebar from "@/components/View/common/Messagebar.vue";
-    export default {
+ export default {
       components:{
         Messagebar
+     
       },
       data() {
         return {
@@ -96,7 +98,7 @@ import Messagebar from "@/components/View/common/Messagebar.vue";
         phoneNumber:"",
         email:"",
         msge: [],
-         errorMessage: []
+        errorMessage: []
         };  
       },
      watch: {
@@ -134,21 +136,24 @@ import Messagebar from "@/components/View/common/Messagebar.vue";
           AgentService.onBoardAgent({
             email: this.email,
             phone: this.phoneNumber,
-            name: this.firstName,
+            firstName: this.firstName,
+            lastName:this.lastName,
             licenseNumber: this.licenseNo,
             passportNumber: this.passportNo,
             adharNumber: this.adharNo,
-          }).then(response =>{
+              }).then(response =>{
               console.log(response.data);
               this.agentSighUpSuccessful = true;
               this.isError = false;
-              this.$store.dispatch("addAgentMessage"); 
-          }).catch(error => {
+              this.$store.dispatch("addAgentMessage");
+              }).catch(error => {
             this.isError = true;
              this.$store.dispatch("addErrorMessage");
             console.log("Error reported from endpoints :", error.response);
           });
+         
         },
+         
         check_email(value) {
             
               // eslint-disable-next-line no-useless-escape

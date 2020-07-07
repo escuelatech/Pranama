@@ -27,15 +27,15 @@
                 You can be happy for give them your best to all they have done for you...</p -->
               <p>
                  Taking care of your Aging Parents is your moral responsibility. You will genuinely want to do it.
-                  Now it is not an easy task,in today’s Busy world. You are living Miles away, may be even on the other side of the globe, America. 
-                 Your Career, Children’s education problems, the distance, time, leave availability and the huge expenses needed 
-                 to reach home,  are the hurdles that stay in between your love to your parents and taking care of them,
-                  the care and attention you would love to give them.We at Pranama take up the responsibility, as per your wish.
-                   We arrange pick up and drop responsibility, Driver services, Out Patient Bystander Support,
+                  Now it is not an easy task in today’s busy world. You are living miles away, may be even on the other side of the globe, America. 
+                 Your Career, Children’s education, the travel distance & time, leave availability and the huge expenses needed 
+                 to reach home are the hurdles that stay in between your love for your parents and taking care of them
+                 and attention you would love to give them. We, at Pranama, take up the responsibility, as per your wish.
+                   We arrange Pickup and Drop-off responsibility, Driver services, Out Patient Bystander Support,
                     Patient Bystander Services for admitted persons, Doctor at home for minor ailments, Health Checkup’s from home,
-                     and even total Solutions for Medical treatment.You will be provided with, daily reports which includes videos, 
+                     and even total Solutions for Medical treatment. You will be provided with daily reports which includes videos, 
                      photos, feedback’s etc. Your parents will not feel your absence. We believe in total Professionalism. </p>
-                    <p>These services will be provided to all your Nears and Dears also, on your request.</p>
+                    <p>These services will be provided to all your Nears and Dears on your request.</p>
                     <div>
         <ul class="actions">
           

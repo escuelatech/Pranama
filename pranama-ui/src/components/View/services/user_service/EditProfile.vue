@@ -20,7 +20,7 @@
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               
-              <div class="col-6 col-12-xsmall">
+              <!-- <div class="col-6 col-12-xsmall">
                 <input 
                 type="password" 
                 name="password" 
@@ -28,7 +28,7 @@
                 v-model="user.password" 
                 autocomplete="off"  required />
                 <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
-              </div>
+              </div> -->
 
               <div class="col-6 col-12-xsmall">
                 <input 
@@ -75,10 +75,6 @@
               <div class="col-12">
                 <ul class="actions">
                   <li><input type="submit" value="Update My Profile" class="primary"  /></li>
-                  <li>
-                    <input type="reset" value="Reset" />
-                  </li>
-                   
                  </ul>
               </div>
             </div>
@@ -86,7 +82,9 @@
           <div v-show="editProfileSuccessful">
             <Messagebar />
           </div>
+          <router-link :to="{ name: 'resetPassword' }">Reset Password</router-link>
 
+          
     </div>
 </template>
 
@@ -102,7 +100,7 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       editProfileSuccessful: false,
       user: '',
       email: '',
-      password: '',
+      // password: '',
       firstName: '',
       lastName: '',
       phoneNumber: '',
@@ -115,14 +113,14 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
      },
   
    watch: {
-       email(value) {
-      this.email = value;
-      this.check_email(value);
-      },
-     password(value) {
-      this.password = value;
-      this.check_password(value);
-      },
+      //  email(value) {
+      // this.email = value;
+      // this.check_email(value);
+      // },
+    //  password(value) {
+    //   this.password = value;
+    //   this.check_password(value);
+    //   },
       firstName(value) {
       this.firstName = value;
        this.check_firstName(value);
@@ -156,19 +154,20 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
         },
       submitEditProfile() {
       UserService.updateUser({
-         email: this.user.email,
+        email: this.user.email,
         phoneNumber: this.user.phoneNumber,
         firstName: this.user.firstName,
          userType: this.user.userType,
         lastName: this.user.lastName,
-        passWord: this.user.password,
+        // passWord: this.user.password,
         country: this.user.country
       })
         .then(response => {
           response.data;
           console.log(response);
           console.log(this.loggedInUserEmail);
-          this.users = response.data.data;
+          this.user = response.data.data;
+          console.log('in edit profile',this.user)
           this.editProfileSuccessful = true;
           this.isError = false;
           this.$store.dispatch('addEditMessage');
@@ -182,21 +181,21 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
           ));
         });
     },
-       check_email(value) {
-         // eslint-disable-next-line no-useless-escape
-         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
-          this.msge["email"] = "";
-         } else {
-          this.msge["email"] = "Enter a valid email";
-         }
-        },
-        check_password(value) {
-         if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(value)) {
-        this.msge["password"] = "";
-          } else {
-        this.msge["password"] =
-          "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter.";
-      }
+      //  check_email(value) {
+      //    // eslint-disable-next-line no-useless-escape
+      //    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+      //     this.msge["email"] = "";
+      //    } else {
+      //     this.msge["email"] = "Enter a valid email";
+      //    }
+      //   },
+      //   check_password(value) {
+      //    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(value)) {
+      //   this.msge["password"] = "";
+      //     } else {
+      //   this.msge["password"] =
+      //     "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter.";
+      // }
         
     },
 check_firstName(value) {
@@ -230,8 +229,6 @@ check_firstName(value) {
       }
     },
     }
-     
-  };
     
 </script>
 

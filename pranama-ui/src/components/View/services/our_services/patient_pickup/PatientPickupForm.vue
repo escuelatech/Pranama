@@ -107,9 +107,22 @@
             v-model="time"
             placeholder="Choose a time"
             local="en"
+            format="hh:mm A"
+            label="format: am/pm"
             required
           ></b-form-timepicker>
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
+        </div>
+        <div class="col-12">
+          <textarea
+            name="description"
+            id="description"
+            placeholder="Describe your needs"
+            rows="6"
+            v-model="description"
+            required
+          ></textarea>
+          <span class="errorNotification" v-if="message.description">{{message.description}}</span>
         </div>
 
         <!-- Break -->
@@ -125,7 +138,7 @@
               <input
                 type="button"
                 value="Cancel"
-                @click="$router.push({name : 'OurOfferedSerces'})"
+                @click="$router.push({name : 'OurOfferedServices'})"
               />
             </li>
           </ul>
@@ -159,6 +172,7 @@ export default {
       vehicle: "",
       date: "",
       time: "",
+      description: "",
       pickupRegistrationMessage: [],
       errorMessage: [],
       message: []
@@ -201,6 +215,10 @@ export default {
     phoneNumber(value) {
       this.phoneNumber = value;
       this.validatePhoneNumber(value);
+    },
+    description(value){
+      this.description = value;
+      this.validateDescription(value);
     }
   },
   methods: {
@@ -214,7 +232,8 @@ export default {
           phoneNumber: this.phoneNumber,
           vehicle: this.vehicle,
           date: this.date,
-          time: this.time
+          time: this.time,
+          description: this.description
         })
         .then(response => {
           response;
@@ -291,7 +310,14 @@ export default {
       } else {
         this.message["phoneNumber"] = "Enter a valid Phone Number";
       }
-    }
+    },
+    validateDescription(value) {
+    if (value == "") {
+        this.message["description"] = "Please provide a description of your needs";
+      } else {
+        this.message["description"] = "";
+      }
+  },
   }
 };
 </script>

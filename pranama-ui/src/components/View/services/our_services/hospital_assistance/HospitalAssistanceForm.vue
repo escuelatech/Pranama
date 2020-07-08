@@ -128,6 +128,7 @@
         </div>
       
       <div>
+       <div class="col-12">
         <ul class="actions">
           <li>
             <input type="submit" value="Submit" class="primary"  />
@@ -139,6 +140,7 @@
             <input type="button" value="Cancel" @click="$router.push({name: 'OurOfferedServices'})" />
           </li>
         </ul>
+      </div>
       </div>
     </form>
      <div v-show="isSuccessMessage">

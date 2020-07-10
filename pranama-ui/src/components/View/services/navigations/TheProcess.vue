@@ -245,13 +245,3 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-.contact{
-   position: absolute;
-   top:180px;
-   right: 150px;
- 
-  transform: translateY(-50%);
-}
-
-</style>

@@ -17,14 +17,16 @@
 					<header class="major">
 						<h2> Doctor at Home </h2>
 					</header>
-					<button class="button secondary contact" @click="$router.push({ name: 'ContactEmailPage' })">Contact Us</button>
+					
 						<!-- <h2 id="content"> Doctor at Home </h2> -->
 					<p>
 						We are associated with a new startup company “MEDICAR” who are arranging Doctor Visits at
                         home, Small medical Procedures like wound dressings, Injections, Intravenous Drips, Naso-
                         gastric Tube insertion, Foley’s Catheter for urine output etc. Over and above that you will get
                         our professional supervision and daily reports of Status and progress of our services.</p>
-
+                        <h5>
+                         <input type="button" value="Contact US" @click="$router.push({ name: 'ContactEmailPage' })" />
+                        </h5>
 						<!--parahraph section begins here-->
 					<!--<div class="row">-->
 						<!-- <div class="col-6 col-12-small">

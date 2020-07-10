@@ -114,7 +114,7 @@
           
           <span class="errorNotification" v-if="message.time">{{message.time}}</span>
          </div>
-      </div>
+      
        <div class="col-12">
           <textarea
             name="description"
@@ -126,8 +126,7 @@
           ></textarea>
           <span class="errorNotification" v-if="message.description">{{message.description}}</span>
         </div>
-      
-      <div>
+           
        <div class="col-12">
         <ul class="actions">
           <li>

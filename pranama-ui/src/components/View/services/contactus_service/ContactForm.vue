@@ -6,27 +6,24 @@
 										<h2>Get in touch</h2>
 				</header>
 					<p>You can easily reach us through any of the below communication mediums .</p>
+          <p>
+            For quick communications <a href="https://chat.whatsapp.com/DRmsRhXxa9vA6AzqUkPu5F" target="_blank">Join our watsapp Group</a>
+          </p>
           <div class="row gtr-uniform">
-          <div class="col-6 col-12-xsmall">
-          <h3>India</h3>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#contactForm" @click="displaySubmitForm">pranamaindia@gmail.com
-</a></li>
-										<li class="icon solid fa-phone"> (515) 012-2121</li>
-										<li class="icon solid fa-home">“Sreehari” Post Puthiyara,<br />
-										Kerala, India, PIN 673004</li>
-									</ul>
-                  </div>
-                  <!-- <div class="col-6 col-12-xsmall">
-                  <h3>US</h3>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="#">info@pranama.us</a></li>
-										<li class="icon solid fa-phone"> (515) 012-2121</li>
-										<li class="icon solid fa-home">12345 Texas Avenue<br />
-										Austin,Texas, PIN 78759</li>
-									</ul>
-                  </div> -->
-                  </div> 
+            <div class="col-6 col-12-xsmall">
+                <h3>India</h3>
+                  <ul class="contact">
+                          <li class="icon solid fa-envelope"><a href="#contactForm" @click="displaySubmitForm">
+                           Click here to write an E-mail</a>
+                          </li>
+                          <li class="icon solid fa-phone"> +91 94478 89911</li>
+                          <li class="icon solid fa-phone"> +91 95390 46750</li>
+
+                          <li class="icon solid fa-home">“Sreehari” Post Puthiyara,<br />
+                          Kerala, India, PIN 673004</li>
+                  </ul>
+            </div>
+            </div> 
 		</section>
    
     <br/><br/>

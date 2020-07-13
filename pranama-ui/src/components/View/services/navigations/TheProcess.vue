@@ -15,15 +15,15 @@
             </header>                
               <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
               <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
-              <p>We will immediately contact you, understand your requirements and communicate with your relative at their convenience. We will then work out a plan and the approximate budget. We will send you the report in your email and Whatsapp.</p>
+              <p>Once you send us a request, We will immediately contact you, understand your requirements and communicate with your relative at their convenience. We will then work out a plan and the approximate budget. We will send you the report in your email and Whatsapp.</p>
               <p>Our services start immediately after signing the contract with our terms and conditions. You will be updated daily about the status and progress of the patient via, Whatsapp, email etc.</p>
-              <h5>
-                 <input type="button" value="Contact US" @click="$router.push({ name: 'ContactEmailPage' })" />
-              </h5>
             <div>
               <header class="major">
                 <h2>Our Services. </h2>
               </header>
+              <h3>
+              <a href="#process" @click="clickToShowProcess">Checkout How We Work Here</a>
+            </h3>
               <div class="row">
                 <div class="col-4 col-12-medium">
                   <h3>Pick up and Drop</h3>
@@ -56,9 +56,10 @@
           </div>
           <!-- </section> -->
           <div>
-            <h3>
-              <a href="#process" @click="clickToShowProcess">Checkout How We Work Here</a>
-            </h3>
+             <h5>
+                 <input type="button" value="Contact US" @click="$router.push({ name: 'ContactEmailPage' })" />
+              </h5>
+            
           </div>
           <br />
           <!-- Section 
@@ -119,7 +120,7 @@
             </div>
             <br />
             <div class="posts">
-              <article>
+              <!-- <article>
                 <a href="#" class="image">
                   <img src="@/assets/images/7.jpg" alt />
                 </a>
@@ -210,7 +211,7 @@
                     <a href="#" class="button">More</a>
                   </li>
                 </ul>
-              </article>
+              </article> -->
             </div>
           </div>
           <!-- </section> -->

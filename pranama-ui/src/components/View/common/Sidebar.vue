@@ -54,9 +54,9 @@
               <li  v-if="isAuthenticated">
                 <router-link  v-if="isAuthenticated" @click="handleRouterLinkClick" :to="{ name: 'editProfile' }">EDIT PROFILE</router-link>
               </li>
-              <li>
+              <!-- <li>
                 <router-link @click="handleRouterLinkClick" :to="{ name: 'AgentOnBoardPage' }">AGENT ON BOARDING</router-link>
-              </li>
+              </li> -->
             </ul>
           </nav>
           <!-- Section 

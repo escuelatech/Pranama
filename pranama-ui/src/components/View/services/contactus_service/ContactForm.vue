@@ -102,7 +102,7 @@
               <input type="submit" value="Send Message" class="primary" />
             </li>
             <li>
-              <input type="reset" value="Reset" />
+              <input type="button" value="cancel"  @click="backToContact" />
             </li>
           </ul>
         </div>
@@ -211,6 +211,11 @@ export default {
   methods: {
     displaySubmitForm() {
       this.displaySubmit = true;
+    },
+    backToContact(){
+       this.displaySubmit = false;
+       this.sendingSuccessful = true;
+       this. sendingSuccessful = false;
     },
     submitContactForm() {
          ContactService

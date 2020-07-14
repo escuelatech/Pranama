@@ -10,7 +10,8 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-            <HospitalSearchForm/>
+            <!-- <HospitalSearchForm/> -->
+            <HospitalPage />
            <!-- Form -->
         </div>
       </div>
@@ -27,13 +28,14 @@
 <script>
 import Header from "@/components/View/common/Header";
 import Sidebar from "@/components/View/common/Sidebar";
-import HospitalSearchForm from '@/components/View/services/hospital_service/HospitalSearchForm.vue'
-  
+// import HospitalSearchForm from '@/components/View/services/hospital_service/HospitalSearchForm.vue'
+import HospitalPage from '@/components/View/services/hospital_service/HospitalPage.vue'  
 export default {
     components: { 
         Header, 
         Sidebar,  
-        HospitalSearchForm
+        // HospitalSearchForm,
+        HospitalPage
     }
 }
 </script>

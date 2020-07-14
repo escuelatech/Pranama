@@ -10,16 +10,18 @@
          
         <p>Please enter your new password below. </p>
         
-           <form @submit.prevent="resetPassword">
-        
+        <form @submit.prevent="resetPassword">
+        <div class="row gtr-uniform">
          <div class="col-6 col-12-xsmall">
             <input type="password" name="currentPassword" value placeholder="Current Password" v-model="currentPassword" autocomplete="off"  required />
             <span class="errNotific" v-if="msge.currentPassword">{{msge.currentPassword}}</span>
           </div>
+          <div class="col-6 col-12-xsmall"></div>
          <div class="col-6 col-12-xsmall">
             <input type="password" name="newPassword" value placeholder="New Password" v-model="newPassword" autocomplete="off"  required />
             <span class="errNotific" v-if="msge.newPassword">{{msge.newPassword}}</span>
           </div>
+           <div class="col-6 col-12-xsmall"></div>
           <div class="col-6 col-12-xsmall">
             <input type="password" name="confirmNewPassword" value placeholder="Confirm New Password" v-model="confirmNewPassword" autocomplete="off"  required />
             <span class="errNotific" v-if="msge.confirmNewPassword">{{msge.confirmNewPassword}}</span>
@@ -29,12 +31,12 @@
               <li><input type="submit" value="Reset Password" class="primary"  /></li>
             </ul>
           </div>
-            
+        </div>  
       </form>
       <div v-show="resetPasswordSuccessful">
         <Messagebar />
       </div>
-      <router-link :to="{ name: 'editProfile' }">Go back to Edit Profile</router-link>
+      <router-link :to="{ name: 'editProfile' }">Go back to View Profile</router-link>
     </div>
           <!-- Form -->
   </div>

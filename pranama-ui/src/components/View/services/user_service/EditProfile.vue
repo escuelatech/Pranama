@@ -1,5 +1,6 @@
 <template>
     <div>
+      <!-- <filePreview /> -->
        <div v-show="editProfileSuccessful">
           <Messagebar />
        </div>
@@ -8,51 +9,13 @@
               <h2>View Profile</h2>
             </header>
             <div class="row gtr-uniform">
-              <div class="col-6 col-12-xsmall">
-                <input 
-                type="email" 
-                name="email" 
-                value 
-                v-model="user.email" readonly />
+              <div>
+                <h5><b>Name: </b>{{user.firstName}} {{ user.lastName}}</h5>
+                <h5><b>Email: </b>{{user.email}}</h5>
+                <h5><b>Phone Number: </b>{{user.phoneNumber}}</h5>
+                <h5><b>Country: </b>{{user.country}}</h5>
               </div>
-
-              <div class="col-6 col-12-xsmall">
-                <input 
-                type="text" 
-                name="firstName" 
-                value 
-                v-model="user.firstName" readonly />
-              </div>
-
-              <div class="col-6 col-12-xsmall">
-                <input 
-                type="text" 
-                name="lastName" 
-                value  
-                v-model="user.lastName"
-                readonly />
-              </div>
-
-              <div class="col-6 col-12-xsmall">
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value
-                  v-model="user.phoneNumber" 
-                  readonly
-                />
-              </div>
-
-              <div class="col-6 col-12-xsmall">
-                <input
-                  type="text"
-                  name="country"
-                  value
-                  v-model="user.country"
-                  readonly
-                />
-                
-              </div>
+               
               <!-- Break -->
               <div class="col-12">
                 <ul class="actions">
@@ -134,6 +97,7 @@
                 />
                 <span class="errNotific" v-if="msge.country">{{msge.country}}</span>
               </div>
+               
               <!-- Break -->
               <div class="col-12">
                 <ul class="actions">
@@ -152,6 +116,7 @@
 <script>
 import UserService from "@/apiservices/UserService";
 import Messagebar from '@/components/View/common/Messagebar.vue';
+
     export default {
       components: {
         Messagebar
@@ -171,6 +136,7 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       isError: false,
       loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
       displayEditProfile: false,
+      
       };
      },
   
@@ -228,7 +194,8 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
          userType: this.user.userType,
         lastName: this.user.lastName,
         // passWord: this.user.password,
-        country: this.user.country
+        country: this.user.country,
+        // previewImage: this.user.previewImage
       })
         .then(response => {
           response.data;

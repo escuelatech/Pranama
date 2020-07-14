@@ -9,7 +9,9 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-         <EditProfile/>
+         
+         <EditProfile />
+        
          <!-- <ResetPassword /> -->
           <!-- Form -->
         </div>
@@ -26,12 +28,13 @@
   import Header from "@/components/View/common/Header";
   import Sidebar from "@/components/View/common/Sidebar";
   import EditProfile from "@/components/View/services/user_service/EditProfile.vue";
-  // import ResetPassword from "@/components/View/services/user_service/ResetPassword.vue";
+ 
    export default {
     components: { 
       Header, 
       Sidebar, 
-      EditProfile,
-      // ResetPassword
-   }};
+      EditProfile
+    }
+   
+   };
 </script> 

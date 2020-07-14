@@ -1,6 +1,69 @@
 <template>
     <div>
+       <div v-show="editProfileSuccessful">
+          <Messagebar />
+       </div>
+      <div v-show="!displayEditProfile || editProfileSuccessful">
+       <header class="major">
+              <h2>View Profile</h2>
+            </header>
+            <div class="row gtr-uniform">
+              <div class="col-6 col-12-xsmall">
+                <input 
+                type="email" 
+                name="email" 
+                value 
+                v-model="user.email" readonly />
+              </div>
+
+              <div class="col-6 col-12-xsmall">
+                <input 
+                type="text" 
+                name="firstName" 
+                value 
+                v-model="user.firstName" readonly />
+              </div>
+
+              <div class="col-6 col-12-xsmall">
+                <input 
+                type="text" 
+                name="lastName" 
+                value  
+                v-model="user.lastName"
+                readonly />
+              </div>
+
+              <div class="col-6 col-12-xsmall">
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  value
+                  v-model="user.phoneNumber" 
+                  readonly
+                />
+              </div>
+
+              <div class="col-6 col-12-xsmall">
+                <input
+                  type="text"
+                  name="country"
+                  value
+                  v-model="user.country"
+                  readonly
+                />
+                
+              </div>
+              <!-- Break -->
+              <div class="col-12">
+                <ul class="actions">
+                  <li><input type="button" value="Edit My Profile" class="primary"  @click="showEditProfile" /></li>
+                 </ul>
+              </div>
+            </div>
+          </div>
+
             <!-- Form -->
+        <div v-show="displayEditProfile">
          <div v-show="isError" >
             <Messagebar />
           </div>
@@ -75,15 +138,13 @@
               <div class="col-12">
                 <ul class="actions">
                   <li><input type="submit" value="Update My Profile" class="primary"  /></li>
+                   <li><input type="button" value="View Profile" class="primary" @click="showViewProfile" /></li>
                  </ul>
               </div>
             </div>
           </form>
-          <div v-show="editProfileSuccessful">
-            <Messagebar />
-          </div>
-          <router-link :to="{ name: 'resetPassword' }">Reset Password</router-link>
-
+          <router-link v-show="!editProfileSuccessful" :to="{ name: 'resetPassword' }">Reset Password</router-link>
+        </div>
           
     </div>
 </template>
@@ -108,7 +169,8 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       country: '',
       msge: [],
       isError: false,
-      loggedInUserEmail: JSON.parse(localStorage.getItem('email'))
+      loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
+      displayEditProfile: false,
       };
      },
   
@@ -142,6 +204,12 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
     this.getLoggedInUser();
   },
      methods: {
+       showEditProfile() {
+         this.displayEditProfile = true;
+       },
+       showViewProfile() {
+         this.displayEditProfile = false;
+       },
        getLoggedInUser() {
             UserService.getUser(this.loggedInUserEmail)
                 .then(response => {

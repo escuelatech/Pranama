@@ -228,7 +228,7 @@ export default {
           this.isSuccessMessage = true;
           this.isErrorMessage = false;
           this.$store.dispatch('addPickupAssistanceMessage');
-          setTimeout( () => this.$router.push({ name: 'OurOfferedServices'}),10000);
+          this.timer=setTimeout( () => this.$router.push({ name: 'OurOfferedServices'}),10000);
           }).catch(error => {
           this.isErrorMessage = true;
           this.$store.dispatch('addErrorMessage')
@@ -298,7 +298,9 @@ export default {
       }
   },
   },
-
+   beforeDestroy() {
+        clearTimeout(this.timer);
+        },
 }
 </script>
 

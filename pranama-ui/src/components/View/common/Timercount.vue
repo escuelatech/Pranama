@@ -22,6 +22,9 @@
             }
                  
         },
+         beforeDestroy() {
+        clearInterval(this.counters);
+       }
       
     }
 

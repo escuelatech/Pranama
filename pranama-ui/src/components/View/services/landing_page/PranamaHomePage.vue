@@ -63,9 +63,9 @@ import Sidebar from "@/components/View/common/Sidebar";
 import formService from "@/apiservices/formService.js";
 export default {
   created() {
-    console.log('Panama page is loaded !');
+    // console.log('Panama page is loaded !');
     formService.commonService().then(response => {
-          console.log(response);
+          response;
           this.users = response.data.data;
           this.userRegistrationSuccessful = true;
         }).catch(error => {

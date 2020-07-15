@@ -184,7 +184,7 @@ export default {
           //this.displayMessage = true;
            this.isError = false;
            this.$store.dispatch('addRegMessage');
-            setTimeout(() => this.$router.push({ name: "LoginPage"}),10000);
+          this.timer =  setTimeout(() => this.$router.push({ name: "LoginPage"}),10000);
         })
         .catch(error => {
          this.isError = true;
@@ -255,7 +255,11 @@ export default {
         }
       }
     }
-  }
+  },
+  beforeDestroy() {
+        clearTimeout(this.timer);
+         
+      },
 };
 </script>
 

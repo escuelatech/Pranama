@@ -240,7 +240,7 @@ export default {
           this.patientPickupSuccessful = true;
           this.isError = false;
           this.$store.dispatch("addPickupAssistanceMessage");
-          setTimeout(() => this.$router.push({ name: "OurOfferedServices" }),
+         this.timer = setTimeout(() => this.$router.push({ name: "OurOfferedServices" }),
             10000
           );
         })
@@ -318,7 +318,11 @@ export default {
         this.message["description"] = "";
       }
   },
-  }
+  },
+  beforeDestroy() {
+        clearTimeout(this.timer);
+         
+      },
 };
 </script>
 

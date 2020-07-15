@@ -29,7 +29,7 @@
           </div>
           </div>
           <div class="col-12">
-             <small><router-link :to="{ name: 'forgotPassword' }">Forgot password</router-link></small>
+             <small><router-link :to="{ name: 'forgotPassword' }">Forgot password?</router-link></small>
           </div>
         </template>
         <div v-else class="col-6 col-12-xsmall loading">

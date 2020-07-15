@@ -13,7 +13,7 @@
               <header class="major">
                 <h2> Parental Care
                   <br> by PRANAMA</h2>
-                <p>Taking care of your aging parents is a noble move .</p>
+                <p>Taking care of your aging parents is a noble move</p>
               </header>
               <p>
                  Taking care of your Aging Parents is your moral responsibility. You will genuinely want to do it.
@@ -23,7 +23,7 @@
                  and attention you would love to give them. </p>
 
             <header class="major">
-                <p>Your parents will not feel your absence. We believe in total Professionalism.</p>
+                <p>Your parents will not feel your absence. We believe in total Professionalism</p>
             </header>
                   <p>
                  We, at Pranama, take up the responsibility, as per your wish.

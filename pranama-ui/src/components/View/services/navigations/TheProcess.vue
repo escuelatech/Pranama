@@ -13,8 +13,8 @@
             <header class="major">
               <h2>How PRANAMA works</h2>
             </header>                
-              <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
-              <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services</p>
+              <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services.</p>
+              <p>Pranama offers you an all round medical support system, for your relatives who needs medical care. Now we are operational in Kozhikode District of Kerala, India. We will be extending our services to other cities of Kerala shortly.  We have a powerful professional system with Doctors, well trained and well mannered Para-medic staff, well behaved drivers, Office staff, and digital infrastructure for our services.</p>
               <p>Once you send us a request, We will immediately contact you, understand your requirements and communicate with your relative at their convenience. We will then work out a plan and the approximate budget. We will send you the report in your email and Whatsapp.</p>
               <p>Our services start immediately after signing the contract with our terms and conditions. You will be updated daily about the status and progress of the patient via, Whatsapp, email etc.</p>
             <div>
@@ -41,7 +41,7 @@
                   <h4>Option 1:</h4>
                   <p>Our trained Bystanders will accompany the patient to the hospital arrange and support all needed formalities for Out Patient Services. They will also give emotional support to the patients. This can be extended for day care procedures, Dialysis etc.</p>
                   <h4>Option 2:</h4>
-                  <p>Our trained Bystanders will accompany the patient to the hospital arrange and support all needed formalities for admitted Patients in hospitals. They will also give emotional support to the patients. Bystanders will be posted on duty in turn for all 24 hours</p>
+                  <p>Our trained Bystanders will accompany the patient to the hospital arrange and support all needed formalities for admitted Patients in hospitals. They will also give emotional support to the patients. Bystanders will be posted on duty in turn for all 24 hours.</p>
                 </div>
                 <div class="col-4 col-12-medium">
                   <h3>Total Solutions</h3>

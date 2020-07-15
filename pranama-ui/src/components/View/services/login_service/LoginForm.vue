@@ -9,8 +9,8 @@
             <input
               type="text"
               name="email"
-              value="Your Email"
-              placeholder="Your Email"
+              value=" Your Email"
+              placeholder=" Your Email"
               v-model="email" autocomplete="off"
             />
             <i class="fas fa-envelope" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
             <input 
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder=" Password"
               v-model="password" autocomplete="off"
             />
             <i class="fas fa-lock" aria-hidden="true"></i>

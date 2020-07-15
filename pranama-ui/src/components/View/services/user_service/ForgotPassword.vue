@@ -10,7 +10,7 @@
           <!-- Header -->
           <!-- Form -->
           <h2>Forgot Password?</h2>
-          <p>Please enter your e-mail address.You will receive a link to create a new password via e-mail. </p>
+          <p>Please enter your e-mail address. You will receive a link to create a new password via e-mail. </p>
         <form @submit.prevent="forgotPassword">
         <div class="row gtr-uniform">
          <div class="col-6 col-12-xsmall">

@@ -5,8 +5,8 @@
 				<header class="major">
 										<h2>Get in touch</h2>
 				</header>
-					<p>You can easily reach us through any of the below communication mediums.</p>
-          <p>
+					<p class="text-justify">You can easily reach us through any of the below communication mediums.</p>
+          <p class="text-justify">
             For quick communications <a href="https://chat.whatsapp.com/DRmsRhXxa9vA6AzqUkPu5F" target="_blank"> Join our Watsapp Group </a>
           </p>
           <div class="row gtr-uniform">

@@ -9,7 +9,7 @@
           <Header />
           <!-- Header -->
           <!-- Form -->
-          <div>
+          <div class="text-justify">
             <header class="major">
               <h2>How PRANAMA works</h2>
             </header>                
@@ -246,3 +246,7 @@ export default {
 };
 </script>
 
+<style lang="scss" >
+@import "@/design/main.scss";
+
+</style>

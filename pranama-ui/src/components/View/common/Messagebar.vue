@@ -1,6 +1,6 @@
 <template>
 <!-- v-show="isError" -->
-    <div class="box" v-html = "message">
+    <div class="box text-justify" v-html = "message">
     </div>
 </template>
 <script>

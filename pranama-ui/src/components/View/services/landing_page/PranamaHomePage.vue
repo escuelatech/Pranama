@@ -9,7 +9,7 @@
           <Header />
           <!-- Banner -->
           <section id="banner">
-            <div class="content">
+            <div class="content text-justify">
               <header class="major">
                 <h2> Parental Care
                   <br> by PRANAMA</h2>

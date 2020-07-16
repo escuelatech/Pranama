@@ -12,7 +12,7 @@
           <!-- Header -->
           <!-- Form -->
           <!-- <section> -->
-				<div>
+				<div class="text-justify">
 					<!-- Content -->
 					<header class="major">
 						<h2> Doctor at Home </h2>
@@ -193,5 +193,5 @@ import Header from "@/components/View/common/Header";
 </script>
 
 <style lang="scss" scoped>
-
+@import "@/design/main.scss";
 </style>

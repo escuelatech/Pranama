@@ -40,8 +40,7 @@
               <div class="col-6 col-12-xsmall">
                 <input 
                 type="email" 
-                name="email" 
-                value 
+                name="email"  
                 v-model="user.email" readonly />
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
@@ -78,7 +77,7 @@
 
               <div class="col-6 col-12-xsmall">
                 <input
-                  type="text"
+                  type="tel"
                   name="phoneNumber"
                   value
                   v-model="user.phoneNumber" autocomplete="off"
@@ -129,7 +128,7 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       // password: '',
       firstName: '',
       lastName: '',
-      phoneNumber: '',
+      phoneNumber: null,
       userType: '',
       country: '',
       msge: [],
@@ -172,6 +171,7 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
      methods: {
        showEditProfile() {
          this.displayEditProfile = true;
+
        },
        showViewProfile() {
          this.displayEditProfile = false;
@@ -201,8 +201,10 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
           response.data;
           console.log(response);
           console.log(this.loggedInUserEmail);
+         
           this.user = response.data.data;
           console.log('in edit profile',this.user)
+            console.log("phone number",this.phoneNumber);
           this.editProfileSuccessful = true;
           this.isError = false;
           this.$store.dispatch('addEditMessage');
@@ -257,11 +259,12 @@ check_firstName(value) {
       }
     },
      check_phoneNumber(value) {
-      if (value.length >= "10" && value.length <= "15") {
-        this.msge["phoneNumber"] = " ";
-      } else {
-        this.msge["phoneNumber"] = "Enter your valid Mobile Number";
-      }
+      var pattern = new RegExp(/^\+?1?\s*?\(?\d{3}(?:\)|[-|\s])?\s*?\d{3}[-|\s]?\d{4}$/);
+      if (pattern.test(value)) {
+          this.msge["phoneNumber"] = "";
+        } else {
+          this.msge["phoneNumber"] = "Enter a valid phoneNumber";
+        }
     },
     }
     

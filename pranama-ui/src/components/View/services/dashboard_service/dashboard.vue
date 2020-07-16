@@ -10,7 +10,7 @@
           <!-- Header -->
           <!-- Form -->
           <!-- <section> -->
-          <div>
+          <div class="text-justify">
             <header class="major">
               <h2>How it works</h2>
             </header>

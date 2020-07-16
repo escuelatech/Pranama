@@ -10,7 +10,7 @@
           <!-- Header -->
          
         <!-- <section> -->
-        <div>
+        <div class="text-justify">
            <header class="major">
             <h2>Our Services</h2>
           </header>

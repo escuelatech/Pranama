@@ -1,9 +1,14 @@
 <template>
     <div>
       <!-- <filePreview /> -->
-       <div v-show="editProfileSuccessful">
+       <div v-show="editProfilemessage" >
+        
           <Messagebar />
-       </div>
+          <div class="messageIcons">
+         <img src="https://img.icons8.com/doodle/64/000000/checkmark.png"/>
+          <!--<i class="far fa-check-circle"></i>-->
+          </div>
+        </div>
       <div v-show="!displayEditProfile || editProfileSuccessful">
        <header class="major">
               <h2>View Profile</h2>
@@ -45,16 +50,7 @@
                 <span class="errNotific" v-if="msge.email">{{msge.email}}</span>
               </div>
               
-              <!-- <div class="col-6 col-12-xsmall">
-                <input 
-                type="password" 
-                name="password" 
-                value 
-                v-model="user.password" 
-                autocomplete="off"  required />
-                <span class="errNotific" v-if="msge.password">{{msge.password}}</span>
-              </div> -->
-
+      
               <div class="col-6 col-12-xsmall">
                 <input 
                 type="text" 
@@ -101,7 +97,7 @@
               <div class="col-12">
                 <ul class="actions">
                   <li><input type="submit" value="Update My Profile" class="primary"  /></li>
-                   <li><input type="button" value="View Profile" class="primary" @click="showViewProfile" /></li>
+                    <li> <input type="button" value="Cancel" @click="$router.go()" /></li>
                  </ul>
               </div>
             </div>
@@ -125,7 +121,6 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       editProfileSuccessful: false,
       user: '',
       email: '',
-      // password: '',
       firstName: '',
       lastName: '',
       phoneNumber: null,
@@ -135,19 +130,13 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
       isError: false,
       loggedInUserEmail: JSON.parse(localStorage.getItem('email')),
       displayEditProfile: false,
+      editProfilemessage:false
       
       };
      },
   
    watch: {
-      //  email(value) {
-      // this.email = value;
-      // this.check_email(value);
-      // },
-    //  password(value) {
-    //   this.password = value;
-    //   this.check_password(value);
-    //   },
+   
       firstName(value) {
       this.firstName = value;
        this.check_firstName(value);
@@ -170,11 +159,13 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
   },
      methods: {
        showEditProfile() {
-         this.displayEditProfile = true;
-
-       },
+                this.displayEditProfile = true;
+                event.target.disabled = true
+            },
        showViewProfile() {
+        
          this.displayEditProfile = false;
+         
        },
        getLoggedInUser() {
             UserService.getUser(this.loggedInUserEmail)
@@ -193,21 +184,18 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
         firstName: this.user.firstName,
          userType: this.user.userType,
         lastName: this.user.lastName,
-        // passWord: this.user.password,
-        country: this.user.country,
-        // previewImage: this.user.previewImage
+         country: this.user.country,
+        
       })
         .then(response => {
           response.data;
           console.log(response);
-          console.log(this.loggedInUserEmail);
-         
           this.user = response.data.data;
-          console.log('in edit profile',this.user)
-            console.log("phone number",this.phoneNumber);
           this.editProfileSuccessful = true;
           this.isError = false;
+          this.editProfilemessage=true;
           this.$store.dispatch('addEditMessage');
+          setTimeout( () => this.editProfilemessage = false,5000);
         })
         .catch(error => {
           console.log("Error reported from endpoints :", error.response);
@@ -218,21 +206,7 @@ import Messagebar from '@/components/View/common/Messagebar.vue';
           ));
         });
     },
-      //  check_email(value) {
-      //    // eslint-disable-next-line no-useless-escape
-      //    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
-      //     this.msge["email"] = "";
-      //    } else {
-      //     this.msge["email"] = "Enter a valid email";
-      //    }
-      //   },
-      //   check_password(value) {
-      //    if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/.test(value)) {
-      //   this.msge["password"] = "";
-      //     } else {
-      //   this.msge["password"] =
-      //     "6 to 20 characters which contain at least one numeric digit, one uppercase and one lowercase letter.";
-      // }
+  
         
     },
 check_firstName(value) {
@@ -275,5 +249,11 @@ check_firstName(value) {
 
 .errNotific {
   color: red;
+}
+
+.messageIcons{
+ position: relative;
+  left:500px;
+  top: -100px;
 }
 </style>

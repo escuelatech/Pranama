@@ -7,165 +7,81 @@
             <v-card
                 class="mx-auto"
                 max-width="600"
-                outlined
             >
-                <v-list-item three-line>
-                <v-list-item-content>
-                    <div class="overline mb-2">
-                    <b>{{selectedRequest.requestType}}</b>
-                    </div>
-                    <div v-if="selectedRequest.requestType === 'Patient Pickup'">
-                        <v-card-text><b>Patient name:</b> {{ selectedRequest.patientFirstName }} {{selectedRequest.patientLastName}}</v-card-text> 
-                        <v-card-text><b>Patient email:</b> {{ selectedRequest.userEmail }}</v-card-text>
-                        <v-card-text><b>Pickup Location:</b> {{ selectedRequest.pickupLocation }}</v-card-text> 
-                        <v-card-text><b>Drop-off Location:</b> {{ selectedRequest.dropoffLocation }}</v-card-text> 
-                        <v-card-text><b>Time:</b> {{selectedRequest.time}}</v-card-text> 
-                        <v-card-text><b>Vehicle:</b> {{selectedRequest.vehicle}}</v-card-text> 
-                        <v-card-text><b>Phone Number:</b> {{selectedRequest.phoneNumber}}</v-card-text> 
-                        <v-card-text><b>Description:</b> {{selectedRequest.description}}</v-card-text> 
-                        <v-card-text><b>MsgID:</b> {{selectedRequest.msgId}}</v-card-text> 
-                    </div>
+                <v-card  
+                    class="mx-auto my-12"
+                    max-width="700" 
+                >
+                    <v-card-title>{{selectedRequest.requestType}}</v-card-title>
+                    <v-list-item>
+                        <v-list-item-content v-if="selectedRequest.requestType === 'Patient Pickup'">
+                            <p><b>Patient name:</b> {{ selectedRequest.patientFirstName }} {{selectedRequest.patientLastName}}</p> <br>
+                            <p><b>Patient email:</b> {{ selectedRequest.userEmail }}</p> <br>
+                            <p><b>Pickup Location:</b> {{ selectedRequest.pickupLocation }}</p> <br>
+                            <p><b>Drop-off Location:</b> {{ selectedRequest.dropoffLocation }}</p> <br>
+                            <p><b>Time:</b> {{selectedRequest.time}}</p> <br>
+                            <p><b>Vehicle:</b> {{selectedRequest.vehicle}}</p> <br>
+                            <p><b>Phone Number:</b> {{selectedRequest.phoneNumber}}</p> <br>
+                            <p><b>Description:</b> {{selectedRequest.description}}</p> <br>
+                            <p><b>MsgID:</b> {{selectedRequest.msgId}}</p> <br>
+                        </v-list-item-content>
 
-                    <div v-else>
-                        <v-card-text><b>Patient name:</b> {{ selectedRequest.patientFirstName }} {{selectedRequest.patientLastName}} </v-card-text>
-                        <v-card-text><b>Patient email:</b> {{ selectedRequest.userEmail }} </v-card-text> 
-                        <v-card-text><b>Doctor Name:</b> {{ selectedRequest.doctorName }}</v-card-text> 
-                        <v-card-text><b>Hospital Name:</b> {{ selectedRequest.hospitalName }}</v-card-text> 
-                        <v-card-text><b>Hospital Location:</b> {{selectedRequest.hospitalLocation}}</v-card-text> 
-                        <v-card-text><b>Time:</b> {{selectedRequest.time}}</v-card-text> 
-                        <v-card-text><b>Description:</b> {{selectedRequest.description}}</v-card-text> 
-                        <v-card-text><b>MsgID:</b> {{selectedRequest.msgId}}</v-card-text> 
-                    </div>
+                        <v-list-item-content v-else>
+                            <p><b>Patient name:</b> {{ selectedRequest.patientFirstName }} {{selectedRequest.patientLastName}}</p> <br>
+                            <p><b>Patient email:</b> {{ selectedRequest.userEmail }}</p>  <br>
+                            <p><b>Doctor Name:</b> {{ selectedRequest.doctorName }}</p> <br>
+                            <p><b>Hospital Name:</b> {{ selectedRequest.hospitalName }} </p><br>
+                            <p><b>Hospital Location:</b> {{selectedRequest.hospitalLocation}} </p><br>
+                            <p><b>Time:</b> {{selectedRequest.time}}</p> <br>
+                            <p><b>Description:</b> {{selectedRequest.description}}</p> <br>
+                            <p><b>MsgID:</b> {{selectedRequest.msgId}}</p> <br>
+                        </v-list-item-content>
+                    </v-list-item>
+                    
+                </v-card>
                 
-                </v-list-item-content>
-                </v-list-item>
-                      
-                
-
                 <v-card-actions>
-                <v-btn
-                    outlined
-                    rounded
-                    text
-                    @click="toggleButton = !toggleButton; showSelectedAgentDetails"
+                    <button @click="showSelectedAgentDetails" class="primary">Assign an Agent
+                     <select v-model="selectedAgent">
+                        <option v-for="agent in agents" :value="agent" :key="agent.agentId">
+                        {{ agent.firstName }} {{agent.lastName}}
+                        </option>
+                    </select>
+                    </button>
+                </v-card-actions>
+                 <v-card v-if="selectedAgent"  
+                    class="mx-auto my-12"
+                    max-width="700" 
+                    max-height="500"
                 >
-                <!-- ; showSelectedAgentDetails -->
-                    Assign an Agent
-                    
-<!--  :menu-props="{ value: toggleButton }" -->
-
-                    <!-- <div  v-if="toggleButton">
-                        <v-select
-                       
-                        v-for="agent in agents" 
-                        :key="agent.agentId" 
-                        :value="agent"
-                    >{{agent.name}}</v-select>
-                    </div> -->
-                    
-                    
-                </v-btn>
-                 <v-select
-                        v-if="toggleButton"
-                        :items="agentNamesArr"
-                       return-object
-                       v-model="selectedAgent"
+                    <v-card-title>Selected agent</v-card-title>
+                    <v-list-item>
+                        <v-list-item-avatar size='150' v-if="selectedAgent.photoPath == null">
+                            <img src="@/assets/images/avatarimage.jpg" alt="">
+                        </v-list-item-avatar>
+                        <v-list-item-avatar size='150' v-else>
+                            <img :src="selectedAgent.photoPath" alt="">
+                        </v-list-item-avatar>
                         
-                    ></v-select>
-                    <!-- <v-select :items="agents" :reduce="agents => agents.name" label="country" v-if="toggleButton" />{{agent.name}} -->
-                <v-btn
-                    outlined
-                    rounded
-                    text
-                >
-                    Assign a Vehicle
-                    
-                </v-btn>
+                        <v-list-item-content>
+                            <p><b>Name: </b> <span>{{selectedAgent.firstName}} {{selectedAgent.lastName}}</span></p> <br>
+                            <p><b>Email: </b> {{selectedAgent.email}}</p> <br>
+                            <p><b>License Number: </b> {{selectedAgent.licenseNumber}} </p><br>
+                            <p><b>Adhar Number: </b> {{selectedAgent.adharNumber}}</p> <br>
+                            <p><b>Passport Number: </b> {{selectedAgent.passportNumber}}</p>  <br>
+                            <p><b>Phone: </b> {{selectedAgent.phone}}</p>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-card>
+                <v-card-actions>
+                    <v-btn>Confirm</v-btn>
+                    <v-btn @click="$router.go(-1)">Cancel</v-btn>
                 </v-card-actions>
             </v-card>
-
         </template>
-
-            
-                <!-- <template>
-                <v-row justify="center">
-                    <v-dialog
-                    v-model="dialog"
-                    scrollable
-                    max-width="300px"
-                    >
-                    <template v-slot:activator="{ on, attrs }">
-                        <v-btn
-                        class="primary"
-                        v-bind="attrs"
-                        v-on="on"
-                        @click="showSelectedAgentDetails"
-                        >
-                        Assign an Agent
-                        </v-btn>
-                    </template>
-                    <v-card>
-                       <v-card-title>Select Agent</v-card-title>
-                        <v-list >
-                            <v-list-group 
-                                v-for="agent in agents" 
-                                :key="agent.agentId" 
-                                :value="agent" 
-                            >
-                                <template v-slot:activator>
-                                <v-list-item-title v-model="selectedAgent"
-                                    >
-                                    {{agent.name}}
-                                </v-list-item-title>
-                                </template>
-                        
-                                <v-list-item v-if="selectedAgent"> 
-                                    <v-list-item-content 
-                                        v-for="details in selectedAgent" 
-                                        :key="details.agentId" 
-                                        :value="details">
-                                        {{details.name}}
-                                    </v-list-item-content>
-                                 </v-list-item> 
-                            </v-list-group>
-                        </v-list>
-
-                    </v-card> 
-
-                     <v-card>
-                        <select v-model="selectedAgent">
-                            <option v-for="agent in agents" :value="agent" :key="agent.agentId">
-                            {{ agent.name }}
-                            </option>
-                        </select>
-                         <v-card v-if="selectedAgent">
-                            <v-card-title
-                            v-for="details in selectedAgentArr"
-                            :key="details.agentId"
-                            :value="details"
-                            >
-                                {{details.name}} <br>
-                                                          
-                            </v-card-title>
-                        </v-card>
-                    </v-card> 
-                    </v-dialog>
-                </v-row>
-                </template> -->
-
-
-                <!-- <div v-if="selectedAgent">
-                    <v-text-field
-                        label="Selected Agent"
-                        :value="selectedAgent"
-                    >{{selectedAgent}}</v-text-field>
-                    
-                </div> -->
-            
-
+       
     </div>
 </v-app>
-   
 </template>
 
 <script>
@@ -176,26 +92,26 @@ import agentService from "@/apiservices/agentService";
         data() {
             return {
                 selectedAgent: null,
-                dialog: false,
+                // dialog: false,
                 selectedRequest: [],
                 agents: [],
                 msgId: null,
-                agentSelected: null,
-                toggleButton: false,
-                agentNamesArr: []
+                // agentSelected: null,
+                // toggleButton: false,
+                // agentNamesArr: [],
+                // selectedAgentArr: []
             }
         },
         created() {
             this.msgId = this.$route.params.msgId;
         },
         mounted() {
-                 this.selectedUserRequest();
-                 this.showSelectedAgentDetails();
-                // this. getSelectedAgent();
+            this.selectedUserRequest();
+            this.showSelectedAgentDetails();
         },
         methods: {
             selectedUserRequest() {
-                 console.log('msgid', JSON.stringify(this.msgId))
+                console.log('msgid', JSON.stringify(this.msgId))
                 UserService.getSelectedRequest(JSON.stringify(this.msgId))
                     .then(response => {
                         this.selectedRequest = response.data.apiResponse;
@@ -210,47 +126,38 @@ import agentService from "@/apiservices/agentService";
                     .then(response => {
                         console.log('Agents: ', response.data);
                         this.agents = response.data.data;
-                        this.agentNamesArr = response.data.data.name;
-                        console.log('Selected agent names', response.data.data.name)
                     })
                     .catch(error => {
                         console.log("Error from selected Agent details: ", JSON.stringify(error));
                     })
             },
-            showCard() {
-                this.openCard = !this.openCard;
-            },
-            getSelectedAgent() {
-                agentService.getAgent(this.selectedAgent.email) 
-                    .then(response => {
-                        console.log('Selected Agent: ', response.data);
-                        this.agentSelected = response.data.data;
-                        for(var i = 0; i < this.agentSelected.length; i++){
-                            this.selectedAgentArr.push({
-                                agentId: this.agentSelected.agentId,
-                                name: this.agentSelected.name,
-                                email: this.agentSelected.email,
-                                licenseNumber: this.agentSelected.licenseNumber,
-                                adharNumber: this.agentSelected.adharNumber,
-                                passportNumber: this.agentSelected.passportNumber,
-                                phone: this.agentSelected.phone
-                            })
-                        }
-                    })
-                    .catch(error => {
-                        console.log("Error from getting selected agent: ", JSON.stringify(error));
-                    })
-            }
-        }
+           
+            // getSelectedAgent(agentEmail) {
+            //     agentService.getAgent(agentEmail) 
+            //         .then(response => {
+            //             console.log('Selected Agent email: ', this.selectedAgent.email);
+            //             this.agentSelected = response.data.data;
+            //             for(var i = 0; i < this.agentSelected.length; i++){
+            //                 this.selectedAgentArr.push({
+            //                     agentId: this.agentSelected.agentId,
+            //                     name: this.agentSelected.name,
+            //                     email: this.agentSelected.email,
+            //                     licenseNumber: this.agentSelected.licenseNumber,
+            //                     adharNumber: this.agentSelected.adharNumber,
+            //                     passportNumber: this.agentSelected.passportNumber,
+            //                     phone: this.agentSelected.phone
+            //                 })
+            //             }
+            //         })
+            //         .catch(error => {
+            //             console.log("Error from displaying selected agent: ", JSON.stringify(error));
+            //         })
+            // }
+         }
     }
 </script>
 
 <style lang="scss" scoped>
-.dropdown-toggle, .dropdown-menu { width: 300px }
-.btn-group img { margin-right: 10px }
-.dropdown-toggle { padding-right: 50px }
-.dropdown-toggle .glyphicon { margin-left: 20px; margin-right: -40px }
-.dropdown-menu>li>a:hover { background: #f1f9fd } /* $search-blue */
-.dropdown-header { background: #ccc; font-size: 14px; font-weight: 700; padding-top: 5px; padding-bottom: 5px; margin-top: 10px; margin-bottom: 5px }
+
 
 </style>

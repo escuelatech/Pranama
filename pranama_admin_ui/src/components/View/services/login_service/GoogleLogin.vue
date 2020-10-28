@@ -9,12 +9,16 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: 'login_signup_social',
   mounted () {
    
   },
   methods: {
+     ...mapActions({
+      login: "auth/login",
+    }),
     loginWithGoogle () {
       this.$gAuth
         .signIn()
@@ -24,20 +28,33 @@ export default {
           console.log('getId', GoogleUser.getId())
           console.log('getBasicProfile', GoogleUser.getBasicProfile())
           console.log('getAuthResponse', GoogleUser.getAuthResponse())
-          var userInfo = {
-            loginType: 'google',
-            google: GoogleUser
-          }
-          console.log(JSON.stringify(userInfo));
-        //   this.$store.commit('setLoginUser', userInfo)
-        //   router.push('/home');
-          this.$router
-          .push({ name: "Dashboard" })
-          .catch((err) => console.log(err));
-        })
-        .catch(error => {
+          var userInfo = {loginType: 'google',google: GoogleUser}
+          this.sendingSuccessful = true;
+         //this.$store.commit('setLoginUser', userInfo)
+         this.callPranamaBackendLogin(userInfo);
+        }).catch(error => {
           console.log('error', error)
         })
+    },
+
+    async callPranamaBackendLogin(userInfo){
+      console.log("***** Pranama login started *****");
+       console.log(JSON.stringify(userInfo));
+      try {
+        await this.login({
+          email: "shyam.ramath@gmail.com",
+          password: "sachin123",
+        });
+        this.sendingSuccessful = true;
+        this.$router
+          .push({ name: "Dashboard" })
+          .catch((err) => console.log(err));
+      } catch (error) {
+        this.sendingSuccessful = false;
+        this.error = true;
+      } finally {
+        this.processing = false;
+      }
     }
   }
 }

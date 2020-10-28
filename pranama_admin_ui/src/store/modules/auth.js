@@ -28,6 +28,7 @@ const mutations = {
 
 const actions = {
   login ({ commit }, { email, password }) {
+    console.log("---- login 12 ---");
     commit('LOGIN_REQUEST', { email });
     return UserService.login(email, password)
       .then(response => {

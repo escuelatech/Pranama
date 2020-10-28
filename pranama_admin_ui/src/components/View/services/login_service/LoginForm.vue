@@ -69,9 +69,12 @@
         </div>
       </div>
     </form>
+<SocialLogin/>
   </div>
 </template>
 <script>
+
+import SocialLogin from "@/components/View/services/login_service/GoogleLogin.vue";
 import Spinner from "@/components/UI/Spinner";
 import { mapActions } from "vuex";
 
@@ -86,7 +89,7 @@ export default {
     };
   },
   components: {
-    Spinner,
+    Spinner,SocialLogin
   },
   methods: {
     ...mapActions({

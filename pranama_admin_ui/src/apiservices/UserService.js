@@ -39,22 +39,20 @@ function getSelectedRequest(msgId) {
   return apiClient.get('/api/hospital/fetch/request/'+msgId);
 }
 
-async function login (email, password) {
-  console.log(email);
-  console.log(password);
-  const response = await apiClient.post("/api/user/login", { email: email, passWord: password })
+async function login (email, password, socialLogin) {
+  const response = await apiClient.post("/api/user/login", { email: email, 
+    passWord: password, socialLogin:socialLogin});
+
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));
     localStorage.setItem('email', JSON.stringify(email));
   } else {
-    return Promise.reject("Wrong credentials");
+    return Promise.reject("Please check your username and password ");
   }
   return response;
 }
 
 async function socialLogin (email, password) {
-  console.log(email);
-  console.log(password);
   const response = await apiClient.post("/api/user/login", { email: email, passWord: password })
   if (response.data.token !== null) {
     localStorage.setItem('token', JSON.stringify(response.data.token));

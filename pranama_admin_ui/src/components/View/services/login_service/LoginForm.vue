@@ -3,7 +3,7 @@
     <h3 v-show="!sendingSuccessful">LOGIN</h3>
     <form
       @reset="reset"
-      @submit.prevent="submitContactForm"
+      @submit.prevent="submitLoginForm"
       v-show="!sendingSuccessful"
     >
       <div class="row gtr-uniform">
@@ -69,7 +69,7 @@
         </div>
       </div>
     </form>
-<SocialLogin/>
+    <SocialLogin/>
   </div>
 </template>
 <script>
@@ -100,18 +100,17 @@ export default {
       this.password = "";
       this.error = false;
     },
-    async submitContactForm() {
+    async submitLoginForm() {
       this.error = false;
       this.processing = true;
       try {
         await this.login({
           email: this.email,
           password: this.password,
+          socialLogin:"false"
         });
         this.sendingSuccessful = true;
-        this.$router
-          .push({ name: "Dashboard" })
-          .catch((err) => console.log(err));
+        this.$router.push({ name: "Dashboard" }).catch((err) => console.log(err));
       } catch (error) {
         this.sendingSuccessful = false;
         this.error = true;

@@ -38,17 +38,16 @@ export default {
     },
 
     async callPranamaBackendLogin(userInfo){
-      console.log("***** Pranama login started *****");
-       console.log(JSON.stringify(userInfo));
+      console.log("***** Google login *****");
+      console.log(JSON.stringify(userInfo.google.tt.$t));
       try {
         await this.login({
-          email: "shyam.ramath@gmail.com",
+          email: userInfo.google.tt.$t,
           password: "sachin123",
+          socialLogin:"true"
         });
         this.sendingSuccessful = true;
-        this.$router
-          .push({ name: "Dashboard" })
-          .catch((err) => console.log(err));
+        this.$router.push({ name: "Dashboard" }).catch((err) => console.log(err));
       } catch (error) {
         this.sendingSuccessful = false;
         this.error = true;
